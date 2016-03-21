@@ -1,6 +1,6 @@
 <?php
-//error_reporting(E_ALL & ~E_NOTICE);
-//error_reporting(0);
+error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(0);
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 require "../config.php";

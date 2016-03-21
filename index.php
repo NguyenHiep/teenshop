@@ -1,5 +1,8 @@
 <?php
 session_start();
+error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(0);
+
 /*
 $url = $_SERVER["SCRIPT_NAME"];
 $break = Explode('/', $url);
@@ -15,7 +18,6 @@ if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
 }
 */
 ob_start(); // Start the output buffer
-
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 require_once "config.php";
 require_once "libraries/class.php";

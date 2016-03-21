@@ -1,4 +1,9 @@
 RewriteEngine on
+#/home/gia9e3c2/public_html/@admincp/.htpasswd
+#AuthType Basic
+#AuthName "My Protected Area"
+#AuthUserFile /home/gia9e3c2/public_html/@admincp/.htpasswd
+#Require valid-user
 #Login
 RewriteRule login.html login.php [L]
 RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$ index.php?controller=$1&action=$2 [L]
