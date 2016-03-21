@@ -1,0 +1,16 @@
+RewriteEngine on
+#Login
+RewriteRule login.html login.php [L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$ index.php?controller=$1&action=$2 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/$ index.php?controller=$1&action=$2 [L]
+#Table User
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/uid/([0-9]+)$ index.php?controller=$1&action=$2&uid=$3 [L]
+#Table Category
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/catid/([0-9]+)$ index.php?controller=$1&action=$2&catid=$3 [L]
+#Table Product
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/prid/([0-9]+)$ index.php?controller=$1&action=$2&prid=$3 [L]
+#Pagenation
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/start/([0-9]+)/p/([0-9]+)$ index.php?controller=$1&action=$2&start=$3&p=$4 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/start/([0-9]+)/p/([0-9]+)/$ index.php?controller=$1&action=$2&start=$3&p=$4 [L]
+
+#slider

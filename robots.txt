@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /@admincp/
+Disalow: /libraries/
+Disalow: /cached/
