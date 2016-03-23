@@ -34,8 +34,8 @@ class Model_Blog extends Database{
             $this->query($sql);
             return $this->fetch();
         }
-        /* Get category by id */
-        public function listBlogCate($cid, $pid=""){
+        /* Get category by id and blog cung chuyen muc*/
+        public function listBlogCate($cid, $pid="", $start=NULL, $limit=NULL){
             $sql[] = "SELECT bl.*, cat.slug AS slugcate,cat.cat_name, CONCAT_WS(' ',u.firstname,u.lastname) AS author";
             $sql[] = "FROM blog AS bl LEFT JOIN user AS u USING(user_id)  LEFT JOIN cateblog AS cat USING(cat_id)";
             $sql[] = "WHERE bl.status = '1' AND cat.cat_id = '{$cid}'";
@@ -43,9 +43,19 @@ class Model_Blog extends Database{
              $sql[] = "AND `blog_id` != '{$pid}' ";   
             }
             $sql[] = "ORDER BY bl.post_on DESC";
+            if(($start !=NULL && $limit !=NULL) || ($start== 0 && $limit != NULL )){
+                $sql[] = "LIMIT {$start}, {$limit}";
+            }
+            
             $sql = implode(' ',$sql);
+
             $this->query($sql);
             return $this->fetchAll(); 
+        }
+         public function totalCateBlog($catid){
+            $sql = "SELECT COUNT(*) AS `count` FROM `blog` WHERE `cat_id` = '{$catid}'";
+            $this->query($sql);
+            return $this->fetch();
         }
         public function listMostView(){
             $sql[] = "SELECT bl.*, cat.slug AS slugcate,cat.cat_name, CONCAT_WS(' ',u.firstname,u.lastname) AS author";

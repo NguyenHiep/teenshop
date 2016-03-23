@@ -5,7 +5,8 @@ RewriteEngine on
 RewriteRule home index.php [L]
 RewriteRule ajax/product-detail index.php?controller=ajax&action=productdetail [L]
 RewriteRule ajax/product-detail index.php?controller=ajax&action=review [L]
-
+#page home phan trang
+RewriteRule page/([0-9]+) index.php?page=$1 [L]
 #product detail
 RewriteRule ^([0-9]+)/(.*)$ index.php?controller=product&action=detail&id=$1&title=$2 [L]
 RewriteRule ^([0-9]+)/(.*)/$ index.php?controller=product&action=detail&id=$1&title=$2 [L]
@@ -20,6 +21,8 @@ RewriteRule ^chuyen-muc/([0-9]+)/(.*).html$ index.php?controller=product&action=
 RewriteRule ^on-tap/(.*)/(.*)-([0-9]+).html$ index.php?controller=blog&action=detail&cate=$1&pid=$3&slug=$2 [L]
 #cate blog
 RewriteRule ^on-tap/(.*)-([0-9]+).html$ index.php?controller=cateblog&action=list&catid=$2&slug=$1 [L]
+#pagination category
+RewriteRule ^on-tap/(.*)-([0-9]+)/page=([0-9]+)$ index.php?page=$3&controller=cateblog&action=list&catid=$2&slug=$1 [L]
 
 #Guide
 RewriteRule huong-dan.html index.php?controller=guide&action=guide [L]

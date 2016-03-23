@@ -35,4 +35,5 @@ class Model_CateBlog extends Database{
             $this->query($sql);
             return $this->fetch(); 
         }
+        
 }

@@ -21,7 +21,9 @@
                         if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid'] >0 && $_GET['catid'] == $list['cat_id']){
                             $htmlcate.= " class='active'";
                         }
+                        //index.php?controller=cateblog&action=list&catid='.$list['cat_id'].'&slug='.trim($list['slug'])'; 
                         $htmlcate.= '><a href="'.BASE_URL.'on-tap/'.trim($list['slug']).'-'.$list['cat_id'].'.html'.'"> '.$list['cat_name'].' ('.$list['sumblog'].')</a></li>';
+                       //$htmlcate.= '><a href="'.BASE_URL.'on-tap/'.trim($list['slug']).'-'.$list['cat_id'].'.html'.'"> '.$list['cat_name'].' ('.$list['sumblog'].')</a></li>';
                         endforeach;
                         echo $htmlcate;
                         //on-thi-dai-hoc/mon-hoc/(.*)-([0-9]+).html

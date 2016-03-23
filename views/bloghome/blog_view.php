@@ -52,21 +52,33 @@
                   <?php    
                     endforeach;
                   ?> 
-                  <!--  
-                  <ul class="pagination">
-                         <?php
-                                if($total_recore >0){
-                                    page_navigation($start,$limit,$total_recore,$link);
+                 
+                    <div class="row">
+            	       <?php
+                            if($totalItems >1){
+                                $start = $position + 1;
+                                if($start <=0){
+                                    $start=1;
                                 }
-                         ?>
-                  </ul>
-                  -->
-                    <ul class="pagination pagination-lg">	
-						<li><a href="#">← Trang trước</a></li>
-						<li class="active"><a rel="nofollow">1</a></li>
-						<li><a href="#">Trang kế →</a></li>
-						
-					</ul>
+                                if($start > $totalItems){
+                                    $start = ceil(($totalItemsPage)*($totalItems/$totalItemsPerPage));
+                                }
+                                $limit = $totalItemsPage*$currentPage;
+                                if($limit > $totalItems){
+                                    $limit = $totalItems;
+                                }
+                       ?>
+                        <div class="col-md-7 col-sm-7 items-info">
+                            Bài viết từ <?php echo $start; ?> đến <?php echo $limit; ?> trên tổng cộng <?php echo $totalItems;?>
+                        </div>
+                          <div class="col-md-5 col-sm-5 pull-right">
+                               <?php 
+                                        echo $paginationHTML;
+                                ?>
+                          </div>
+                       <?php }//End if ?>
+                    </div>
+                    
                     <div class="clearfix"></div>               
                 </div>
                 <!-- END LEFT SIDEBAR -->

@@ -103,13 +103,14 @@
         <!--[if lt IE 9]>
         <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/respond.min.js"></script>
         <![endif]-->
-   
+        <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
         <script src="<?php echo TEMPLATE_FRONTEND;?>js/giadinhmain.js" type="text/javascript"></script>
          <script src="<?php echo TEMPLATE_FRONTEND;?>js/giadinhit.js" type="text/javascript"></script>
         <script type="text/javascript">
             jQuery(document).ready(function() {
                 Layout.init();
                 Layout.initTwitter();
+                ContactUs.init();
                 $('#most-view-blog').slimScroll({
                     height: '250px',
                     color: 'rgb(85, 85, 85)',

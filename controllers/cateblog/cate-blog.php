@@ -1,32 +1,32 @@
 <?php
+
 if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid'] >0){
     $catid = intval($_GET['catid']);
     $mcate = new Model_CateBlog();
     $catedata = $mcate->getCategoryById($catid);
     
-    
-     /*
-     phan trang cho category blog
-     if(isset($_GET['start']) && validate_int($_GET['start']) == true && $_GET['start'] >0){
-        $start = intval($_GET['start']);
-    }else{
-        $start = 0;
-    }
-    $limit          = 4;
-    $count          = $mblog->totalBlog();
-    $total_recore   = $count['count'];
-    $link           = BASE_URL;
-    $datas          = $mblog->listBlog($start, $limit);
-    */
     $mblog = new Model_Blog();
-    $datas = $mblog->listBlogCate($catid);
+    //on-tap/nhap-mon-lap-trinh-1/trang/3
+    $link = "/on-tap/{$catedata['slug']}-{$catid}";
+    //Update
+    $count          = $mblog->totalCateBlog($catid);
+    $totalItems     = $count['count'];
+    $totalItemsPage = 4; // Số bài viết trên một trang
+    $pageRage       = 1; // Số trang hiển thị trên pagination
+    $currentPage    = (isset($_GET['page']))? $_GET['page'] : 1;
+    $paginator      = new PaginationHome($totalItems, $totalItemsPage, $pageRage, $currentPage);
+    $paginationHTML = $paginator->showPagination($link);
+    $position       = ($currentPage - 1)* $totalItemsPage;
+    //End update
+    
+    $datas = $mblog->listBlogCate($catid, "", $position, $totalItemsPage);
     $numrow = $mblog->num_rows($datas);
     if($numrow > 0){
         $dom            = new DOMDocument("1.0", "utf-8");
     $cate           = $dom->createElement("Category");
     $dom->appendChild($cate);
     foreach($datas as $data){
-        
+     
         $news       = $dom->createElement("news");
         $cate->appendChild($news);
         $newsid     = $dom->createAttribute("newsid");

@@ -1,5 +1,6 @@
 <?php
-class Pagination{
+class PaginationHome{
+	
 	private $totalItems;					// Tổng số phần tử
 	private $totalItemsPerPage		= 3;	// Tổng số phần tử xuất hiện trên một trang
 	private $pageRange				= 2;	// Số trang xuất hiện
@@ -17,7 +18,7 @@ class Pagination{
 		$this->totalPage			= ceil($totalItems/$totalItemsPerPage);
 	}
 	
-	public function showPagination(){
+	public function showPagination($link){
       
 		// Pagination
 		$paginationHTML = '';
@@ -26,13 +27,13 @@ class Pagination{
 			$prev 	= '<li class="disabled"><a rel="nofollow">← Trang trước</a></li>';
 			if($this->currentPage > 1){
 				$start 	= '<li><a href="?page=1">Start</a></li>';
-				$prev 	= '<li><a href="/page/'.($this->currentPage-1).'">← Trang trước</a></li>';
+				$prev 	= '<li><a href="'.$link.'/page='.($this->currentPage-1).'">← Trang trước</a></li>';
 			}
 		
 			$next 	= '<li  class="disabled"><a rel="nofollow"> Trang kế → </a> </li>';
 			$end 	= '<li><a rel="nofollow"> End</li>';
 			if($this->currentPage < $this->totalPage){
-				$next 	= '<li><a href="/page/'.($this->currentPage+1).'">Trang kế →</a></li>';
+				$next 	= '<li><a href="'.$link.'/page='.($this->currentPage+1).'">Trang kế →</a></li>';
 				$end 	= '<li><a href="?page'.$this->totalPage.'">End</a></li>';
 			}
 		
@@ -61,12 +62,12 @@ class Pagination{
 				$startPage		= 1;
 				$endPage		= $this->totalPage;
 			}
-            $listPages = "";
+            $listPages = '';
 			for($i = $startPage; $i <= $endPage; $i++){
 				if($i == $this->currentPage) {
 					$listPages .= '<li class="active"><a rel="nofollow">'.$i.'</a>';
 				}else{
-					$listPages .= '<li><a href="/page/'.$i.'">'.$i.'</a>';
+					$listPages .= '<li><a href="'.$link.'/page='.$i.'">'.$i.'</a>';
 				}
 			}
 		

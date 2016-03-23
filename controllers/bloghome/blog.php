@@ -1,6 +1,6 @@
 <?php
     $mblog = new Model_Blog();
-     if(isset($_GET['start']) && validate_int($_GET['start']) == true && $_GET['start'] >0){
+    /* if(isset($_GET['start']) && validate_int($_GET['start']) == true && $_GET['start'] >0){
         $start = intval($_GET['start']);
     }else{
         $start = 0;
@@ -10,6 +10,16 @@
     $total_recore   = $count['count'];
     $link           = BASE_URL;
     $datas          = $mblog->listBlog($start, $limit);
+    */
+    $count          = $mblog->totalBlog();
+    $totalItems     = $count['count'];
+    $totalItemsPage = 4; // Số bài viết trên một trang
+    $pageRage       = 1; // Số trang hiển thị trên pagination
+    $currentPage    = (isset($_GET['page']))? $_GET['page'] : 1;
+    $paginator      = new Pagination($totalItems, $totalItemsPage, $pageRage, $currentPage);
+    $paginationHTML = $paginator->showPagination();
+    $position       = ($currentPage - 1)* $totalItemsPage;
+    $datas          = $mblog->listBlog($position, $totalItemsPage);
     $dom            = new DOMDocument("1.0", "utf-8");
     $cate           = $dom->createElement("Category");
     $dom->appendChild($cate);

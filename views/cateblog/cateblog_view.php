@@ -51,21 +51,25 @@
                   <?php    
                     endforeach;
                   ?> 
-                  <!--  
-                  <ul class="pagination">
-                         <?php
-                                if($total_recore >0){
-                                    page_navigation($start,$limit,$total_recore,$link);
+                  <div class="row">
+            	       <?php
+                            if($totalItems >1){
+                                $start = $position + 1;
+                                $limit = $totalItemsPage*$currentPage;
+                                if($limit > $totalItems){
+                                    $limit = $totalItems;
                                 }
-                         ?>
-                  </ul>
-                  -->
-                    <ul class="pagination pagination-lg">	
-						<li><a href="#">← Trang trước</a></li>
-						<li class="active"><a rel="nofollow">3</a></li>
-						<li><a href="#">Trang kế →</a></li>
-						
-					</ul>
+                       ?>
+                        <div class="col-md-7 col-sm-7 items-info">
+                            Bài viết từ <?php echo $start; ?> đến <?php echo $limit; ?> trên tổng cộng <?php echo $totalItems;?>
+                        </div>
+                          <div class="col-md-5 col-sm-5 pull-right">
+                               <?php 
+                                        echo $paginationHTML;
+                                ?>
+                          </div>
+                       <?php }//End if ?>
+                    </div>
                     <div class="clearfix"></div>
                 <?php }else{
                     echo '<p>Hiện tại thể loại này chưa có bài viết, bạn vui lòng quay lại sau!!!</p>';

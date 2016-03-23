@@ -585,6 +585,16 @@ h2.title-comment span{
 #accordion1 .panel-body{
     color: #000;
 }
+.header-navigation .dropdown-menu > li.active > a{
+    color: #000;
+}
+.blog-posts h2, .detail-content-post section.item{
+    word-break: break-all;
+}
+.margin-top-5{
+    margin-top: 5px !important;
+}
+
 @media (min-width: 1025px) {
     .header-navigation li.menu-search i{
         color: #FFF;
@@ -592,13 +602,11 @@ h2.title-comment span{
 }
 
 @media(max-width: 1024px){
-    .header-navigation li.menu-search, .ecommerce .header-navigation li.menu-search {
+    .header-navigation li.menu-search,
+    .ecommerce .header-navigation li.menu-search {
     top: 0 !important;
     padding: 20px 0 10px;
     position: relative;
     }
 }
 
-.header-navigation .dropdown-menu > li.active > a{
-    color: #000;
-}
