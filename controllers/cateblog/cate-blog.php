@@ -12,10 +12,10 @@ if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid
     $count          = $mblog->totalCateBlog($catid);
     $totalItems     = $count['count'];
     $totalItemsPage = 4; // Số bài viết trên một trang
-    $pageRage       = 3; // Số trang hiển thị trên pagination
+    $pageRage       = 1; // Số trang hiển thị trên pagination
     $currentPage    = (isset($_GET['page']))? $_GET['page'] : 1;
     $paginator      = new PaginationHome($totalItems, $totalItemsPage, $pageRage, $currentPage);
-    $paginationHTML = $paginator->showPaginationSearch($link);
+    $paginationHTML = $paginator->showPagination($link);
     $position       = ($currentPage - 1)* $totalItemsPage;
     //End update
     

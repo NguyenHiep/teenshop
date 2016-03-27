@@ -90,7 +90,7 @@
                             <h2 class="title-comment"><span>Bình luận</span></h2>
                             <div class="clearfix"> </div>
                             <div class="facebook-comment">
-                               <div class="fb-comments" data-href="http://giadinhit.com/" data-width="100%" data-numposts="5"></div>                       
+                               <div class="fb-comments" data-href="<?php echo $actual_link;?>" data-width="100%" data-numposts="5"></div>                       
                             </div>
                          </div>  
                     </div> 

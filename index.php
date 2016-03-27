@@ -24,7 +24,7 @@ require_once "libraries/class.php";
 require_once "libraries/functions.php";
 require_once "libraries/pagination.php";
 require_once "libraries/pagination-cate.php";
-
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 if(isset($_GET['controller'])){
     switch($_GET['controller']){
             case 'ajax':

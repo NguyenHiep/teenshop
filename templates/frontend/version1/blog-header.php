@@ -152,7 +152,8 @@
               <!-- END DROPDOWN MENU -->
             </li>
             
-             <li><a href="#" target="_blank" onclick="inProcess();">IT shop</a></li>
+            <li><a href="#" target="_blank" onclick="inProcess();">IT shop</a></li>
+            <li><a href="#" target="_blank" onclick="inProcess();">Typography</a></li>
             <li><a href="<?php echo BASE_URL.'huong-dan.html'?>" target="_blank">Hướng dẫn</a></li>
             <li><a href="<?php echo BASE_URL.'lien-he.html'?>" target="_blank">Liên hệ</a></li>
 

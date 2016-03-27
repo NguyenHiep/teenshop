@@ -80,25 +80,7 @@
                             </div>
                             <div  style="height: 0;" id="accordion1_1" class="panel-collapse  collapse">
                                 <div class="panel-body">
-                                    <p class="lead">Metronic is seeking an experienced.</p>
-
-                                    <h4>Requirements</h4>
-                                    <ul>
-                                        <li>Strong background in PHP and Web application development</li>
-                                        <li>Javascript a plus</li>
-                                        <li>Bachelor's degree in CS and/or equivalent industry experience</li>
-                                    </ul>
-
-                                    <p>Experience building production applications with Metronic would be good to have as well.</p>
-
-                                    <h4>Responsibilities</h4>
-                                    <ul>
-                                        <li>Conduct detailed analysis of problem domains and customer requirements</li>
-                                        <li>Develop innovative software designs and architectures</li>
-                                    </ul>
-
-                                    <hr/>
-                                    <p>Qualified candidates, send resume and salary requirements with form in the sidebar.</p>
+                                   <p class="lead">Đang cập nhật</p>
                                 </div>
                             </div>
                         </div>         
@@ -112,25 +94,7 @@
                             </div>
                             <div style="height: 0px;" id="accordion1_2" class="panel-collapse collapse">
                                  <div class="panel-body">
-                                    <p class="lead">Metronic is seeking an experienced.</p>
-
-                                    <h4>Requirements</h4>
-                                    <ul>
-                                        <li>Strong background in PHP and Web application development</li>
-                                        <li>Javascript a plus</li>
-                                        <li>Bachelor's degree in CS and/or equivalent industry experience</li>
-                                    </ul>
-
-                                    <p>Experience building production applications with Metronic would be good to have as well.</p>
-
-                                    <h4>Responsibilities</h4>
-                                    <ul>
-                                        <li>Conduct detailed analysis of problem domains and customer requirements</li>
-                                        <li>Develop innovative software designs and architectures</li>
-                                    </ul>
-
-                                    <hr />
-                                    <p>Qualified candidates, send resume and salary requirements with form in the sidebar.</p>
+                                    <p class="lead">Đang cập nhật</p>
                                 </div>
                             </div>
                         </div>

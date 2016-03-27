@@ -595,12 +595,20 @@ h2.title-comment span{
 .margin-top-5{
     margin-top: 5px !important;
 }
+/*
 #most-view-blog article{
     counter-reset: subsection;
 }
 #most-view-blog article:before{
      counter-increment: section;
      content: counter(section);
+}
+*/
+.fixed{
+    position: fixed;
+    z-index: 10000;
+    top: 0px;
+    width: 100%;
 }
 #captcha{
     float: left; margin-right: 10px;
@@ -609,6 +617,9 @@ h2.title-comment span{
     width: 215px;
     float:left;
     margin-right: 10px;
+}
+.search-result-item{
+    word-break: break-all;
 }
 .facebook-comment{
     background: #FFF;
