@@ -6,7 +6,7 @@ require_once "config.php";
 require_once "libraries/class.php";
 require_once "libraries/functions.php";
 require_once "libraries/pagination-cate.php";
-if(isset($_GET['q'])){
+if(isset($_GET['q']) && $_GET['q'] != ""){
         $keyword    = htmlentities(fix_str($_GET['q']));
         $mblog      = new Model_Blog();
         $link = "search?q={$_GET['q']}";
@@ -20,7 +20,6 @@ if(isset($_GET['q'])){
         $paginationHTML = $paginator->showPaginationSearch($link);
         $position       = ($currentPage - 1)* $totalItemsPage;
         $resuls     = $mblog->getSearchResult($keyword, $position, $totalItemsPage);
-       
         require_once "views/search/result_search_view.php";   
 
 }else{
