@@ -141,6 +141,7 @@ body{
     background: url(/templates/frontend/version1/images/body_bg.gif) #6f6d72;
     font-family: 'Avenir T_R W01';
     font-style: normal;
+    counter-reset: section;    
 }
 .content-page a{
     color: #46E1FF;
@@ -594,7 +595,32 @@ h2.title-comment span{
 .margin-top-5{
     margin-top: 5px !important;
 }
+#most-view-blog article{
+    counter-reset: subsection;
+}
+#most-view-blog article:before{
+     counter-increment: section;
+     content: counter(section);
+}
+#captcha{
+    float: left; margin-right: 10px;
+}
+#capcha_code{
+    width: 215px;
+    float:left;
+    margin-right: 10px;
+}
+.facebook-comment{
+    background: #FFF;
+}
 
+/* Begin page contact */
+#form-contact{
+        background: #4F4E52 url(/templates/frontend/version1/images/item_bg.gif) repeat;
+}
+#map{
+    color: #000;
+}
 @media (min-width: 1025px) {
     .header-navigation li.menu-search i{
         color: #FFF;

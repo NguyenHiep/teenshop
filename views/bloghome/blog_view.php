@@ -28,11 +28,24 @@
                   ?>
                   <div class="row">
                     <div class="col-md-4 col-sm-4 gallery-item">
+                    <?php
+                        if(trim($item->image) != "none"){
+                            
+                    ?>
                        <a data-rel="fancybox-button" title="<?php echo $item->title;?>" href="<?php echo URL_UPLOAD.'blog/'.trim($item->image); ?>" class="fancybox-button">
                             <img alt="" src="<?php echo URL_UPLOAD.'blog/'.trim($item->image); ?>" class="img-responsive" />
                             <div class="zoomix"><i class="fa fa-search"></i></div>
                        </a> 
-                    
+                    <?php
+                        }else{ //Neu khong co image
+                    ?>
+                         <a data-rel="fancybox-button" title="<?php echo $item->title;?>" href="<?php echo URL_UPLOAD.'blog/noneimage.png'; ?>" class="fancybox-button">
+                            <img alt="" src="<?php echo URL_UPLOAD.'blog/noneimage.png'; ?>" class="img-responsive" />
+                            <div class="zoomix"><i class="fa fa-search"></i></div>
+                       </a> 
+                    <?php        
+                        }
+                    ?>
                     </div>
                     <div class="col-md-8 col-sm-8 detail-content-post">
                       <h2><a href="<?php echo BASE_URL.'on-tap/'.trim($item->slugcate).'/'.trim($item->slug).'-'.$item['newsid'].'.html'; ?>"><?php echo $item->title;?></a></h2>
@@ -55,23 +68,24 @@
                  
                     <div class="row">
             	       <?php
-                            if($totalItems >1){
+                            if(isset($totalItems) &&  $totalItems >1){
                                 $start = $position + 1;
                                 if($start <=0){
                                     $start=1;
                                 }
                                 if($start > $totalItems){
-                                    $start = ceil(($totalItemsPage)*($totalItems/$totalItemsPerPage));
+                                    $start = ceil($totalItemsPage*($totalItems/$totalItemsPage));
+                                   
                                 }
                                 $limit = $totalItemsPage*$currentPage;
                                 if($limit > $totalItems){
                                     $limit = $totalItems;
                                 }
                        ?>
-                        <div class="col-md-7 col-sm-7 items-info">
+                        <div class="col-md-5 col-sm-6 items-info">
                             Bài viết từ <?php echo $start; ?> đến <?php echo $limit; ?> trên tổng cộng <?php echo $totalItems;?>
                         </div>
-                          <div class="col-md-5 col-sm-5 pull-right">
+                          <div class="col-md-7 col-sm-6">
                                <?php 
                                         echo $paginationHTML;
                                 ?>

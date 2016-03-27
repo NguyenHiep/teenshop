@@ -105,6 +105,9 @@
         <![endif]-->
         <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
         <script src="<?php echo TEMPLATE_FRONTEND;?>js/giadinhmain.js" type="text/javascript"></script>
+        
+        <script src=" <?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+        <script src=" <?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/shBrushJScript.js" type="text/javascript"></script>
          <script src="<?php echo TEMPLATE_FRONTEND;?>js/giadinhit.js" type="text/javascript"></script>
         <script type="text/javascript">
             jQuery(document).ready(function() {

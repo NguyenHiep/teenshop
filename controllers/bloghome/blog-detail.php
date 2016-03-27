@@ -45,8 +45,8 @@ if(isset($_GET['pid']) && validate_int($_GET['pid']) == true && $_GET['pid'] > 0
     $name =  md5(md5("Blogdetail"));
     $dom->save("cached/$name.xhtml");
     $title              = $data['blog_name'];
-    $metakeyword        = $data['meta_keyword'];
-    $metadiscription    = $data['meta_description'];
+    $keyword            = $data['meta_keyword'];
+    $description        = $data['meta_description'];
     require_once "views/bloghome/blogdetail_view.php";
  
 }

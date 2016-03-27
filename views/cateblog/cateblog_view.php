@@ -27,10 +27,24 @@
                   ?>
                   <div class="row">
                     <div class="col-md-4 col-sm-4 gallery-item">
-                       <a data-rel="fancybox-button" title="<?php echo $item->title;?>" href="<?php echo URL_UPLOAD.'blog/'.trim($item->image); ?>" class="fancybox-button">
-                            <img alt="" src="<?php echo URL_UPLOAD.'blog/'.trim($item->image); ?>" class="img-responsive" />
-                            <div class="zoomix"><i class="fa fa-search"></i></div>
-                       </a> 
+                    <?php
+                        if(trim($item->image) != "none"){
+                            
+                        ?>
+                           <a data-rel="fancybox-button" title="<?php echo $item->title;?>" href="<?php echo URL_UPLOAD.'blog/'.trim($item->image); ?>" class="fancybox-button">
+                                <img alt="" src="<?php echo URL_UPLOAD.'blog/'.trim($item->image); ?>" class="img-responsive" />
+                                <div class="zoomix"><i class="fa fa-search"></i></div>
+                           </a> 
+                        <?php
+                            }else{ //Neu khong co image
+                        ?>
+                             <a data-rel="fancybox-button" title="<?php echo $item->title;?>" href="<?php echo URL_UPLOAD.'blog/noneimage.png'; ?>" class="fancybox-button">
+                                <img alt="" src="<?php echo URL_UPLOAD.'blog/noneimage.png'; ?>" class="img-responsive" />
+                                <div class="zoomix"><i class="fa fa-search"></i></div>
+                           </a> 
+                        <?php        
+                            }
+                        ?>
                     
                     </div>
                     <div class="col-md-8 col-sm-8 detail-content-post">
@@ -42,7 +56,7 @@
                         <li><i class="fa fa-eye"></i> <?php echo $item->viewpost; ?> views</li>
                       </ul>
                       <section class="item">
-                            <p><?php echo wordLimiter($item->full, 75, '...'); ?></p>
+                            <p><?php echo wordLimiter($item->full, 50, '...'); ?></p>
                       <a href="<?php echo BASE_URL.'on-tap/'.trim($item->slugcate).'/'.trim($item->slug).'-'.$item['newsid'].'.html'; ?>" class="more">Xem chi tiết <i class="icon-angle-right"></i></a>
                       </section>
                     </div>

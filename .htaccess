@@ -1,8 +1,14 @@
 ErrorDocument 404 http://teenshop.local/404.html
 ErrorDocument 500  http://teenshop.local/500.html
 RewriteEngine on
+#Capcha
+RewriteRule capchaimage libraries/securimage/securimage_show.php [L]
+
 #Login
 RewriteRule home index.php [L]
+
+#Search blog
+RewriteRule search search.php [L]
 RewriteRule ajax/product-detail index.php?controller=ajax&action=productdetail [L]
 RewriteRule ajax/product-detail index.php?controller=ajax&action=review [L]
 #page home phan trang
@@ -33,7 +39,11 @@ RewriteRule lien-he.html index.php?controller=guide&action=contact [L]
 RewriteRule 404.html index.php?controller=404 [L]
 RewriteRule 500.html index.php?controller=500 [L]
 
-
+#Gzip
+#AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/javascript     text/css application/x-javascript
+#BrowserMatch ^Mozilla/4 gzip-only-text/html
+#BrowserMatch ^Mozilla/4.0[678] no-gzip
+#BrowserMatch bMSIE !no-gzip !gzip-only-text/html
 #Nen css
 <ifModule mod_expires.c>
         ExpiresActive On

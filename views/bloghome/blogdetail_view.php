@@ -23,7 +23,11 @@
                 <!-- BEGIN LEFT SIDEBAR -->            
                 <div class="col-md-9 col-sm-9 blog-item">
                     <div class="row">
+                     <?php
+                            if(trim($data->image) != "none"){
+                        ?>
                         <div class="blog-item-img">
+                       
                             <!-- BEGIN CAROUSEL -->            
                             <div class="front-carousel">
                               <div id="myCarousel" class="carousel slide">
@@ -44,7 +48,10 @@
                             </div>
                             <!-- END CAROUSEL -->             
                           </div>
-                           <h1><?php echo $data->title; ?></h1>
+                       <?php
+                        } //End data->image == none
+                       ?>
+                           <h1 class="" style="margin-top: 10px;"><?php echo $data->title; ?></h1>
                              <ul class="blog-info">
                                 <li><i class="fa fa-user-secret"></i> <?php echo $data->author;?></li>
                                 <li><i class="fa fa-calendar"></i> <?php echo date("d/m/Y",strtotime($data->poston)); ?></li>
@@ -82,8 +89,8 @@
                          <div class="comment-blog">
                             <h2 class="title-comment"><span>Bình luận</span></h2>
                             <div class="clearfix"> </div>
-                            <div>
-                               <div class="fb-comments" data-href="http://teenshop.local/" data-width="100%" data-numposts="5"></div>                       
+                            <div class="facebook-comment">
+                               <div class="fb-comments" data-href="http://giadinhit.com/" data-width="100%" data-numposts="5"></div>                       
                             </div>
                          </div>  
                     </div> 

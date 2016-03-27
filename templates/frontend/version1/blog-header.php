@@ -14,9 +14,9 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <meta content="Metronic Shop UI description" name="description" />
-  <meta content="Metronic Shop UI keywords" name="keywords" />
-  <meta content="keenthemes" name="author" />
+  <meta content="<?php echo isset($description)? $description : "Giadinhit.com | Ôn tập thi liên thông đại học, học lập trình;";?>" name="description" />
+  <meta content="<?php echo isset($keyword)? $keyword : "Liên thông đại học, magento, php, word";?>" name="keywords" />
+  <meta content="Hiệp Edied" name="author" />
 
   <meta property="og:site_name" content="-CUSTOMER VALUE-" />
   <meta property="og:title" content="-CUSTOMER VALUE-" />
@@ -40,6 +40,8 @@
    
   <!-- Page level plugin styles START -->
   <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet"/>
+
+  <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/styles/shCoreDefault.css" rel="stylesheet"/>
   <!-- Page level plugin styles END -->
 
   <!-- Theme styles START -->
@@ -159,9 +161,9 @@
               <span class="sep"></span>
               <i class="fa fa-search search-btn"></i>
               <div class="search-box">
-                <form action="#">
+                <form action="/search" method="get">
                   <div class="input-group">
-                    <input type="text" placeholder="Từ khóa tìm kiếm" class="form-control" />
+                    <input type="text" name="q" placeholder="Từ khóa tìm kiếm" class="form-control" />
                     <span class="input-group-btn">
                       <button class="btn btn-primary" type="submit">Tìm kiếm</button>
                     </span>

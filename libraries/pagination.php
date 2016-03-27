@@ -71,7 +71,7 @@ class Pagination{
 			}
 		
 		//	$paginationHTML = '<ul class="pagination pagination-lg">' . $start . $prev . $listPages . $next . $end . '</ul>';
-        $paginationHTML = '<ul class="pagination pagination-lg margin-top-5">'  . $prev. $listPages . $next . '</ul>';
+        $paginationHTML = '<ul class="pagination pagination-lg margin-top-5 pull-right">'  . $prev. $listPages . $next . '</ul>';
 		}
 		return $paginationHTML;
 	}

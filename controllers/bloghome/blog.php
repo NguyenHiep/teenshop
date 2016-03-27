@@ -14,13 +14,14 @@
     $count          = $mblog->totalBlog();
     $totalItems     = $count['count'];
     $totalItemsPage = 4; // Số bài viết trên một trang
-    $pageRage       = 1; // Số trang hiển thị trên pagination
+    $pageRage       = 3; // Số trang hiển thị trên pagination
     $currentPage    = (isset($_GET['page']))? $_GET['page'] : 1;
     $paginator      = new Pagination($totalItems, $totalItemsPage, $pageRage, $currentPage);
     $paginationHTML = $paginator->showPagination();
     $position       = ($currentPage - 1)* $totalItemsPage;
     $datas          = $mblog->listBlog($position, $totalItemsPage);
-    $dom            = new DOMDocument("1.0", "utf-8");
+    if($mblog->num_rows($datas) > 0){
+        $dom            = new DOMDocument("1.0", "utf-8");
     $cate           = $dom->createElement("Category");
     $dom->appendChild($cate);
     foreach($datas as $data){
@@ -57,7 +58,10 @@
         $news->appendChild($viewpost);
     }
     $name =  md5(md5("listblog"));
-    $dom->save("cached/$name.xhtml");
-    $title="Danh sách blog";
-    
- require_once "views/bloghome/blog_view.php";
+    $dom->save("cached/$name.xhtml");       
+    }
+    $title="Giadinhit.com | Danh sách tất cả các bài viết";
+    $keyword = "Ôn thi liên thông, lập trình PHP, Lập trình magento";
+    $description = "Giadinhit.com kênh chia sẻ kiến thức ôn thi liên thông đại học, kiến thức lập trình";
+     require_once "views/bloghome/blog_view.php"; 
+?>

@@ -35,7 +35,7 @@
                   <h2 class="title-comment">
                     <span class="fa fa-eye"></span>Bài viết xem nhiều</h2>
                     <div id="most-view-blog" style="background: #222;">
-                    <ol style="padding: 0;">
+
                     
                      <?php
                         $mblog = new Model_Blog();
@@ -44,13 +44,14 @@
                         foreach($listMostView as $list):
                         $stt++;
                      ?>
-                        <li>
+                        <article>
                          <div class="recent-news margin-bottom-10">
                             <div class="row margin-bottom-10">
-                              <div class="col-md-2">
+                              <!--<div class="col-md-2">
                                 <span class="display:block; background: #FFF; color: red !important;"><?php echo $stt; ?> </span>
                               </div>
-                              <div class="col-md-10 recent-news-inner">
+                              -->
+                              <div class="col-md-12 recent-news-inner">
                                 <!-- on-tap/lap-trinh-web-1/xu-ly-ngay-gio-trong-php-9.html-->
                                     <h3><a href="<?php echo BASE_URL.'on-tap/'.trim($list['slugcate']).'/'.trim($list['slug']).'-'.$list['blog_id'].'.html'; ?>"><?php echo $list['blog_name'];?></a></h3>
                                     <div class="item-description">
@@ -60,12 +61,11 @@
                               </div>                        
                             </div>
                           </div>
-                         </li>
-                          <div class="clearfix"></div>
+                         </article>
+                         <div class="clearfix"></div>
                      <?php       
                         endforeach;
                     ?>
-                    </ol>
                     </div>
                   <!-- END RECENT NEWS -->                            
 
@@ -145,6 +145,7 @@
                             <div  id="accordion1_3" class="panel-collapse in collapse">
                                  <div class="panel-body">
                                     <!-- BEGIN CODE LIKE PAGE -->
+                                     <div class="fb-page" data-href="https://www.facebook.com/daigiadinhcntt/" data-width="100%" data-height="250" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/daigiadinhcntt/"><a href="https://www.facebook.com/daigiadinhcntt/">Hỏi đáp lập trình</a></blockquote></div></div>
                                     <!-- END CODE LIKE PAGE -->
                                 </div>
                             </div>
