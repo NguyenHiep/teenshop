@@ -21,6 +21,12 @@
        }
        $keyword         = fix_str($_POST['txtKeyword']);
        $description     = fix_str($_POST['txtDescription']);
+       if(!empty($_POST['txtShortContent'])){
+            $shortcontent    = fix_content(trim($_POST['txtShortContent']));
+       }else{
+            $error[]    = "Vui lòng nhập mô tả cho bài viết";
+       }
+       
        if(!empty($_POST['txtContent'])){
             $content    = fix_content(trim($_POST['txtContent']));
        }else{
@@ -30,13 +36,14 @@
        $view_post       = intval($_POST['txtViewPost']);
        
        if(isset($_POST['txtHightlight'])){
-            $hightlight = intval($_POST['txtHightlight']);
+            $hightlight = 1;
        }else{
             $hightlight = 0;
        }
       $post_on = date('Y-m-d H:m:i');
        if(empty($error)){
         //Upload image blog
+        /*
             if($_FILES['txtImage']['name'] !=NULL){
                 $uimage = new Upload($_FILES['txtImage']);
                 $uimage->setPath('../uploads/blog/');
@@ -48,6 +55,12 @@
             }else{
                 $imageblog = "none";
             }
+            */
+          if($_POST['txtImage'] != ""){
+            $imageblog = $_POST['txtImage'];
+          }else{
+            $imageblog = "none";
+          }
           $mblog = new Model_Blog();
           $mblog->setUserId($user_id);
           $mblog->setCatId($cat_id);
@@ -59,6 +72,7 @@
             }
           $mblog->setMetakeyword($keyword);
           $mblog->setMetaDescription($description);
+          $mblog->setShortContent($shortcontent);
           $mblog->setContent($content);
           $mblog->setStatus($status);
           $mblog->setViewPost($view_post);

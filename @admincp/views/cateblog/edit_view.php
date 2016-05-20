@@ -38,6 +38,26 @@
 										<input value="<?php echo $data['slug'];?>" class="text-input medium-input" type="text" id="txtCateSlug" name="txtCateSlug" placeholder="Tên không dấu chuyên mục, mặc định sẽ lấy tên chuyên mục"/>  
 								</p>
                                 <p>
+									<label>Parent</label>
+								    <select id="txtParent" name="txtParent">
+                                        <option value="0">Không</option>
+                                        <?php
+                                            if(count($listCate > 0)){
+                                                echo recursiveMenu($listCate,$parent = 0, $text="", $data['parentid']);
+                                                /*
+                                                foreach($listCate as $item):
+                                                    echo '<option value='.$item['cat_id'].' ';
+                                                        if($data['parentid'] === $item['cat_id'])
+                                                            echo ' selected="selected"';
+                                                    echo '>'.$item['cat_name'].'</option>';
+                                                endforeach;
+                                                */
+                                            }
+                                        ?>
+                                    </select>
+                                 </p>
+                                 
+                                <p>
                                     <label class="label-none">Hiển thị: </label>
 									<label class="label-none">Yes <input type="radio" name="status" value="1" <?php if($data['status'] == 1) echo "checked='checked'";?>/></label>
                                     <label class="label-none">No <input type="radio" name="status" value="0" <?php if($data['status'] == 0) echo "checked='checked'";?> /></label>

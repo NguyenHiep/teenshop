@@ -33,7 +33,7 @@
                     ?>
                         <div class="search-result-item">
                             <h4><a href="<?php echo BASE_URL.'on-tap/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html'; ?>"><?php echo $data['blog_name'];?></a></h4>
-                            <p><?php echo wordLimiter($data['content'], 40, '...'); ?></p>
+                            <p><?php echo wordLimiter($data['short_content'], 40, '...'); ?></p>
                             <a class="search-link" href="<?php echo BASE_URL.'on-tap/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html'; ?>">Xem chi tiết</a>
                         </div>                 
                     <?php

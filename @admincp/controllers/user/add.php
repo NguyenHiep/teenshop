@@ -39,13 +39,53 @@
         }else{
             $phone      = "";
         }
-          if(isset($_POST['txtAddress'])){
+        if(!empty($_POST['txtAddress'])){
             $address    = fix_str($_POST['txtAddress']);
         }else{
             $address = "";
         }
+        
+        if(!empty($_POST['txtNickname'])){
+            $nickname = fix_str($_POST['txtNickname']);
+        }else{
+            $nickname = "";
+        }
+        if(!empty($_POST['txtInstruction'])){
+            $instruction    = fix_str($_POST['txtInstruction']);
+        }else{
+            $instruction = "";
+        }
+         if(!empty($_POST['txtFacebook'])){
+            $facebook   = fix_str($_POST['txtFacebook']);
+        }else{
+            $facebook = "";
+        }
+         if(!empty($_POST['txtGoogle'])){
+            $google   = fix_str($_POST['txtGoogle']);
+        }else{
+            $google = "";
+        }
+         if(!empty($_POST['txtTwitter'])){
+            $twitter   = fix_str($_POST['txtTwitter']);
+        }else{
+            $twitter = "";
+        }
+        $status      = intval($_POST['status']);
         if(empty($error)){
             $muser = new Model_User();
+            if($_FILES['txtAvatart']['name'] !=NULL){
+                $uimage = new Upload($_FILES['txtAvatart']);
+                $uimage->setName(time().$_FILES['txtAvatart']['name']);
+                $uimage->setPath('../uploads/');
+                if($uimage->do_upload() == true){
+                    $avartar = $uimage->getName();
+                }else{
+                    $error[] = $uimage->error;
+                }    
+            }else{
+                $avartar = "none";
+            }
+            
             $muser->setGroupId($group_id);
             $muser->setUsername($username);
             $muser->setPassword($password);
@@ -54,6 +94,13 @@
             $muser->setLastname($lastName);
             $muser->setPhone($phone);
             $muser->setAddress($address);
+            $muser->setAvatart($avartar);
+            $muser->setNickname($nickname);
+            $muser->setInstruction($instruction);
+            $muser->setShareFacebook($facebook);
+            $muser->setShareGoogle($google);
+            $muser->setShareTwitter($twitter);
+            $muser->setStatus($status);
             if($muser->checkUsername() == true){
                 $muser->insertUser();
                 redirect(BASE_ADMIN.'/user/list');

@@ -10,8 +10,8 @@
   <meta charset="utf-8" />
   <title><?php echo isset($title)? $title : "Trang chủ | Chuyên bán các phụ kiện, linh kiện máy tính";?></title>
   <base href="<?php echo BASE_URL;?>" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
   <meta content="Metronic Shop UI description" name="description">
   <meta content="Metronic Shop UI keywords" name="keywords">

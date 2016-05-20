@@ -6,4 +6,4 @@
     define('URL_UPLOAD',BASE_URL."uploads/");
     define('URL_UPLOAD_PRODUCT',BASE_URL."uploads/product/");
     define('URL_UPLOAD_CATEGORY',BASE_URL."uploads/category/");
-    define('URL_UPLOAD_NEWS',BASE_URL."uploads/category/");
+    define('URL_UPLOAD_NEWS',BASE_URL."uploads/blog/");

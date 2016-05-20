@@ -7,6 +7,7 @@
         $resultData = $mslider->getSliderById($id);
         if(isset($_POST['btnUpdate'])){
             $error      = array();
+            $type       = fix_str($_POST['txtType']);
             if(!empty($_POST['txtTitle'])){
                  $title = fix_str($_POST['txtTitle']);
             }else{
@@ -32,6 +33,7 @@
                }else{
                     $imageslider = "none";
                }
+                $mslider->setType($type);
                 $mslider->setTitle($title);
                 $mslider->setImage($imageslider);
                 $mslider->setAlt($alt);

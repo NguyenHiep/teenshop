@@ -22,24 +22,18 @@
           <!-- BEGIN BOTTOM CONTACTS -->
           <div class="col-md-3 col-sm-6 pre-footer-col">
             <div class="photo-stream">
-              <h2>Hình ảnh về tôi</h2>
-              <ul class="list-unstyled">
-                <li><a href="javascript:;"><img alt="" src="<?php echo TEMPLATE_FRONTEND;?>images/author.jpg" /></a></li>
-               <li><a href="javascript:;"><img alt="" src="<?php echo TEMPLATE_FRONTEND;?>images/author.jpg" /></a></li>
-               <li><a href="javascript:;"><img alt="" src="<?php echo TEMPLATE_FRONTEND;?>images/author.jpg" /></a></li>
-               <li><a href="javascript:;"><img alt="" src="<?php echo TEMPLATE_FRONTEND;?>images/author.jpg" /></a></li>
-               <li><a href="javascript:;"><img alt="" src="<?php echo TEMPLATE_FRONTEND;?>images/author.jpg" /></a></li>
-               <li><a href="javascript:;"><img alt="" src="<?php echo TEMPLATE_FRONTEND;?>images/author.jpg" /></a></li>
-               <li><a href="javascript:;"><img alt="" src="<?php echo TEMPLATE_FRONTEND;?>images/author.jpg" /></a></li>
-               <li><a href="javascript:;"><img alt="" src="<?php echo TEMPLATE_FRONTEND;?>images/author.jpg" /></a></li>
-              </ul>                    
+              <h2>Liên kết bạn bè</h2>
+              <?php
+                //echo $_SERVER['REMOTE_ADDR'];
+              ?>
+             Cập nhật sau           
             </div>
           </div>
           <!-- END BOTTOM CONTACTS -->
             <div class="clearfix visible-sm"></div>
           <!-- BEGIN CONTACT BLOCK --> 
           <div class="col-md-3 col-sm-6 pre-footer-col">
-            <h2>Liên hệ</h2>
+            <h2>Liên hệ với chúng tôi</h2>
             <span>Nguyễn Minh Hiệp</span>
             <ul class="list-unstyled">
 				<li class="clearfix"><span class="fa fa-map-marker pull-left"></span> Quận 3, Hồ Chí Minh</li>
@@ -106,9 +100,43 @@
         <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
         <script src="<?php echo TEMPLATE_FRONTEND;?>js/giadinhmain.js" type="text/javascript"></script>
         
-        <script src=" <?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
-        <script src=" <?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/shBrushJScript.js" type="text/javascript"></script>
+        <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+        <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
          <script src="<?php echo TEMPLATE_FRONTEND;?>js/giadinhit.js" type="text/javascript"></script>
+         <script type="text/javascript">
+            var base_url_syntax = '<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/';
+            SyntaxHighlighter.autoloader(
+                ['js','jscript','javascript', base_url_syntax + 'shBrushJScript.js'],
+                ['bash','shell',    base_url_syntax + 'shBrushBash.js'],
+                ['css', base_url_syntax + 'shBrushCss.js'],
+                ['xml', base_url_syntax + 'shBrushXml.js'],
+                ['sql', base_url_syntax + 'shBrushSql.js'],
+                ['php', base_url_syntax + 'shBrushPhp.js'],
+                ['as3', base_url_syntax + 'shBrushAS3.js'],
+                ['applescript', base_url_syntax + 'shBrushAppleScript.js'],
+                ['bash', base_url_syntax + 'shBrushBash.js'],
+                ['csharp', base_url_syntax + 'shBrushCSharp.js'],
+                ['cf', base_url_syntax + 'shBrushColdFusion.js'],
+                ['cpp', base_url_syntax + 'shBrushCpp.js'],
+                ['delphi', base_url_syntax + 'shBrushDelphi.js'],
+                ['diff', base_url_syntax + 'shBrushDiff.js'],
+                ['erl', base_url_syntax + 'shBrushErlang.js'],
+                ['groovy', base_url_syntax + 'shBrushGroovy.js'],
+                ['java', base_url_syntax + 'shBrushJava.js'],
+                ['javafx', base_url_syntax + 'shBrushJavaFX.js'],
+                ['perl', base_url_syntax + 'shBrushPerl.js'],
+                ['plain', base_url_syntax + 'shBrushPlain.js'],
+                ['applescript', base_url_syntax + 'shBrushPowerShell.js'],
+                ['ps', base_url_syntax + 'shBrushAppleScript.js'],
+                ['python', base_url_syntax + 'shBrushPython.js'],
+                ['ruby', base_url_syntax + 'shBrushRuby.js'],
+                ['scss', base_url_syntax + 'shBrushSass.js'],
+                ['scala', base_url_syntax + 'shBrushScala.js'],
+                ['vb', base_url_syntax + 'shBrushVb.js']
+            );
+            SyntaxHighlighter.all();
+         
+         </script>
         <script type="text/javascript">
             jQuery(document).ready(function() {
                 Layout.init();
@@ -119,10 +147,30 @@
                     color: 'rgb(85, 85, 85)',
                     alwaysVisible: true
                 });
-                
+                });
+           
+              jssor_1_slider_init();
+        </script>
+        <script>
+            $(document).ready(function(){
+            	$(document).on('click','.show_more',function(){
+            		var ID = $(this).attr('id');
+            		$('.show_more').hide();
+            		$('.loding').show();
+            		$.ajax({
+            			type:'POST',
+            			url:'ajax/more',
+            			data:'id='+ID,
+            			success:function(html){
+            				$('#show_more_main'+ID).remove();
+            				$('.blog-list').append(html);
+            			}
+            		});
+            		
+            	});
             });
         </script>
-      
+        
         <!-- END PAGE LEVEL JAVASCRIPTS -->
     </footer>
 </body>

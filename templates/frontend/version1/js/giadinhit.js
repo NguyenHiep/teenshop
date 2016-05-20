@@ -8,7 +8,8 @@ jQuery(document).ready(function(){
        }else{
              jQuery('.header').removeClass('fixed');
        } 
-    });    
+    });
+     
 });
 
 function inProcess(){

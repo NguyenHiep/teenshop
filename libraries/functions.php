@@ -28,8 +28,17 @@ function fix_htmlentities($str){
     return htmlentities($str, ENT_COMPAT, 'UTF-8');
 }
 //Cắt chuỗi cho đẹp
-function the_excerpt($text){
-    return substr($text,0,strrpos($text, ' '));
+function the_excerpt($text, $number = 400){
+    $sanitized = htmlentities($text, ENT_COMPAT, 'UTF-8');
+    if(strlen($sanitized) > $number){
+            $cutString  = substr($sanitized, 0, $number);
+            $words      = substr($sanitized, 0, strrpos($cutString, ' '));
+         return $words;
+    }else{
+         return $text;
+    }
+   
+   
 }
 //Kiểm tra thông tin dạng số
 function validate_int($value){
@@ -52,6 +61,118 @@ function validate_url($value){
     }
     return false;
 }
+//Dequy menu for admin
+function recursiveMenu($data, $parent = 0, $text="", $select = 0){
+    foreach($data as $key => $value){
+        if($value['parentid'] == $parent){
+            $id = $value['cat_id'];
+            if($select != 0 && $id == $select){ //Truong hop nay de de edit :)
+                echo "<option value='{$value["cat_id"]}' selected='selected'>".$text.$value['cat_name']."</option>";
+            }else{
+                echo "<option value='{$value["cat_id"]}'>".$text.$value['cat_name']."</option>";
+            }
+            unset($data[$key]);
+            recursiveMenu($data, $id, $text."---| ", $select);
+        }
+        
+    }
+}
+function MenuTop($data){
+    $mcateblog = new Model_CateBlog();
+    $html = '';
+    foreach($data as $level1){
+     
+        if($level1['parentid'] == 0){
+        //Neu so phan tu con cap 1 lon hon 0 thi thuc hien
+         $count = $mcateblog->countLevelSub($level1['cat_id']);
+            if($count['number'] > 0){
+                $html .= '<li class="dropdown">';
+                
+                $html .= '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="/on-tap/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html">'.$level1['cat_name'].'</a>';  
+                    $html .='<ul class="dropdown-menu">';
+                        foreach($data as $level2){
+                                if($level2['parentid'] == $level1['cat_id']){
+                                    $count2 = $mcateblog->countLevelSub($level2['cat_id']);
+                                        if($count2['number'] > 0){
+                                             $html .= '<li class="dropdown-submenu">';
+                                             $html .= '<a href="/on-tap/'.trim($level2['slug']).'-'.$level2['cat_id'].'.html">'.$level2['cat_name'].' <i class="fa fa-angle-right"></i></a>';
+                                                $html .= '<ul class="dropdown-menu">';
+                                                    foreach($data as $level3){
+            											if($level3['parentid'] == $level2['cat_id']){
+            												$html .='<li><a href="/on-tap/'.trim($level3['slug']).'-'.$level3['cat_id'].'.html">'.$level3['cat_name'].'</a></li>';
+            											}
+            										}
+                                                $html .= '</ul>'; //End ul cap 3
+                                            $html .= '</li>';
+                                        }else{
+                                            $html .= '<li><a href="/on-tap/'.trim($level2['slug']).'-'.$level2['cat_id'].'.html">'.$level2['cat_name'].'</a></li>';
+                                        }
+                                } //End if($level2)
+                        } //End loop level 2
+                    $html .= '</ul>'; //End ul cap 2
+                $html .= '</li>';
+            }else{
+                switch($level1['slug']){
+                    case 'lien-he':
+                        $html .= '<li><a href="lien-he.html">'.$level1['cat_name'].'</a></li>';
+                    break;
+                    case 'huong-dan':
+                        $html .= '<li><a href="huong-dan.html">'.$level1['cat_name'].'</a></li>';
+                    break;
+                    default:   $html .= '<li><a href="/on-tap/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html">'.$level1['cat_name'].'</a></li>';
+          
+                }
+                }
+            
+        }    
+    }
+    return $html;
+}
+//De quy menu frontend
+/*
+function recursiveMenuTop($array, $parent){
+    
+   $has_children = false;
+    foreach($array as $key => $value) {
+        if ($value['parentid'] == $parent) {       
+            if ($has_children === false && $parent) {
+                $has_children = true;
+                echo '<ul>' ."\n";
+            }
+            echo '<li>' . "\n";
+                echo '<a href="/page.php?id=' . $value['cat_id'] . '">' . $value['cat_name'] . '</a>' . " \n";
+            echo "\n";
+                recursiveMenuTop($array, $key);
+            echo "</li>\n";
+        }
+    }
+    if ($has_children === true && $parent) echo "</ul>\n";
+   /* 
+    $html = '';
+    if(isset($data[$parent])){
+        $html .= '<ul>'; 
+            foreach($data as $value ){
+                $html .= '<li>';
+                $id = $value['cat_id'];
+               // echo $data[$id];
+               // die();
+                if(isset($data[$id])){
+                    $html .= '<a href="#">'.$value['cat_name'].'</a>';
+                }else{
+                    $html .= '<a href="#view/">'.$value['cat_name'].'</a>';
+                }
+              
+                recursiveMenuTop($data, $id);    
+                $html .= '</li>';
+            }
+        $html .= '</ul>';
+        return $html;
+    }
+    */
+//}
+
+
+/* End menu */
 /********* Kiem tra phan quyen va bao mat *******/
 
 //Phan quyen chung
@@ -69,13 +190,22 @@ function author_user() {
 
 //Phan quyen admin
 function author_admin() {
-    if (!$_SESSION['ses_username'] || $_SESSION['ses_group'] != 1) {
+    if(isset($_SESSION['ses_username']) && $_SESSION['ses_group'] == 1){
+        return true;
+    }
+        return false;
+   
+    /*if (!$_SESSION['ses_username'] || $_SESSION['ses_group'] != 1) {
         redirect($baseurl.'login.html');
     }
+    */
+    //if (empty($_SESSION['ses_username'])) {
+    //    redirect($baseurl.'login.html');
+  //  }
 }
 //Kiem tra login hay chua
 function check_login(){
-    if(isset($_SESSION['ses_username']) && $_SESSION['ses_group'] == 1){
+    if(isset($_SESSION['ses_username']) && is_numeric($_SESSION['ses_userid'])){
         return true;
     }
     return false;

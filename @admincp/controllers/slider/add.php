@@ -2,6 +2,7 @@
     $title = "Thêm mới slider";
     if(isset($_POST['btnAdd'])){
         $error      = array();
+        $type       = fix_str($_POST['txtType']);
         if(!empty($_POST['txtTitle'])){
              $title = fix_str($_POST['txtTitle']);
         }else{
@@ -28,6 +29,7 @@
                 $imageslider = "none";
             }
             $mslider = new Model_Slider();
+            $mslider->setType($type);
             $mslider->setTitle($title);
             $mslider->setImage($imageslider);
             $mslider->setAlt($alt);

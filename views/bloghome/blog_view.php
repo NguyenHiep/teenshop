@@ -24,6 +24,10 @@
                     $name = md5(md5("listblog"));
                     $xml = simplexml_load_file("cached/$name.xhtml");
                     $data = $xml->news;
+                    echo "<pre>";
+                        var_dump($data);
+                    echo "</pre>";
+                    die();
                     foreach($data as $item):
                   ?>
                   <div class="row">
@@ -32,17 +36,17 @@
                         if(trim($item->image) != "none"){
                             
                     ?>
-                       <a data-rel="fancybox-button" title="<?php echo $item->title;?>" href="<?php echo URL_UPLOAD.'blog/'.trim($item->image); ?>" class="fancybox-button">
-                            <img alt="" src="<?php echo URL_UPLOAD.'blog/'.trim($item->image); ?>" class="img-responsive" />
+                       <a data-rel="fancybox-button" title="<?php echo $item->title;?>" href="<?php echo trim($item->image); ?>" class="fancybox-button">
+                            <img alt="" src="<?php echo trim($item->image); ?>" class="img-responsive" />
                             <div class="zoomix"><i class="fa fa-search"></i></div>
                        </a> 
                     <?php
                         }else{ //Neu khong co image
                     ?>
-                         <a data-rel="fancybox-button" title="<?php echo $item->title;?>" href="<?php echo URL_UPLOAD.'blog/noneimage.png'; ?>" class="fancybox-button">
-                            <img alt="" src="<?php echo URL_UPLOAD.'blog/noneimage.png'; ?>" class="img-responsive" />
-                            <div class="zoomix"><i class="fa fa-search"></i></div>
-                       </a> 
+                        <a data-rel="fancybox-button" title="<?php echo $item->title;?>" rel="nofollow" href="<?php echo URL_UPLOAD.'blog/noneimage.png'; ?>" class="fancybox-button">
+                                <img alt="" src="<?php echo "http://placehold.it/250x220"; ?>"  class="img-responsive" />
+                                <div class="zoomix"><i class="fa fa-search"></i></div>
+                           </a> 
                     <?php        
                         }
                     ?>
@@ -57,7 +61,7 @@
                       </ul>
                       <section class="item">
                             <p><?php echo wordLimiter($item->full, 75, '...'); ?></p>
-                      <a href="<?php echo BASE_URL.'on-tap/'.trim($item->slugcate).'/'.trim($item->slug).'-'.$item['newsid'].'.html'; ?>" class="more">Xem chi tiết <i class="icon-angle-right"></i></a>
+                      <a href="<?php echo BASE_URL.'on-tap/'.trim($item->slugcate).'/'.trim($item->slug).'-'.$item['newsid'].'.html'; ?>" class="btn btn-primary pull-right  more">Xem chi tiết <i class="icon-angle-right"></i></a>
                       </section>
                     </div>
                   </div>

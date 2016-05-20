@@ -1,0 +1,17 @@
+{{#data}}
+<div class="item">
+	<img class="thumbnail pull-left" width="50px" height="50px" src="http://placehold.it/50x50" style="margin: 0px 10px 5px 0px;">
+	<a href="#">
+		<h4 style="margin: 5px 0px;">{{blog_name}}</h4>
+	</a>
+	<p>
+		<small>{{content}}</small>
+	</p>
+	<div class="well well-small">
+		{{post_on}}
+	</div>
+</div>
+{{/data}}
+{{^data}}
+	<div class="alert alert-error">No data :(</div>
+{{/data}}

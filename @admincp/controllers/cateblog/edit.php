@@ -2,9 +2,15 @@
 if(isset($_GET['catid']) && validate_int($_GET['catid']) && $_GET['catid'] > 0){
     $catid      = intval($_GET['catid']);
     $mcateblog  = new Model_CateBlog();
+    $listCate   = $mcateblog->listCateBlog();
     $data       = $mcateblog->getCateBogById($catid);
     if(isset($_POST['btnOK'])){
         $error = array();
+        if(isset($_POST['txtParent'])){
+            $parent = intval($_POST['txtParent']);
+        }else{
+            $parent = 0;
+        }
         if(!empty($_POST['txtCate'])){
             $catename = fix_str($_POST['txtCate']);
        }else{
@@ -36,6 +42,7 @@ if(isset($_GET['catid']) && validate_int($_GET['catid']) && $_GET['catid'] > 0){
                 $imagecate = "none";
             }
             $mcateblog = new Model_CateBlog();
+            $mcateblog->setParent($parent);
             $mcateblog->setCateName($catename);
             if($slug != "none"){
                 $mcateblog->setSlug($slug);

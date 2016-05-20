@@ -20,6 +20,7 @@
     $paginationHTML = $paginator->showPagination();
     $position       = ($currentPage - 1)* $totalItemsPage;
     $datas          = $mblog->listBlog($position, $totalItemsPage);
+                  
     if($mblog->num_rows($datas) > 0){
         $dom            = new DOMDocument("1.0", "utf-8");
     $cate           = $dom->createElement("Category");
@@ -42,6 +43,10 @@
         $news->appendChild($image); 
         $author     = $dom->createElement("author", $data['author']);
         $news->appendChild($author);
+                
+        $nickname     = $dom->createElement("nickname", $data['nickname']);
+        $news->appendChild($nickname);
+                        
         $poston     = $dom->createElement("poston", $data['post_on']);
         $news->appendChild($poston);
         $comment    = $dom->createElement("comment", "10");

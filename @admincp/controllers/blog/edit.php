@@ -25,6 +25,12 @@ if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid
        }
        $keyword         = fix_str($_POST['txtKeyword']);
        $description     = fix_str($_POST['txtDescription']);
+        if(!empty($_POST['txtShortContent'])){
+            $shortcontent    = fix_content(trim($_POST['txtShortContent']));
+       }else{
+            $error[]    = "Vui lòng nhập mô tả cho bài viết";
+       }
+       
        if(!empty($_POST['txtContent'])){
             $content    = fix_content(trim($_POST['txtContent']));
        }else{
@@ -34,14 +40,14 @@ if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid
        $view_post       = intval($_POST['txtViewPost']);
        
        if(isset($_POST['txtHightlight'])){
-            $hightlight = intval($_POST['txtHightlight']);
+            $hightlight = 1;
        }else{
             $hightlight = 0;
        }
       $post_on = date('Y-m-d H:m:i');
        if(empty($error)){
         //Upload image blog
-            if($_FILES['txtImage']['name'] !=NULL){
+           /* if($_FILES['txtImage']['name'] !=NULL){
                 $uimage = new Upload($_FILES['txtImage']);
                 $uimage->setPath('../uploads/blog/');
                 if($uimage->do_upload() == true){
@@ -49,6 +55,12 @@ if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid
                 }else{
                     $error[] = $uimage->error;
                 }    
+            }else{
+                $imageblog = "none";
+            }
+            */
+            if($_POST['txtImage'] != ""){
+                $imageblog = $_POST['txtImage'];
             }else{
                 $imageblog = "none";
             }
@@ -62,6 +74,7 @@ if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid
             }
           $mblog->setMetakeyword($keyword);
           $mblog->setMetaDescription($description);
+          $mblog->setShortContent($shortcontent);
           $mblog->setContent($content);
           $mblog->setStatus($status);
           $mblog->setViewPost($view_post);

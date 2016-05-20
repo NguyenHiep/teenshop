@@ -1,4 +1,5 @@
 /* General body settings */
+/*
 @import url("http://fast.fonts.net/t/1.css?apiType=css&projectid=ec8a9d80-ebfb-4f8e-a64c-74fbdd795aca");
 @font-face{
     font-family:"Avenir T_R W01_n2";
@@ -112,8 +113,14 @@
     font-weight: normal;
     font-style: normal;
 }
-
-
+*/
+@font-face {
+    font-family: 'Fujama';
+    src: url('Fonts/14-3961-fujiyama.ttf');
+}
+.post-item h4{
+	font-family:Fujama;
+}
 /* here you can put your own css to customize and override the theme */
 .product-item h3 {
     height: 52px;
@@ -136,12 +143,15 @@ h3.name-min-height{
 /* ====================== Style for blog ====================== */
 body{
     color: #000;
-    font-size: 12pt;
+    font-size: 14px;
     line-height: 1.5em;
     background: url(/templates/frontend/version1/images/body_bg.gif) #6f6d72;
-    font-family: 'Avenir T_R W01';
+    font-family: "Verdana", Arial;
     font-style: normal;
     counter-reset: section;    
+}
+.header-navigation, .header-navigation .dropdown-menu{
+    font: 15px "Verdana";
 }
 .content-page a{
     color: #46E1FF;
@@ -217,7 +227,7 @@ body{
     box-shadow: 5px 4px 20px -1px rgba(218,203,70,0.8);
     */
     padding-left: 30px;
-    padding-right: 20px;
+    padding-right: 25px;
 }
 img{
    display: block;
@@ -229,6 +239,89 @@ img{
     max-width: 100%;
     height: auto;
 }
+/*Content home*/
+.title-block{
+    text-transform: uppercase;
+    font-size: 18px;
+    padding-left: 15px;
+    padding-top: 15px !important;
+}
+.title-block:hover{
+    cursor: pointer;
+}
+.post-item{
+  overflow: hidden;
+}
+.post-item >a img{
+    transition:all 1s ease;
+    position: relative;
+}
+.post-item > a:hover img{
+    transform:scale(1.2);
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -o-transform:scale(1.2);
+    -ms-transform:scale(1.2);
+}
+.post-item > a:hover .mask{
+    display: block;
+}
+.post-item > a .mask{
+    position: absolute;
+    background: rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.post-item a .icon-link{
+    bottom: -100px; margin-bottom: -20px;
+}
+.post-item > a:hover .icon-link{
+    bottom:50%;
+}
+.post-item h4:before{
+    top: -8px;
+    width: 0;
+    height: 0;
+    z-index: 1002;
+    content: " ";
+    display: block !important;
+    position: absolute;
+    border-bottom: 8px solid #fef200;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+}
+.post-item h4{
+    background: #fef200;
+    color: #000;
+    padding-left:  10px;
+    padding-right: 10px;
+    position: relative;
+    min-height: 50px;
+}
+.post-item h4 a{
+    color: #000;
+    text-transform: uppercase;
+    /* font-weight: bold; */
+    display: block;
+    
+}
+.post-item h4 a:after{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 100px 100px 100px;
+    border-color: transparent transparent #007bff transparent;
+}
+.post-item h4 a:hover{
+    color: #000;
+     transition: all 1s;
+}
+
 /* Begin style footer */
 .footer ul.social-footer a, .author-social-icons ul a {
     display: block;
@@ -237,9 +330,9 @@ img{
     width: 35px;
     height: 35px;
     line-height: 35px;
-    border: 1px solid #cdcdcd;
+    border: 1px solid #fef200;
     border-radius: 50% !important;
-    color: #cdcdcd;
+    color: #fef200;
     transition: all 1s;
     text-decoration: none;
 }
@@ -259,6 +352,16 @@ img{
     background: none !important;
     height: auto !important;
     line-height: 20px !important;
+    transition: linear;
+     -webkit-transition: all 1s ease-in-out;
+      -moz-transition: all 1s ease-in-out;
+      -o-transition: all 1s ease-in-out;
+      transition: all 1s ease-in-out;
+}
+.pre-footer .pre-footer-col h2:hover{
+    cursor: pointer;
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
 }
 .pre-footer .pre-footer-col li{
     line-height: 24px;
@@ -404,9 +507,7 @@ h2.title-comment{
     margin-top: 15px;
     height: 40px;
     padding-top: 0;
-    font:400 37px "PT Sans Narrow", Arial, sans-serif;
     overflow: hidden;
-     font-family: Avenir T_R W01_o2;
 }
 
 h2.title-comment span{
@@ -434,11 +535,67 @@ h2.title-comment span{
 }
 .blog-posts h2 a, .blog-item h1{
     text-transform: uppercase;
-    font:400 37px "PT Sans Narrow", Arial, sans-serif;
-    font-family: Avenir T_R W01_o2;
+    font:400 25px "Fujama", Arial, sans-serif;
 }
-.blog-item h1{
+.blog-item h1, .blog-item h2{
     color: #fef200;
+}
+.blog-item h2{
+    font:400 20px "Fujama", Arial, sans-serif;
+    text-transform: uppercase;
+    margin-left: 10px;
+}
+.detail-content-post a.more{
+    color: #FFF;
+    font-weight: bold;
+}
+.detail-content-post a.more:hover{
+    color: #e3e3e3;
+    font-weight: bold;
+}
+.btn-primary{
+    background: #232323;
+    position: relative;
+    color: #FFF;
+    z-index: 1;
+    display: inline-block;
+    font-weight: bold;
+}
+.btn-primary:hover:after{
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1);
+}
+.btn-primary:focus{
+    outline: none;
+}
+.btn-primary:after {
+    border: 2px solid #EDEDED;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #232323;
+    z-index: -1;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: 0.2s linear;
+    -moz-transition: 0.2s linear;
+    transition: 0.2s linear;
+}
+a.fancybox-button:after{
+    content: "";
+    position: absolute;
+    border: 2px solid #fef200;
+    width: 30px;
+    -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
+    transition: width 1s;
+}
+a.fancybox-button:hover:after{
+    width: 100%;
 }
 .content-page a:hover{
     color: #fef200;
@@ -462,7 +619,7 @@ h2.title-comment span{
 .blog-posts hr.blog-post-sep{
     margin: 15px -15px;
     background: #4F4E52 url(/templates/frontend/version1/images/item_bg.gif) repeat;
-    border-top: 1px dashed #333;
+    border-top: 0px dashed #333;
 }
 .blog-sidebar{
     background: #4F4E52 url(/templates/frontend/version1/images/item_bg.gif) repeat;
@@ -476,6 +633,8 @@ h2.title-comment span{
     line-height: 40px;
     height: 40px;
     margin-top: 0;
+    font-family: "Fujama";
+    font-weight: 700;
 }
 .blog-sidebar h2 a{
     display: block;
@@ -632,6 +791,69 @@ h2.title-comment span{
 #map{
     color: #000;
 }
+/* Home blog */
+
+/** page structure **/
+#w {
+  display: block;
+  max-width: 830px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 2px 3px;
+}
+
+
+/** posts slider widget **/
+.show_more{
+    cursor: pointer;
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: bold;
+}
+.show_more:hover{
+    color: #fef200;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.loding {
+    border-top: 10px solid blue;
+	border-right: 10px solid #CCC;
+	border-bottom: 10px solid red;
+	border-left: 10px solid green;	
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 40%;
+	left: 40%;
+	animation: spin 2s linear infinite;
+}
+.loding_txt {
+    background-image: url(/templates/frontend/version1/images/loading_16.gif);
+    background-position: left;
+    background-repeat: no-repeat;
+    border: 0;
+    display: inline-block;
+    height: 16px;
+    padding-left: 20px;
+}
+.gallery-item:before{
+    content: "";
+    width: 4px;
+    position: absolute;
+    border: 4px solid orange;
+}
+.syntaxhighlighter .toolbar{
+    display: none !important;
+}
+.syntaxhighlighter{
+    border: solid 1px #ccc !important;
+    padding: 10px 0 !important;
+}
 @media (min-width: 1025px) {
     .header-navigation li.menu-search i{
         color: #FFF;
@@ -641,9 +863,20 @@ h2.title-comment span{
 @media(max-width: 1024px){
     .header-navigation li.menu-search,
     .ecommerce .header-navigation li.menu-search {
-    top: 0 !important;
-    padding: 20px 0 10px;
-    position: relative;
+        top: 0 !important;
+        padding: 20px 0 10px;
+        position: relative;
     }
+    .header .header-navigation li > a, 
+    .header .dropdown.open .dropdown-toggle, 
+    .header .header-navigation li.open > a{
+        border-bottom: 1px solid #FFF !important;
+        color: #FFF !important;
+    }
+    .header .header-navigation{
+        background: none;
+    }
+
 }
+
 

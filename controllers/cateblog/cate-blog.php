@@ -57,6 +57,11 @@ if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid
         $news->appendChild($catename);
         $viewpost   = $dom->createElement("viewpost", $data['view_post']);
         $news->appendChild($viewpost);
+        //Update
+        $short      = $dom->createElement("short");
+        $news->appendChild($short);
+        $short_content      = $dom->createCDATASection($data['short_content']);
+        $short->appendChild($short_content);
     }
     $name =  md5(md5("catelistblog"));
     $dom->save("cached/$name.xhtml");

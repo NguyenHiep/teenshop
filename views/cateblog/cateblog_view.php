@@ -38,8 +38,8 @@
                         <?php
                             }else{ //Neu khong co image
                         ?>
-                             <a data-rel="fancybox-button" title="<?php echo $item->title;?>" href="<?php echo URL_UPLOAD.'blog/noneimage.png'; ?>" class="fancybox-button">
-                                <img alt="" src="<?php echo URL_UPLOAD.'blog/noneimage.png'; ?>" class="img-responsive" />
+                            <a data-rel="fancybox-button" title="<?php echo $item->title;?>" rel="nofollow" href="<?php echo URL_UPLOAD.'blog/noneimage.png'; ?>" class="fancybox-button">
+                                <img alt="" src="<?php echo "http://placehold.it/250x220"; ?>"  class="img-responsive" />
                                 <div class="zoomix"><i class="fa fa-search"></i></div>
                            </a> 
                         <?php        
@@ -56,8 +56,8 @@
                         <li><i class="fa fa-eye"></i> <?php echo $item->viewpost; ?> views</li>
                       </ul>
                       <section class="item">
-                            <p><?php echo wordLimiter($item->full, 50, '...'); ?></p>
-                      <a href="<?php echo BASE_URL.'on-tap/'.trim($item->slugcate).'/'.trim($item->slug).'-'.$item['newsid'].'.html'; ?>" class="more">Xem chi tiết <i class="icon-angle-right"></i></a>
+                            <p><?php echo $item->short; ?></p>
+                      <a href="<?php echo BASE_URL.'on-tap/'.trim($item->slugcate).'/'.trim($item->slug).'-'.$item['newsid'].'.html'; ?>" class="btn btn-primary pull-right more">Xem chi tiết <i class="icon-angle-right"></i></a>
                       </section>
                     </div>
                   </div>

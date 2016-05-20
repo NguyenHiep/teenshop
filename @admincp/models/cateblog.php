@@ -4,6 +4,7 @@
 *@version: 1.0
 */
 class Model_CateBlog extends Database{
+    protected $_parentid;
     protected $_cat_name;
     protected $_slug;
     protected $_status;
@@ -12,9 +13,15 @@ class Model_CateBlog extends Database{
     protected $_metadescription;
     protected $_image;
     
-    //Be gin khai bao thuoc tinh
+    //Begin khai bao thuoc tinh
     public function __construct(){
         $this->connect();
+    }
+    public function setParent($parent){
+        $this->_parentid = $parent;
+    }
+    public function getParent(){
+        return $this->_parentid;
     }
     public function setCateName($catname){
         $this->_cat_name = $catname;
@@ -63,8 +70,9 @@ class Model_CateBlog extends Database{
     
     
     public function insertCateBlog(){
-        $sql[] = "INSERT INTO `cateblog`(`cat_name`,`slug`,`status`,`position`,`meta_keyword`,`meta_description`,`image`)";
-        $sql[] = "VALUES('".$this->getCateName()."','";
+        $sql[] = "INSERT INTO `cateblog`(`parentid`,`cat_name`,`slug`,`status`,`position`,`meta_keyword`,`meta_description`,`image`)";
+        $sql[] = "VALUES('".$this->getParent()."','";
+        $sql[] = $this->getCateName()."','";
         $sql[] = $this->getSlug()."','".$this->getStatus()."','";
         $sql[] = $this->getPosition()."','".$this->getMetakeyword()."','";
         $sql[] = $this->getMetaDescription()."','".$this->getImage()."')";
@@ -88,10 +96,11 @@ class Model_CateBlog extends Database{
     }
     public function listCateBlog($start="",$limit=""){
         $sql[] = "SELECT * FROM `cateblog`";
-        $sql[] = "ORDER BY `cat_id` DESC";
+        $sql[] = "ORDER BY `position` ASC, `cat_name` ASC";
         if($start !="" && $limit!=""){
              $sql[] = "LIMIT {$start},{$limit}";
         }
+        
        $sql = implode(' ',$sql);
         $this->query($sql);
         return $this->fetchAll();
@@ -115,6 +124,7 @@ class Model_CateBlog extends Database{
     }
     public function updateCateBlog($catid){
         $sql[] = "UPDATE `cateblog` SET `cat_name` = '".$this->getCateName()."', `slug` = '".$this->getSlug()."',";
+        $sql[] = "`parentid` = '".$this->getParent()."',";
         $sql[] = "`status` = '".$this->getStatus()."',";
         $sql[] = "`position` = '".$this->getPosition()."',";
         $sql[] = "`meta_keyword` = '".$this->getMetakeyword()."',";

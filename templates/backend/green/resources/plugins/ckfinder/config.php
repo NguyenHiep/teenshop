@@ -1,4 +1,8 @@
 <?php
+session_start();
+error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(0);
+
 /*
  * ### CKFinder : Configuration File - Basic Instructions
  *
@@ -29,8 +33,12 @@ function CheckAuthentication()
 	// ... where $_SESSION['IsAuthorized'] is set to "true" as soon as the
 	// user logs in your system. To be able to use session variables don't
 	// forget to add session_start() at the top of this file.
+    if(empty($_SESSION['ses_group']) || !is_numeric($_SESSION['ses_group'])){
+        return false;
+    }else{
+   	    return true;
+    }
 
-	return true;
 }
 
 // LicenseKey : Paste your license key here. If left blank, CKFinder will be
@@ -117,8 +125,6 @@ To be able to use this feature, you must initialize the session data by
 uncommenting the following "session_start()" call.
 */
 $config['RoleSessionVar'] = 'CKFinder_UserRole';
-session_start();
-$_SESSION['CKFinder_UserRole'] = $_SESSION['ses_username'];
 
 /*
 AccessControl : used to restrict access or features to specific folders.
@@ -131,8 +137,17 @@ Subfolders inherit their default settings from their parents' definitions.
 	- The "resourceType" attribute accepts the special value '*', which
 	  means "all resource types".
 */
-$config['AccessControl'][] = Array(
-		'role' => 'admin',
+//Danh sach thanh vien
+$danhsachthanhvien = array(
+    'user1' => array('id' => 1, 'chuc_vu'=>'post', 'thu_muc'=>'user1'),
+    'user2' => array('id' => 2, 'chuc_vu'=>'post', 'thu_muc'=>'user2'),
+    'admin' => array('id' => 3, 'chuc_vu'=>'admin', 'thu_muc'=>'admin'),
+);
+
+
+if($_SESSION['ses_group'] == 1){
+    $config['AccessControl'][] = Array(
+		'role' => '*',
 		'resourceType' => '*',
 		'folder' => '/',
 
@@ -145,21 +160,29 @@ $config['AccessControl'][] = Array(
 		'fileUpload' => true,
 		'fileRename' => true,
 		'fileDelete' => true);
-
-$config['AccessControl'][] = Array(
+}else{
+    if($_SESSION['ses_group'] == 2){
+        $config['AccessControl'][] = Array(
 		'role' => '*',
 		'resourceType' => '*',
 		'folder' => '/',
 
-		'folderView' => false,
-		'folderCreate' => false,
-		'folderRename' => false,
+		'folderView' => true,
+		'folderCreate' => true,
+		'folderRename' => true,
 		'folderDelete' => false,
 
 		'fileView' => true,
 		'fileUpload' => true,
 		'fileRename' => true,
-		'fileDelete' => false);
+		'fileDelete' => true
+        
+        );
+    }
+    
+}
+
+
 
 /*
 For example, if you want to restrict the upload, rename or delete of files in

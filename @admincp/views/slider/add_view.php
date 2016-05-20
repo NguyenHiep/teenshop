@@ -25,7 +25,13 @@
 						<form action="" method="post" enctype="multipart/form-data">
 							
 							<fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
-								
+								<p>
+									<label>Trang hiển thị slider</label>
+									<select id="txtType" name="txtType" class="small-input">
+                                    <option value="blog" selected="selected">Blog</option>
+                                    <option value="shop">Shop online</option>
+                                    </select>
+								</p>
 								<p>
 									<label>Tiêu đề</label>
 									<input class="text-input medium-input" type="text" id="txtTitle" name="txtTitle" /> 

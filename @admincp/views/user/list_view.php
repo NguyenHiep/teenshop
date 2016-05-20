@@ -31,24 +31,26 @@
 								   <th><input class="check-all" type="checkbox" /></th>
                                    <th>Chức vụ</th>
 								   <th>Họ và tên</th>
+                                   <th>Avatar</th>
 								   <th>Email</th>
 								  <!-- <th>Địa chỉ</th> -->
 								   <th>Số điện thoại</th>
-								   <th>Tác vụ</th>
+								   <th>Cập nhật</th>
+                                    <th>Xóa</th>
 								</tr>
 								
 							</thead>
 						 
 							<tfoot>
 								<tr>
-									<td colspan="6">
+									<td colspan="8">
 										<div class="bulk-actions align-left">
 											<select name="dropdown">
-												<option value="option1">Choose an action...</option>
+												<option value="option1">Chọn một tác vụ ...</option>
 												<option value="option2">Edit</option>
 												<option value="option3">Delete</option>
 											</select>
-											<a class="button" href="#">Apply to selected</a>
+											<a class="button" href="#">Thực hiện tác vụ</a>
 										</div>
 										
 										<div class="pagination">
@@ -88,12 +90,13 @@
 									<td><input type="checkbox" data-value="<?php echo $uid;?>"/></td>
                                     <td><?php echo $group;?></td>
 									<td><?php echo $name;?></td>
+                                    <td>Chưa xác định</td>
 									<td><a href="#" title="title"><?php echo $email;?></a></td>
 								<!--	<td><?php //echo $address;?></td> -->
 									<td><?php echo $phone;?></td>
-									<td>
+									<td class="center-block">	 <a class="block" href="<?php echo BASE_ADMIN;?>/user/edit/uid/<?php echo $uid; ?>" title="Edit"><img src="<?php echo BASE_URL;?>/templates/backend/green/resources/images/icons/pencil.png" alt="Edit" /></a></td>
+                                    <td class="center-block">
 										<!-- Icons -->
-										 <a href="<?php echo BASE_ADMIN;?>/user/edit/uid/<?php echo $uid; ?>" title="Edit"><img src="<?php echo BASE_URL;?>/templates/backend/green/resources/images/icons/pencil.png" alt="Edit" /></a>
 										 <a href="<?php echo BASE_ADMIN;?>/user/del/uid/<?php echo $uid;?>" title="Delete"><img src="<?php echo BASE_URL;?>/templates/backend/green/resources/images/icons/cross.png" alt="Delete" onclick="return validate_del();"/></a> 
 										 <a href="#" title="Edit Meta"><img src="<?php echo BASE_URL;?>/templates/backend/green/resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
 									</td>
@@ -101,7 +104,7 @@
                                 <?php endforeach; ?>
 							<?php else: ?>
                                 <tr>
-                                    <td colspan="7">Dữ liệu rỗng</td>
+                                    <td colspan="8">Dữ liệu rỗng</td>
                                 </tr>
                             <?php endif; ?>
 							</tbody>

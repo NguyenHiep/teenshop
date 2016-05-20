@@ -12,10 +12,16 @@ class Model_Slider extends Database{
     protected $_target  ;
     protected $_status;
     protected $_content;
-    
+    protected $_type;
     public function __construct(){
         $this->connect();
         
+    }
+    public function setType($type){
+        $this->_type = $type;
+    }
+    public function getType(){
+        return $this->_type;
     }
     public function setTitle($title){
         $this->_title = $title;
@@ -71,8 +77,9 @@ class Model_Slider extends Database{
     
     
     public function insertSlider(){
-        $sql[] = "INSERT INTO `slider`(`title`,`image`,`alt`,`position`,`link`,`target`,`status`,`content`)";
-        $sql[] = "VALUES('".$this->getTitle()."','";
+        $sql[] = "INSERT INTO `slider`(`type`,`title`,`image`,`alt`,`position`,`link`,`target`,`status`,`content`)";
+        $sql[] = "VALUES('".$this->getType()."','";
+        $sql[] = $this->getTitle()."','";
         $sql[] = $this->getImage()."','".$this->getAlt()."','";
         $sql[] = $this->getPosition()."','".$this->getLink()."','";
         $sql[] = $this->getTarget()."','".$this->getStatus()."','".$this->getContent()."')";
@@ -128,7 +135,7 @@ class Model_Slider extends Database{
         if($this->getImage() !="none" && $this->getImage() != NULL){
             $sql[] = "`image` = '".$this->getImage()."',";
         }
-        
+        $sql[] = "`type` = '".$this->getType()."',";
         $sql[] = "`alt` = '".$this->getAlt()."',";
         $sql[] = "`position` = '".$this->getPosition()."',";
         $sql[] = "`link` = '".$this->getLink()."',";

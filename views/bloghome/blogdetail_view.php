@@ -3,6 +3,7 @@
     $name = md5(md5("Blogdetail"));
     $xml = simplexml_load_file("cached/$name.xhtml");
     $data = $xml->news;
+    
  ?>
 
  <div class="main">
@@ -34,7 +35,7 @@
                                 <!-- Carousel items -->
                                 <div class="carousel-inner">
                                   <div class="item active">
-                                    <img src="<?php echo URL_UPLOAD.'blog/'.trim($data->image); ?>" alt="<?php echo $data->title;?>" />
+                                    <img src="<?php echo trim($data->image); ?>" alt="<?php echo $data->title;?>" />
                                   </div>
                                 </div>
                                 <!-- Carousel nav -->
@@ -53,32 +54,82 @@
                        ?>
                            <h1 class="" style="margin-top: 10px;"><?php echo $data->title; ?></h1>
                              <ul class="blog-info">
-                                <li><i class="fa fa-user-secret"></i> <?php echo $data->author;?></li>
+                                <li>
+                                    <i class="fa fa-user-secret"></i>
+                                     <?php 
+                                            if(!empty($data->nickname)){
+                                                 echo $data->nickname;
+                                            }else{
+                                                echo $data->author;
+                                            }
+                                        ?>
+                                </li>
                                 <li><i class="fa fa-calendar"></i> <?php echo date("d/m/Y",strtotime($data->poston)); ?></li>
                                 <li><i class="fa fa-list"></i> <?php echo $data->catename;?></li>
                                 <li><i class="fa fa-eye"></i> <?php echo $data->viewpost; ?> views</li>
                               </ul>
-                            <article class="content-blog"><?php echo $data->full; ?> </article>
+                            <article class="content-blog">
+                                <?php echo $data->full; ?>
+                                <?php
+                               // echo sizeof($relapost);
+                       
+                                    if($count_relapost > 0){
+                                ?>
+                                  <hr class="blog-post-sep" />
+                                  <h2>Bài viết liên quan</h2>
+                                 <ol>
+                                    <?php
+                                        foreach($relapost as $post):
+                                    ?>
+                                        <li><a href="<?php echo BASE_URL.'on-tap/'.trim($post['slugcate']).'/'.trim($post['slug']).'-'.$post['blog_id'].'.html'; ?>"><?php echo $post['blog_name'];?></a></li>
+                     
+                                    <?php
+                                        endforeach;
+                                    ?>
+                                </ol>
+                                <?php        
+                                    } //End count
+                                ?>
+                               
+                            </article>
                           <hr class="blog-post-sep" />
                          <div class="base-box single-box about-the-author">
                             <div class="author_avatar">
-                                <img src="<?php echo TEMPLATE_FRONTEND.'images/'?>author.jpg" class="avatar avatar-80 photo disappear appear" width="90" height="90" alt="Profile photo of HiepEdied" />
+                                <img src="<?php 
+                                                if(!empty($data->avartar)){
+                                                    echo URL_UPLOAD.trim($data->avartar);
+                                                }else{
+                                                    echo URL_UPLOAD.'avatart-none.png';
+                                                }
+                                                
+                                            ?>
+                                        " class="avatar avatar-80 photo disappear appear" width="90" height="90" alt="<?php echo $data->author;?>" />
                             </div>
                             <div class="author_desc">
                                 <h3 class="vcard author">
                                     <span class="fn">
-                                        <a href="#">Hiệp Edied</a>
+                                        <a href="#">
+                                        <?php 
+                                            if(!empty($data->nickname)){
+                                                 echo $data->nickname;
+                                            }else{
+                                                echo $data->author;
+                                            }
+                                        ?>
+                                       </a>
                                     </span>
                                 </h3>
                                 <p>
-                                   Nhà mình ở quận 3, đi xe yamaha, sở thích hát ca, là một người rất hiền, hiện là nhân viên
-                                   vừa đi làm kiếm tiền, vui tính, chung thủy :3 quá tốt :))                        
+                                  <?php
+                                    echo $data->instruction;
+                                  ?>                     
                                 </p>
                                 <div class="mom-socials-icons author-social-icons">
                                     <ul class="list-unstyled">
-                                        <li class="home"><a target="_blank" href="#"><i class="fa fa-home"></i></i></a></li>    
-                                        <li class="facebook"><a target="_blank" href="#"><i class="fa fa-facebook-official"></i></a></li>     
-                                        <li class="googleplus"><a target="_blank" href="#" rel="author"><i class="fa fa-google-plus"></i></a></li>
+                                        <li class="home"><a target="_blank" href="<?php if(!empty($data->facebook)) echo $data->facebook; else "https://www.facebook.com/"; ?>" rel="nofollow"><i class="fa fa-home"></i></i></a></li>    
+                                        <li class="facebook"><a target="_blank" href="<?php if(!empty($data->facebook)) echo $data->facebook; else "https://www.facebook.com/"; ?>" rel="nofollow"><i class="fa fa-facebook-official"></i></a></li>     
+                                        <li class="googleplus"><a target="_blank" href="<?php if(!empty($data->facebook)) echo $data->google; else "https://www.facebook.com/"; ?>"  rel="nofollow"><i class="fa fa-google-plus"></i></a></li>
+                                        <li class="twitter"><a target="_blank" href="<?php if(!empty($data->facebook)) echo $data->twitter; else "https://www.facebook.com/"; ?>" rel="nofollow"><i class="fa fa fa-twitter"></i></a></li>
                                     </ul>
                                 </div>
                         

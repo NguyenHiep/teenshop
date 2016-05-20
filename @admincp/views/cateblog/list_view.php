@@ -71,14 +71,13 @@
                                          $image          = "";       
                                     }else{
                                          $image          = trim($data['image']);       
-                                    }
-                                                       
+                                    }       
                             ?>
 								<tr>
 									<td><input type="checkbox" data-value="<?php echo $catid;?>"/></td>
                                     <td><?php echo $catid;?></td>
                                     <td><?php echo $catname;?></td>
-                                    <td><img src="<?php echo BASE_URL;?>uploads/category/<?php echo $image;?>" alt="<?php echo $catname;?>" width="100" height="100"/></td>
+                                    <td><img src="<?php echo BASE_URL;?>uploads/category/<?php echo $image;?>" alt="<?php echo $catname;?>" width="40" height="40"/></td>
 									<td>Update sau</td>
 								     <td class="center-block"><img src="<?php echo BASE_URL;?>/templates/backend/green/resources/images/icons/<?php echo $status;?>" alt="status" /></td>
 									<td>

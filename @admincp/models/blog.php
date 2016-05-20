@@ -10,6 +10,7 @@ class Model_Blog extends Database{
     protected $_slug;
     protected $_meta_keyword;
     protected $_meta_description;
+    protected $_shortcontent;
     protected $_content;
     protected $_status;
     protected $_view_post;
@@ -58,6 +59,13 @@ class Model_Blog extends Database{
     public function getMetaDescription(){
         return $this->_meta_description;
     }
+    public function setShortContent($shortcontent){
+        $this->_shortcontent = $shortcontent;
+    }
+    public function getShortContent(){
+        return $this->_shortcontent;
+    }
+    
     public function setContent($content){
         $this->_content = $content;
     }
@@ -100,11 +108,12 @@ class Model_Blog extends Database{
     
     
     public function insertBlog(){
-        $sql[] = "INSERT INTO `blog`(`user_id`,`cat_id`,`blog_name`,`slug`,`meta_keyword`,`meta_description`,`content`,`status`,`view_post`,`hightlight`,`post_on`,`image`)";
+        $sql[] = "INSERT INTO `blog`(`user_id`,`cat_id`,`blog_name`,`slug`,`meta_keyword`,`meta_description`,`short_content`,`content`,`status`,`view_post`,`hightlight`,`post_on`,`image`)";
         $sql[] = "VALUES('".$this->getUserId()."','";
         $sql[] = $this->getCatId()."','".$this->getBlogName()."','";
         $sql[] = $this->getSlug()."','".$this->getMetakeyword()."','";
-        $sql[] = $this->getMetaDescription()."','".$this->getContent()."','";
+        $sql[] = $this->getMetaDescription()."','";
+        $sql[] = $this->getShortContent()."','".$this->getContent()."','";
         $sql[] = $this->getStatus()."','".$this->getViewPost()."','";
         $sql[] = $this->getHightLight()."','".$this->getPostOn()."','";
         $sql[] = $this->getImage()."')";
@@ -126,13 +135,16 @@ class Model_Blog extends Database{
             return false;
         }
     }
-    public function listBlog($start="",$limit=""){
+    public function listBlog($start="",$limit="", $userid = ""){
         $sql[] = "SELECT * FROM `blog`";
+        if($userid != ""){
+            $sql[] = "WHERE user_id = '{$userid}'";
+        }
         $sql[] = "ORDER BY `blog_id` DESC";
         if($start !="" && $limit!=""){
              $sql[] = "LIMIT {$start},{$limit}";
         }
-       $sql = implode(' ',$sql);
+        $sql = implode(' ',$sql);
         $this->query($sql);
         return $this->fetchAll();
     }
@@ -158,6 +170,7 @@ class Model_Blog extends Database{
         $sql[] = "`slug` = '".$this->getSlug()."',";
         $sql[] = "`meta_keyword` = '".$this->getMetakeyword()."',";
         $sql[] = "`meta_description` = '".$this->getMetaDescription()."',";
+        $sql[] = "`short_content` = '".$this->getShortContent()."',";
         $sql[] = "`content` = '".$this->getContent()."',";
         $sql[] = "`status` = '".$this->getStatus()."',";
         $sql[] = "`view_post` = '".$this->getViewPost()."',";
@@ -172,8 +185,13 @@ class Model_Blog extends Database{
         $sql = implode(' ',$sql);
         $this->query($sql);
     }
-    public function totalBlog(){
-        $sql = "SELECT COUNT(*) AS `count` FROM `blog`";
+    public function totalBlog($userid=""){
+        $sql[] = "SELECT COUNT(*) AS `count`";
+        $sql[] = "FROM `blog`";
+        if($userid != ""){
+             $sql[] = "WHERE user_id = '{$userid}'";
+        }
+        $sql = implode(' ',$sql);
         $this->query($sql);
         return $this->fetch();
     }

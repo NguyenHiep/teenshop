@@ -43,10 +43,7 @@
                                     <label>Sắp xếp: <input type="number" class="text-input small-input" id="position" name="position" style="width:  50px !important;"/></label>
       
                                 </p>
-                                 <p>
-                                    <label>Parent id: <input type="number" class="text-input small-input" id="parentid" name="parentid" style="width:  50px !important;"/></label>
-                                    
-                                </p>
+                                
                                 <p>
                                     <label>Ảnh category: <input class="text-input small-input" type="file" name="txtImage" id="txtImage"/></label>
                                 </p>

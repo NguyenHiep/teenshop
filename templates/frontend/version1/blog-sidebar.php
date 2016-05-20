@@ -2,7 +2,7 @@
                 <!-- BEGIN RIGHT SIDEBAR -->            
                 <div class="col-md-3 col-sm-3 blog-sidebar">
                   <!-- CATEGORIES START -->
-                  <h2 class="no-top-space title-comment"><span class="fa fa-th-list"></span>Chuyên mục </h2>
+                  <h2 class="no-top-space title-comment"><span class="fa fa-th-list"></span>Quảng cáo</h2>
                   <!--<ul class="nav sidebar-categories margin-bottom-40">
                     <li><a href="javascript:;">London (18)</a></li>
                     <li><a href="javascript:;">Moscow (5)</a></li>
@@ -13,6 +13,7 @@
                   -->
                   <ul class="nav sidebar-categories margin-bottom-40">
                     <?php
+                    /*
                         $mcate = new Model_CateBlog();
                         $listCate = $mcate->listCategory();
                         $htmlcate = '';
@@ -27,6 +28,7 @@
                         endforeach;
                         echo $htmlcate;
                         //on-thi-dai-hoc/mon-hoc/(.*)-([0-9]+).html
+                        */
                     ?>
                   </ul>
                   <!-- CATEGORIES END -->
@@ -42,6 +44,7 @@
                         $listMostView = $mblog->listMostView();
                         $stt = 0;
                         foreach($listMostView as $list):
+                        
                         $stt++;
                      ?>
                         <article>
@@ -55,7 +58,7 @@
                                 <!-- on-tap/lap-trinh-web-1/xu-ly-ngay-gio-trong-php-9.html-->
                                     <h3><a href="<?php echo BASE_URL.'on-tap/'.trim($list['slugcate']).'/'.trim($list['slug']).'-'.$list['blog_id'].'.html'; ?>"><?php echo $list['blog_name'];?></a></h3>
                                     <div class="item-description">
-                                    <?php echo wordLimiter($list['content'], 5, '...');?>
+                                    <?php echo wordLimiter($list['short_content'], 15, '...');?>
                                     <i class="fa fa-eye"></i> <?php echo $list['view_post'];?> views
                                 </div>
                               </div>                        
@@ -109,7 +112,12 @@
                             <div  id="accordion1_3" class="panel-collapse in collapse">
                                  <div class="panel-body">
                                     <!-- BEGIN CODE LIKE PAGE -->
-                                     <div class="fb-page" data-href="https://www.facebook.com/daigiadinhcntt/" data-width="100%" data-height="250" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/daigiadinhcntt/"><a href="https://www.facebook.com/daigiadinhcntt/">Hỏi đáp lập trình</a></blockquote></div></div>
+                                    <div class="fb-page"
+                                      data-href="https://www.facebook.com/daigiadinhcntt" 
+                                      data-width="340"
+                                      data-hide-cover="false"
+                                          data-show-facepile="true">
+                                    </div>
                                     <!-- END CODE LIKE PAGE -->
                                 </div>
                             </div>

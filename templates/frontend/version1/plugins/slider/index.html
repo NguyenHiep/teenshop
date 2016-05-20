@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title> Hiệu ứng CSS3 </title>
+		
+		<style type="text/css">
+		/*
+			div {
+				width: 800px;
+				height: 100px;
+				background-color: red;
+				position: relative;
+				-webkit-animation-name: demo; /* Chrome, Safari, Opera */
+				-webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+				-webkit-animation-iteration-count: infinite; /* Chrome, Safari, Opera */
+				animation-name: demo;
+				animation-duration: 4s;
+				animation-iteration-count: infinite;
+			}
+
+			/* Chrome, Safari, Opera */
+			@-webkit-keyframes demo {
+				0%   {background-color:red;  left:0px; top:0px;}
+				25%  {background-color:yellow; left:200px; top:0px;}
+				50%  {background-color:blue; left:200px; top:200px;}
+				75%  {background-color:green; left:0px; top:200px;}
+				100% {background-color:red; left:0px; top:0px;}
+			}
+
+			/* Standard syntax */
+			@keyframes demo {
+				0%   {background-color:red; left:0px; top:0px;}
+				25%  {background-color:yellow; left:200px; top:0px;}
+				50%  {background-color:blue; left:200px; top:200px;}
+				75%  {background-color:green; left:0px; top:200px;}
+				100% {background-color:red; left:0px; top:0px;}
+			}
+			*/
+			h1{
+				color: red;
+				text-shadow: 2px 3px #CCC;
+				
+			}
+			header{
+				background-color: lightblue;
+				height: 100px;
+			}
+			nav:after{
+				clear: both;
+				cotent: "";
+				line-height: 0;
+				height: 0;
+			}
+			nav ul{
+				list-style:none;
+				background: lightblue;
+			}
+			nav a{
+				text-decoration: none;
+				font-family: "Verdana", Arial, Tahoma;
+				font-size: 14px;
+				color: #000;
+			}
+			nav ul li{
+				width: 17%;
+				background: lightblue;
+				float: left;
+			}
+			nav ul li a{
+				padding: 10px;
+				display: block;
+				width: 100%;
+				background: lightblue;
+				border-left: 1px solid #FFF;
+				text-align: center;
+			}
+			nav ul li a:hover{
+				background-color: lightgreen;
+				color: blue;
+			}
+			nav ul li .submenu{
+				display: none;
+			}
+			nav ul li:hover .submenu{
+				display: block;
+			}
+			ul.submenu li{
+				width: 100%;
+			}
+			ul.submenu li a{
+				float: left;'
+				padding:0;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<header>
+			Logo
+		</header>
+		<nav class="menu-top">
+			<ul class="menu">
+				<li><a href="#">Home </a></li>
+				<li class="submenu-item">
+					<a href="#">On thi DH </a>
+					<ul class="submenu">
+						<li><a href="#">Toan</a></li>
+						<li><a href="#">Ly</a></li>
+						<li><a href="#">Hoa </a></li>	
+					</ul>
+				</li>
+				<li><a href="#">Information </a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact </a></li>	
+				
+			</ul>
+		</nav>
+		<div style="clear: both;"></div>
+		<div><h1>Website hiện đang bảo trì, hẹn gặp lại các bạn sớm </h1>
+			<form action="http://google.com/?search" method="GET">
+			<input type="text" name="q" />
+			<input type="submit" name="submit" />
+		</form>
+		</div>
+		
+	</body>
+</html>

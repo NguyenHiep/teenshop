@@ -22,7 +22,7 @@ class Model_CateBlog extends Database{
             $sql[] = "USING (cat_id)";
             $sql[] = "WHERE cat.status = '1'";
             $sql[] = "GROUP BY cat.cat_id";
-            $sql[] = "ORDER BY cat.cat_name ASC";
+            $sql[] = "ORDER BY cat.position ASC, cat.cat_name ASC";
             $sql = implode(' ',$sql);
             $this->query($sql);
             return $this->fetchAll(); 
@@ -31,6 +31,15 @@ class Model_CateBlog extends Database{
         public function getCategoryById($cid){
             $sql[] = "SELECT * FROM cateblog";
             $sql[] = "WHERE status = '1' AND `cat_id` = '{$cid}'";
+            $sql = implode(' ',$sql);
+            $this->query($sql);
+            return $this->fetch(); 
+        }
+        //Dem so luong submenu
+        public function countLevelSub($cid){
+            $sql[] = "SELECT COUNT(*) AS number";
+            $sql[] = "FROM cateblog";
+            $sql[] = "WHERE status = '1' AND `parentid` = '{$cid}' ";
             $sql = implode(' ',$sql);
             $this->query($sql);
             return $this->fetch(); 

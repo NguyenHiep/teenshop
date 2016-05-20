@@ -49,6 +49,7 @@
 		<!-- jQuery WYSIWYG Plugin -->
 		<script type="text/javascript" src="<?php echo BASE_URL;?>/templates/backend/green/resources/scripts/jquery.wysiwyg.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL;?>/templates/backend/green/resources/scripts/ajax.js"></script>
+               <script type="text/javascript" src="<?php echo BASE_URL;?>/templates/backend/green/resources/scripts/layout.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL;?>/templates/backend/green/resources/plugins/ckeditor/ckeditor.js"></script>
          <script type="text/javascript" src="<?php echo BASE_URL;?>/templates/backend/green/resources/plugins/ckfinder/ckfinder.js"></script>
        
@@ -63,7 +64,7 @@
             finder.popup();
         }
         function SetFileField(fileUrl) {
-            document.getElementById('Image').value = fileUrl;
+            document.getElementById('txtImage').value = fileUrl;
         }
         </script>        
 		
@@ -107,9 +108,9 @@
 		  
 			<!-- Sidebar Profile links -->
 			<div id="profile-links">
-				Xin chào, <a href="#" title="Edit your profile"><?php echo $_SESSION['ses_fullname'];?></a>, bạn có <a href="#messages" rel="modal" title="3 Messages">3 tin nhắn</a><br />
+				Xin chào, <a href="<?php echo BASE_ADMIN.'/user/edit/uid/'.$_SESSION['ses_userid'];?>" title="Cập nhật thông tin cá nhân"><?php echo $_SESSION['ses_fullname'];?></a>, bạn có <a href="#messages" rel="modal" title="3 Messages">3 tin nhắn</a><br />
 				<br />
-				<a href="#" title="View the Site">View the site</a> | <a href="<?php echo BASE_ADMIN;?>/logout.php" title="Sign Out">Đăng xuất</a>
+				<a href="<?php echo BASE_URL;?>" title="View the Site">Xem trang web</a> | <a href="<?php echo BASE_ADMIN;?>/logout.php" title="Sign Out">Đăng xuất</a>
 			</div>        
 			<?php
                 //Begin active menu
@@ -126,8 +127,10 @@
                 }
             ?>
 			<ul id="main-nav">  <!-- Accordion Menu -->
-				
-				<li>
+			 <?php
+                if(isset($_SESSION['ses_username']) && $_SESSION['ses_group'] == 1){
+             ?>
+             	<li>
 					<a href="<?php echo BASE_ADMIN;?>" class="nav-top-item no-submenu <?php if($active == "home") echo 'current';?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
 						Màn hình chính
 					</a>       
@@ -150,14 +153,14 @@
 						<li><a   <?php if($active_sub == "list") echo 'class="current"';?> href="<?php echo BASE_ADMIN;?>/user/list">Quản lý thành viên</a></li>                         
 					</ul>
 				</li>
-                
+                <!--
 				<li> 
-					<a href="javascript:(0)" class="nav-top-item  <?php if($active == "product") echo 'current';?>"> <!-- Add the class "current" to current menu item -->
+					<a href="javascript:(0)" class="nav-top-item  <?php if($active == "product") echo 'current';?>">
 					Sản phẩm
 					</a>
 					<ul>
 						<li><a  <?php if($active_sub == "add") echo 'class="current"';?> href="<?php echo BASE_ADMIN;?>/product/add">Thêm mới sản phẩm</a></li>
-						<li><a   <?php if($active_sub == "list") echo 'class="current"';?> href="<?php echo BASE_ADMIN;?>/product/list">Quản lý sản phẩm</a></li> <!-- Add class "current" to sub menu items also -->
+						<li><a   <?php if($active_sub == "list") echo 'class="current"';?> href="<?php echo BASE_ADMIN;?>/product/list">Quản lý sản phẩm</a></li> 
 						<li><a href="#">Quản lý bình luận</a></li>
 					</ul>
 				</li>
@@ -171,6 +174,16 @@
 						<li><a <?php if($active_sub == "list") echo 'class="current"';?> href="<?php echo BASE_ADMIN;?>/cate/list">Quản lý chuyên mục</a></li>
 					</ul>
 				</li>
+                	<li>
+					<a href="#" class="nav-top-item">
+						Đơn đặt hàng (Order)
+					</a>
+					<ul>
+						<li><a href="<?php echo BASE_ADMIN; ?>/order/list">Quản lý đơn đặt hàng</a></li>
+					
+					</ul>
+				</li>
+                -->
 				<li>
 					<a href="#" class="nav-top-item">
 						Slider
@@ -191,15 +204,7 @@
 					</ul>
 				</li>
 				
-				<li>
-					<a href="#" class="nav-top-item">
-						Đơn đặt hàng (Order)
-					</a>
-					<ul>
-						<li><a href="<?php echo BASE_ADMIN; ?>/order/list">Quản lý đơn đặt hàng</a></li>
-					
-					</ul>
-				</li>
+			
 				
 				<li>
 					<a href="#" class="nav-top-item">
@@ -219,6 +224,10 @@
 						<li><a <?php if($active_sub == "list") echo 'class="current"';?> href="<?php echo BASE_ADMIN;?>/cateblog/list">Quản lý chuyên mục</a></li>
 					</ul>
 				</li>
+             <?php       
+                }
+             ?>
+			
                 <li>
 					<a href="javascript:(0)" class="nav-top-item <?php if($active == "blog") echo 'current';?>">
 						Blog
@@ -277,7 +286,8 @@
 				
 			</div> <!-- End #messages -->
 			
-		</div></div> <!-- End #sidebar -->
+		</div>
+        </div> <!-- End #sidebar -->
         
         		<div id="main-content"> <!-- Main Content Section with everything -->
 			

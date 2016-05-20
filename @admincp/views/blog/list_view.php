@@ -86,12 +86,12 @@
 									<td><input type="checkbox" data-value="<?php echo $blogid;?>"/></td>
                                     <td><?php echo $blogid;?></td>
                                     <td><?php echo $blogname;?></td>
-                                    <td><img src="<?php echo BASE_URL;?>uploads/blog/<?php echo $image;?>" alt="<?php echo $blogname;?>" width="100" height="100"/></td>
+                                    <td class="center-block"><img src="<?php echo $image;?>" alt="<?php echo $blogname;?>" width="70" height="70"/></td>
 								     <td class="center-block"><img src="<?php echo BASE_URL;?>/templates/backend/green/resources/images/icons/<?php echo $status;?>" alt="status" /></td>
-									<td>
+									<td class="center-block">
 										 <a href="<?php echo BASE_ADMIN;?>/blog/edit/catid/<?php echo $blogid; ?>" title="Edit"><img src="<?php echo BASE_URL;?>/templates/backend/green/resources/images/icons/pencil.png" alt="Edit" /></a>
 									</td>
-                                    <td>
+                                    <td class="center-block">
                                          <a href="<?php echo BASE_ADMIN;?>/blog/del/catid/<?php echo $blogid;?>" title="Delete"><img src="<?php echo BASE_URL;?>/templates/backend/green/resources/images/icons/trash.png" alt="Delete" onclick="return validate_del();"/></a> 
 							
                                     </td>

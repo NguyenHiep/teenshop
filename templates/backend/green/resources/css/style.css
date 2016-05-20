@@ -822,3 +822,17 @@ div.wysiwyg iframe { border: 0; margin: 5px 0 0 0; clear: left; width: 97.5% !im
 #main-content table td, th{
    border: 1px solid #CCC; 
 }
+.col-left{
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    padding-right: 30px;
+}
+
+.col-right{
+    float: left;
+    width: 50%;
+}
+.block{
+    display: block;
+}

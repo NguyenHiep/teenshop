@@ -6,7 +6,9 @@
                 break;
             case "review":
                 require "controllers/ajax/review.php";
-                break;    
+                break;
+            case "blog":
+                require "controllers/ajax/list-blog.php";    
         }
     }
 

@@ -3,6 +3,10 @@ if(isset($_GET['pid']) && validate_int($_GET['pid']) == true && $_GET['pid'] > 0
      $pid   = intval($_GET['pid']);
      $mblog = new Model_Blog();
      $data  = $mblog->getBlogDetail($pid);
+     //Lấy ra danh sách các blog khác cùng category
+     
+     $relapost = $mblog->getBlogRelatedPost($data['cat_id'], $data['blog_id']);
+     $count_relapost = $mblog->num_rows($relapost);
         $dom            = new DOMDocument("1.0", "utf-8");
         $cate           = $dom->createElement("Blogdetail");
         $dom->appendChild($cate);
@@ -37,10 +41,23 @@ if(isset($_GET['pid']) && validate_int($_GET['pid']) == true && $_GET['pid'] > 0
         $news->appendChild($slugcate);
         $catename   = $dom->createElement("catename", $data['cat_name']);
         $news->appendChild($catename);
-        $cateid   = $dom->createElement("cateid", $data['cat_id']);
+        $cateid     = $dom->createElement("cateid", $data['cat_id']);
         $news->appendChild($cateid);
         $viewpost   = $dom->createElement("viewpost", $data['view_post']);
         $news->appendChild($viewpost);
+        //Begin update 01.05.2016
+        $nickname   = $dom->createElement("nickname", $data['nickname']);
+        $news->appendChild($nickname);
+        $instruction   = $dom->createElement("instruction", $data['short_instruction']);
+        $news->appendChild($instruction);
+        $facebook   = $dom->createElement("facebook", $data['share_facebook']);
+        $news->appendChild($facebook);
+        $google     = $dom->createElement("google", $data['share_google']);
+        $news->appendChild($google);
+        $twitter    = $dom->createElement("twitter", $data['share_twitter']);
+        $news->appendChild($twitter);
+        
+        //End updatae 01.05.2016
         
     $name =  md5(md5("Blogdetail"));
     $dom->save("cached/$name.xhtml");

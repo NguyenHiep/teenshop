@@ -17,7 +17,13 @@
 						<form action="<?php echo BASE_ADMIN.'/index.php?controller=slider&action=edit&sid='.$resultData['slider_id'];?>" method="post" enctype="multipart/form-data">
 							
 							<fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
-								
+							 <p>
+									<label>Trang hiển thị slider</label>
+									<select id="txtType" name="txtType" class="small-input">
+                                    <option value="blog" <?php if($resultData['type'] == "blog") echo "selected='selected'";?> >Blog</option>
+                                    <option value="shop" <?php if($resultData['type'] == "shop") echo "selected='selected'";?>>Shop online</option>
+                                    </select>
+								</p>
 								<p>
 									<label>Tiêu đề</label>
 									<input value="<?php echo $resultData['title'];?>" class="text-input medium-input" type="text" id="txtTitle" name="txtTitle" /> 

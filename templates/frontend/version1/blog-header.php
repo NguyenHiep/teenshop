@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
@@ -16,14 +17,15 @@
 
   <meta content="<?php echo isset($description)? $description : "Giadinhit.com | Ôn tập thi liên thông đại học, học lập trình;";?>" name="description" />
   <meta content="<?php echo isset($keyword)? $keyword : "Liên thông đại học, magento, php, word";?>" name="keywords" />
-  <meta content="Hiệp Edied" name="author" />
+  <meta content="Gia đình IT" name="author" />
 
-  <meta property="og:site_name" content="-CUSTOMER VALUE-" />
-  <meta property="og:title" content="-CUSTOMER VALUE-" />
-  <meta property="og:description" content="-CUSTOMER VALUE-" />
+  <meta property="og:site_name" content="<?php echo BASE_URL;?>" />
+  <meta property="og:title" content="<?php echo isset($title)? $title : "Trang chủ | Ôn tập thi liên thông đại học";?>" />
+  <meta property="og:description" content="<?php echo isset($description)? $description : "Giadinhit.com | Ôn tập thi liên thông đại học, học lập trình;";?>" />
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="vi-vn"/>
   <meta property="og:image" content="-CUSTOMER VALUE-" /><!-- link to image for socio -->
-  <meta property="og:url" content="-CUSTOMER VALUE-" />
+  <meta property="og:url" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>" />
 
   <link rel="shortcut icon" href="favicon.ico"/>
   <!-- Icon -->
@@ -41,7 +43,7 @@
   <!-- Page level plugin styles START -->
   <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet"/>
 
-  <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/styles/shCoreDefault.css" rel="stylesheet"/>
+  <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/styles/shCoreEmacs.css" rel="stylesheet"/>
   <!-- Page level plugin styles END -->
 
   <!-- Theme styles START -->
@@ -72,8 +74,21 @@
                 <!-- BEGIN TOP BAR MENU -->
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
-                        <li><a href="/register">Đăng ký</a></li>
-                        <li><a href="/login">Đăng nhập</a></li>
+                        <?php
+                            if(isset($_SESSION['ses_username']) && $_SESSION['ses_userid'] != 0){
+                                
+                        ?>
+                            <li><a href="/register">Chào bạn, <?php echo $_SESSION['ses_fullname'];?></a></li>
+                            <li><a href="/login">Đến trang quản trị</a></li>
+                            <li><a href="/login">Thoát</a></li>
+                        <?php
+                         }else{
+                        ?>
+                            <li><a href="/register">Đăng ký</a></li>
+                            <li><a href="/login">Đăng nhập</a></li>
+                        <?php }
+                        ?>
+                        
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->
@@ -92,18 +107,24 @@
 
         <!-- BEGIN NAVIGATION -->
         <div class="header-navigation">
+       
           <ul>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                Liên thông đại học 
-              </a>
-                
-              <!-- BEGIN DROPDOWN MENU -->
-              <ul class="dropdown-menu">
+           
+              <?php
+                $mcate = new Model_CateBlog();
+                $listCate = $mcate->listCategory();
+                echo MenuTop($listCate);
+             
+                ?>
+              
                 <?php
-                        $mcate = new Model_CateBlog();
-                        $listCate = $mcate->listCategory();
-                        $htmlcate = '';
+                        //$mcate = new Model_CateBlog();
+                        //$listCate = $mcate->listCategory();
+                       // echo "<pre>";
+                       //     print_r($listCate);
+                       // echo "</pre>";
+                      //                          die();
+                        /*$htmlcate = '';
                         foreach($listCate as $list):
                         $htmlcate.= '<li ';
                         if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid'] >0 && $_GET['catid'] == $list['cat_id']){
@@ -113,50 +134,19 @@
                         endforeach;
                         echo $htmlcate;
                         //on-thi-dai-hoc/mon-hoc/(.*)-([0-9]+).html
+                        */
+                      //echo recursiveMenuTop($listCate);
+                     // if(count($listCate > 0)){
+                      //   die(recursiveMenuTop($listCate));
+                     // }
+                     
                     ?>
-              </ul>
-              <!-- END DROPDOWN MENU -->
-            </li>
-            
-            <li class="dropdown">
-            <li><a href="#">Lập trình</a></li>
-                
-              <!-- BEGIN DROPDOWN MENU -->
-              <!--
-              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                Lập trình
-              </a>
-              <ul class="dropdown-menu">
-                <li class="dropdown-submenu">
-                  <a href="#">Ứng dụng web <i class="fa fa-angle-right"></i></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">IOS và Android</a></li>
-                    <li><a href="#">CSharp</a></li>
-                    <li class="dropdown-submenu">
-                      <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                        Second Level Link 
-                        <i class="fa fa-angle-right"></i>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Third Level Link</a></li>
-                        <li><a href="#">Third Level Link</a></li>
-                        <li><a href="#">Third Level Link</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="#">Di động</a></li>
-                <li><a href="#">Desktop</a></li>
-              </ul>
-              -->
-              <!-- END DROPDOWN MENU -->
-            </li>
-            
+            <!--
             <li><a href="#" target="_blank" onclick="inProcess();">IT shop</a></li>
             <li><a href="#" target="_blank" onclick="inProcess();">Typography</a></li>
             <li><a href="<?php echo BASE_URL.'huong-dan.html'?>" target="_blank">Hướng dẫn</a></li>
             <li><a href="<?php echo BASE_URL.'lien-he.html'?>" target="_blank">Liên hệ</a></li>
-
+            -->
             <!-- BEGIN TOP SEARCH -->
             <li class="menu-search">
               <span class="sep"></span>

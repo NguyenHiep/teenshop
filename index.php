@@ -72,7 +72,7 @@ if(isset($_GET['controller'])){
                 break;
     }
 }else{
-    require_once "controllers/bloghome/controller.php";
+    require_once "controllers/defaultblog/controller.php";
 }
 //Buttom cached
 // Cache the contents to a file
