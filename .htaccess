@@ -12,6 +12,11 @@ RewriteRule home index.php [L]
 
 #SiteMap
 RewriteRule sitemap.xml sitemap.php [L]
+#login
+RewriteRule login index.php?controller=user&action=login [L]
+RewriteRule logout index.php?controller=user&action=logout [L]
+RewriteRule register index.php?controller=user&action=register [L]
+RewriteRule ^user/profile/([0-9]+)/$ index.php?controller=user&action=profile&uid=$1 [L]
 #Search blog
 RewriteRule search search.php [L]
 RewriteRule ajax/product-detail index.php?controller=ajax&action=productdetail [L]

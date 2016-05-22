@@ -25,6 +25,7 @@ require_once "libraries/functions.php";
 require_once "libraries/pagination.php";
 require_once "libraries/pagination-cate.php";
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
 if(isset($_GET['controller'])){
     switch($_GET['controller']){
             case 'ajax':
@@ -56,6 +57,9 @@ if(isset($_GET['controller'])){
                 break;
             case 'search':
                 require "controllers/search/controller.php";
+                break;
+            case 'user':
+                require "controllers/user/controller.php";
                 break;
             // Begin blog page
             case 'blog':

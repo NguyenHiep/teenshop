@@ -78,14 +78,14 @@
                             if(isset($_SESSION['ses_username']) && $_SESSION['ses_userid'] != 0){
                                 
                         ?>
-                            <li><a href="/register">Chào bạn, <?php echo $_SESSION['ses_fullname'];?></a></li>
-                            <li><a href="/login">Đến trang quản trị</a></li>
-                            <li><a href="/login">Thoát</a></li>
+                            <li><a href="/user/profile/<?php echo trim($_SESSION['ses_userid']);?>/">Chào bạn, <?php echo $_SESSION['ses_fullname'];?></a></li>
+                            <li><a href="<?php echo BASE_ADMIN;?>">Đến trang quản trị</a></li>
+                            <li><a href="/logout">Thoát</a></li>
                         <?php
                          }else{
                         ?>
                             <li><a href="/register">Đăng ký</a></li>
-                            <li><a href="/login">Đăng nhập</a></li>
+                            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Đăng nhập</a></li>
                         <?php }
                         ?>
                         
@@ -96,6 +96,8 @@
         </div>        
     </div>
     <!-- END TOP BAR -->
+    <!-- Login -->
+   
    <!-- BEGIN HEADER -->
     <div class="header">
       <div class="container">
@@ -170,11 +172,9 @@
     </div>
     <!-- Header END -->
     </header>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=861201477273916";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+   <?php
+    //Get googanylatic
+     include_once("analyticstracking.php");
+     //Connect socical facebook
+     require_once "login.php";
+   ?>

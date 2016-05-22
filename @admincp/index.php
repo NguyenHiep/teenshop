@@ -47,7 +47,10 @@ if(check_login() == true){
         }
         
     }else{
-        require "controllers/main.php";
+        if(author_admin() == true)
+            require "controllers/main.php";
+        else
+            require "controllers/blog/controller.php";
     }
 }else{
      redirect($baseurl.'login.html');

@@ -108,8 +108,20 @@
 		  
 			<!-- Sidebar Profile links -->
 			<div id="profile-links">
-				Xin chào, <a href="<?php echo BASE_ADMIN.'/user/edit/uid/'.$_SESSION['ses_userid'];?>" title="Cập nhật thông tin cá nhân"><?php echo $_SESSION['ses_fullname'];?></a>, bạn có <a href="#messages" rel="modal" title="3 Messages">3 tin nhắn</a><br />
-				<br />
+            <?php
+                if(author_admin() == true):
+            ?>
+            	Xin chào, <a href="<?php echo BASE_ADMIN.'/user/edit/uid/'.$_SESSION['ses_userid'];?>" title="Cập nhật thông tin cá nhân"><?php echo $_SESSION['ses_fullname'];?></a>, bạn có <a href="#messages" rel="modal" title="3 Messages">3 tin nhắn</a><br />
+			
+            <?php
+                else:
+             ?>
+             	Xin chào, <?php echo $_SESSION['ses_fullname'];?>
+			
+             <?php   
+                endif;
+            ?>
+            <br />
 				<a href="<?php echo BASE_URL;?>" title="View the Site">Xem trang web</a> | <a href="<?php echo BASE_ADMIN;?>/logout.php" title="Sign Out">Đăng xuất</a>
 			</div>        
 			<?php

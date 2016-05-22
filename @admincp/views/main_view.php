@@ -5,7 +5,7 @@
 				
 				<div class="content-box-header">
 					
-					<h3>Đơn đặt hàng mới nhất</h3>
+					<h3>Bài viết mới nhất</h3>
 					
 				</div> <!-- End .content-box-header -->
 				
@@ -58,7 +58,7 @@
 				
 				<div class="content-box-header">
 					
-					<h3>Sản phẩm bán chạy nhất</h3>
+					<h3>Thành viên đang online</h3>
 					
 				</div> <!-- End .content-box-header -->
 				
