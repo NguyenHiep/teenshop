@@ -31,8 +31,8 @@
                         if(trim($item->image) != "none"){
                             
                         ?>
-                           <a data-rel="fancybox-button" title="<?php echo $item->title;?>" href="<?php echo URL_UPLOAD.'blog/'.trim($item->image); ?>" class="fancybox-button">
-                                <img alt="" src="<?php echo URL_UPLOAD.'blog/'.trim($item->image); ?>" class="img-responsive" />
+                           <a data-rel="fancybox-button" title="<?php echo $item->title;?>" href="<?php echo trim($item->image); ?>" class="fancybox-button">
+                                <img alt="<?php echo $item->title;?>" src="<?php echo trim($item->image); ?>" class="img-responsive" />
                                 <div class="zoomix"><i class="fa fa-search"></i></div>
                            </a> 
                         <?php
