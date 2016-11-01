@@ -4,6 +4,7 @@
 *@version: 1.0
 */
 class Model_Blog extends Database{
+    protected $_blog_id;
     protected $_user_id;
     protected $_cat_id;
     protected $_blog_name;
@@ -22,6 +23,14 @@ class Model_Blog extends Database{
     public function __construct(){
         $this->connect();
     }
+    
+    public function setBlogId($blogid){
+        $this->_blog_id = $blogid;
+    }
+    public function getBlogId(){
+        return $this->_blog_id;
+    }
+    
     public function setUserId($userid){
         $this->_user_id = $userid;
     }
@@ -135,15 +144,14 @@ class Model_Blog extends Database{
             return false;
         }
     }
-    public function listBlog($start="",$limit="", $userid = ""){
+    public function listBlog($start="",$limit="",$column = "blog_id", $userid = ""){
         $sql[] = "SELECT * FROM `blog`";
         if($userid != ""){
             $sql[] = "WHERE user_id = '{$userid}'";
         }
-        $sql[] = "ORDER BY `blog_id` DESC";
-        if($start !="" && $limit!=""){
-             $sql[] = "LIMIT {$start},{$limit}";
-        }
+         
+        $sql[] = "ORDER BY `{$column}` DESC";
+        $sql[] = "LIMIT {$start},{$limit}";
         $sql = implode(' ',$sql);
         $this->query($sql);
         return $this->fetchAll();
@@ -195,7 +203,55 @@ class Model_Blog extends Database{
         $this->query($sql);
         return $this->fetch();
     }
-    public function findBlog($title){
+    public function findBlog($title, $start="",$limit="", $userid = ""){
+        $sql[] = "SELECT * FROM `blog`";
+        if($userid != ""){
+            $sql[] = "WHERE user_id = '{$userid}' AND blog_name LIKE '%{$title}%'";
+        }else{
+            $sql[] = "WHERE blog_name LIKE '%{$title}%' ";
+        }
+        $sql[] = "ORDER BY `blog_id` DESC";
+        $sql[] = "LIMIT {$start},{$limit}";
+        $sql = implode(' ',$sql);
         
+        $this->query($sql);
+        return $this->fetchAll();
+    }
+    
+    public function totalFind($title,$userid = ""){
+        $sql[] = "SELECT COUNT(*) AS `count`";
+        $sql[] = "FROM `blog`";
+        if($userid != ""){
+            $sql[] = "WHERE user_id = '{$userid}' AND blog_name LIKE '%{$title}%'";
+        }else{
+            $sql[] = "WHERE blog_name LIKE '%{$title}%' ";
+        }
+        $sql[] = "ORDER BY `blog_id` DESC";
+        $sql = implode(' ',$sql);
+        $this->query($sql);
+        return $this->fetch();
+    }
+    //Begin ajax
+    public function ajaxBlog($type){
+        /*
+        Neu type la hightlight => update hightlight
+        
+        Nguoc lai neu type la delete => xoa bai viet
+        
+        Nguoc lai neu type la an => update status
+        
+        Nguoc lai type la hien => update status
+        
+        */
+        if($type == "hightlight"){
+            $sql = "UPDATE blog SET hightlight= '".$this->getHightLight()."' WHERE blog_id = '".$this->getBlogId()."' LIMIT 1";
+        }elseif($type == "delete"){
+            $sql = "DELETE FROM blog WHERE blog_id = '".$this->getBlogId()."' LIMIT 1";
+        }elseif($type == "status"){
+            $sql = " UPDATE blog SET status = '".$this->getStatus()."' WHERE blog_id ='".$this->getBlogId()."' LIMIT 1";
+        }else{
+            return 0;
+        }
+        $result = $this->query($sql);
     }
 }

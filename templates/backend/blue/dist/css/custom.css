@@ -1,0 +1,20 @@
+/* Begin custom*/
+#scrollTop{
+    display: block;
+    position: absolute;
+    right: 30px;
+    font-size: 35px;
+    bottom: 35px;
+}
+table td{
+    vertical-align: middle !important;
+}
+
+.enable-icon{
+    font-size: 30px;
+    color: greenyellow;
+}
+.disable-icon{
+    font-size: 30px;
+    color: red;
+}

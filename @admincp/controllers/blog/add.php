@@ -1,7 +1,7 @@
 <?php
     $mcateblog = new Model_CateBlog();
-    $cat_id = $mcateblog->listCateBlog();
-    if(isset($_POST['btnOK'])){
+    $cat_id = $mcateblog->listCateBlog(null,null);
+    if(isset($_POST['btnOK']) || isset($_POST['btnSave'])){
        $error           = array();
        $user_id         =  $_SESSION['ses_userid'];
        if(isset($_POST['txtcatId']) && $_POST['txtcatId'] >0){
@@ -79,9 +79,16 @@
           $mblog->setHightLight($hightlight);
           $mblog->setPostOn($post_on);
           $mblog->setImage($imageblog);
+          $msgsuccess = '';
             if($mblog->checkBlog() == true){
                 $mblog->insertBlog();
-                redirect(BASE_ADMIN.'/blog/list');
+                if(isset($_POST['btnOK'])){
+                    redirect(BASE_ADMIN.'/blog/list');
+                }else{
+                    $msgsuccess = "Thêm mới bài viết thành công";
+                    $_POST['txtTitle'] = "";
+                }
+                
             }else{
                 $error[] = "Tên blog đã tồn tại, bạn vui lòng chọn tên khác";
             } 

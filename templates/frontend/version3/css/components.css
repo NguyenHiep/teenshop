@@ -1,0 +1,1276 @@
+/* Reset rounded corners for all elements */
+div,
+input,
+select,
+textarea,
+span,
+img,
+table,
+label,
+td,
+th,
+p,
+a,
+button,
+ul,
+code,
+pre,
+li {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* except below bootstrap elements */
+.img-circle {
+  border-radius: 50% !important;
+}
+
+.img-rounded {
+  border-radius: 6px !important;
+}
+
+/***
+General reset
+***/
+/* Set default body */
+body {
+  color: #333333;
+  font-family: "Open Sans", sans-serif;
+  padding: 0px !important;
+  margin: 0px !important;
+  font-size: 13px;
+  direction: ltr;
+}
+
+/*
+ Internet Explorer 10 doesn't differentiate device width from viewport width, and thus doesn't 
+ properly apply the media queries in Bootstrap's CSS. To address this, 
+ you can optionally include the following CSS and JavaScript to work around this problem until Microsoft issues a fix.
+*/
+@-webkit-viewport {
+  width: device-width;
+}
+@-moz-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@viewport {
+  width: device-width;
+}
+/*
+ Internet Explorer 10 doesn't differentiate device width from viewport width, 
+ and thus doesn't properly apply the media queries in Bootstrap's CSS. To address this, following CSS code applied 
+*/
+@-ms-viewport {
+  width: auto !important;
+}
+.md-shadow-z-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.md-shadow-z-1-i {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.18) !important;
+}
+
+.md-shadow-z-1-hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14), 0 1px 2px rgba(0, 0, 0, 0.22);
+}
+
+.md-shadow-z-2 {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.22);
+}
+
+.md-shadow-z-2-i {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.22) !important;
+}
+
+.md-shadow-z-2-hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.26);
+}
+
+.md-shadow-z-3 {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.md-shadow-z-3-i {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18), 0 6px 6px rgba(0, 0, 0, 0.24) !important;
+}
+
+.md-shadow-z-3-hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22), 0 6px 6px rgba(0, 0, 0, 0.26);
+}
+
+.md-shadow-z-4 {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.26), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.md-shadow-z-4-i {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.26), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
+}
+
+.md-shadow-z-5 {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.28), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.md-shadow-z-5-i {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.28), 0 15px 12px rgba(0, 0, 0, 0.22) !important;
+}
+
+.md-shadow-none {
+  box-shadow: none !important;
+}
+
+.md-click-circle {
+  display: block;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  -webkit-animation: scale(0);
+  -moz-transform: scale(0);
+  transform: scale(0);
+}
+.md-click-circle.md-click-animate {
+  -webkit-animation: mdClickEffect 0.55s linear;
+  -moz-animation: mdClickEffect 0.55s linear;
+  animation: mdClickEffect 0.55s linear;
+}
+
+@-webkit-keyframes mdClickEffect {
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.5);
+  }
+}
+@-moz-keyframes mdClickEffect {
+  100% {
+    opacity: 0;
+    -moz-transform: scale(2.5);
+  }
+}
+@keyframes mdClickEffect {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+.form-group.form-md-line-input {
+  position: relative;
+  margin: 0 0 35px 0;
+  padding-top: 20px;
+}
+.form-horizontal .form-group.form-md-line-input {
+  padding-top: 10px;
+  margin-bottom: 20px;
+  margin: 0 -15px 20px -15px;
+}
+.form-horizontal .form-group.form-md-line-input > label {
+  padding-top: 5px;
+  font-size: 13px;
+  color: #888888;
+  opacity: 1 ;
+  filter: alpha(opacity=100) ;
+}
+.form-group.form-md-line-input .form-control {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  color: #333;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 16px;
+}
+.form-group.form-md-line-input .form-control::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+.form-group.form-md-line-input .form-control:-ms-input-placeholder {
+  color: #999;
+}
+.form-group.form-md-line-input .form-control::-webkit-input-placeholder {
+  color: #999;
+}
+.form-group.form-md-line-input .form-control.form-control-static {
+  border-bottom: 0;
+}
+.form-group.form-md-line-input .form-control.input-sm {
+  font-size: 14px;
+  padding: 6px 0;
+}
+.form-group.form-md-line-input .form-control.input-lg {
+  font-size: 20px;
+  padding: 14px 0;
+}
+.form-group.form-md-line-input .form-control ~ label,
+.form-group.form-md-line-input .form-control ~ .form-control-focus {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+.form-horizontal .form-group.form-md-line-input .form-control ~ label, .form-horizontal
+.form-group.form-md-line-input .form-control ~ .form-control-focus {
+  width: auto;
+  left: 15px;
+  right: 15px;
+}
+.form-group.form-md-line-input .form-control ~ label:after,
+.form-group.form-md-line-input .form-control ~ .form-control-focus:after {
+  content: '';
+  position: absolute;
+  z-index: 5;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  width: 0;
+  visibility: hidden;
+  transition: 0.2s ease all;
+}
+.form-group.form-md-line-input .form-control ~ label {
+  top: 0;
+  margin-bottom: 0;
+  font-size: 13px;
+  color: #888888;
+  opacity: 1 ;
+  filter: alpha(opacity=100) ;
+}
+.form-group.form-md-line-input .form-control.edited:not([readonly]) ~ label,
+.form-group.form-md-line-input .form-control.edited:not([readonly]) ~ .form-control-focus, .form-group.form-md-line-input .form-control:focus:not([readonly]) ~ label,
+.form-group.form-md-line-input .form-control:focus:not([readonly]) ~ .form-control-focus, .form-group.form-md-line-input .form-control.focus:not([readonly]) ~ label,
+.form-group.form-md-line-input .form-control.focus:not([readonly]) ~ .form-control-focus {
+  color: #888888;
+}
+.form-group.form-md-line-input .form-control.edited:not([readonly]) ~ label:after,
+.form-group.form-md-line-input .form-control.edited:not([readonly]) ~ .form-control-focus:after, .form-group.form-md-line-input .form-control:focus:not([readonly]) ~ label:after,
+.form-group.form-md-line-input .form-control:focus:not([readonly]) ~ .form-control-focus:after, .form-group.form-md-line-input .form-control.focus:not([readonly]) ~ label:after,
+.form-group.form-md-line-input .form-control.focus:not([readonly]) ~ .form-control-focus:after {
+  visibility: visible;
+  left: 0;
+  width: 100%;
+  background: #45B6AF;
+}
+.form-group.form-md-line-input .form-control.edited:not([readonly]) ~ label, .form-group.form-md-line-input .form-control:focus:not([readonly]) ~ label, .form-group.form-md-line-input .form-control.focus:not([readonly]) ~ label {
+  opacity: 1 ;
+  filter: alpha(opacity=100) ;
+}
+.form-group.form-md-line-input .form-control.edited:not([readonly]) ~ .help-block, .form-group.form-md-line-input .form-control:focus:not([readonly]) ~ .help-block, .form-group.form-md-line-input .form-control.focus:not([readonly]) ~ .help-block {
+  color: #45B6AF;
+  opacity: 1 ;
+  filter: alpha(opacity=100) ;
+}
+.form-group.form-md-line-input .form-control[readonly], .form-group.form-md-line-input .form-control[disabled], fieldset[disabled] .form-group.form-md-line-input .form-control {
+  background: none;
+  cursor: not-allowed;
+  border-bottom: 1px dashed #e5e5e5;
+}
+.form-group.form-md-line-input.form-md-floating-label .form-control ~ label {
+  font-size: 16px;
+  top: 25px;
+  transition: 0.2s ease all;
+  color: #999;
+}
+.form-group.form-md-line-input.form-md-floating-label .form-control[readonly] ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control.edited ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control.form-control-static ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control:focus:not([readonly]) ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control.focus:not([readonly]) ~ label {
+  top: 0;
+  font-size: 13px;
+}
+.form-group.form-md-line-input.form-md-floating-label .form-control.input-sm ~ label {
+  font-size: 14px;
+  top: 24px;
+}
+.form-group.form-md-line-input.form-md-floating-label .form-control.input-sm[readonly] ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control.input-sm.form-control-static ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control.input-sm.edited ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control.input-sm:focus:not([readonly]) ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control.input-sm.focus:not([readonly]) ~ label {
+  top: 0;
+  font-size: 13px;
+}
+.form-group.form-md-line-input.form-md-floating-label .form-control.input-lg ~ label {
+  font-size: 20px;
+  top: 30px;
+}
+.form-group.form-md-line-input.form-md-floating-label .form-control.input-lg[readonly] ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control.input-lg.edited ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control.input-lg.form-control-static ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control.input-lg:focus:not([readonly]) ~ label, .form-group.form-md-line-input.form-md-floating-label .form-control.input-lg.focus:not([readonly]) ~ label {
+  top: 0;
+  font-size: 13px;
+}
+.form-group.form-md-line-input.form-md-floating-label .input-icon > label {
+  padding-left: 34px;
+}
+.form-group.form-md-line-input.form-md-floating-label .input-icon.right > label {
+  padding-left: 0;
+  padding-right: 34px;
+}
+.form-group.form-md-line-input.form-md-floating-label .input-group.left-addon label {
+  padding-left: 34px;
+}
+.form-group.form-md-line-input.form-md-floating-label .input-group.right-addon label {
+  padding-right: 34px;
+}
+.form-group.form-md-line-input + .input-icon {
+  padding-top: 0;
+}
+.form-group.form-md-line-input .help-block {
+  position: absolute;
+  margin: 2px 0 0 0;
+  opacity: 0 ;
+  filter: alpha(opacity=0) ;
+  font-size: 13px;
+}
+.form-group.form-md-line-input > .input-icon > i {
+  left: 0;
+  bottom: 0;
+  margin: 9px 2px 10px 10px;
+  color: #888888;
+}
+.form-group.form-md-line-input > .input-icon.input-icon-lg > i {
+  top: 6px;
+}
+.form-group.form-md-line-input > .input-icon.input-icon-sm > i {
+  top: -1px;
+}
+.form-group.form-md-line-input > .input-icon .form-control {
+  padding-left: 34px;
+}
+.form-group.form-md-line-input > .input-icon > label {
+  margin-top: -20px;
+}
+.form-group.form-md-line-input > .input-icon.right .form-control {
+  padding-left: 0;
+  padding-right: 34px;
+}
+.form-group.form-md-line-input > .input-icon.right > i {
+  left: auto;
+  right: 8px;
+  margin: 11px 2px 10px 10px;
+}
+.form-group.form-md-line-input + .input-group {
+  padding-top: 0;
+}
+.form-group.form-md-line-input .input-group {
+  padding-top: 0;
+}
+.form-group.form-md-line-input .input-group > label {
+  margin-top: -20px;
+}
+.form-group.form-md-line-input .input-group .input-group-addon {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+.form-group.form-md-line-input .input-group + .input-group-control {
+  padding-top: 0;
+}
+.form-group.form-md-line-input .input-group .input-group-control {
+  padding-top: 0;
+  position: relative;
+  display: table-cell;
+  vertical-align: bottom;
+}
+.form-group.form-md-line-input .input-group .input-group-control > label {
+  margin-top: -20px;
+}
+.form-group.form-md-line-input .input-group .input-group-btn .btn {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+}
+.form-group.form-md-line-input .input-group .input-group-btn.btn-left .btn {
+  margin-right: 10px;
+}
+.form-group.form-md-line-input .input-group .input-group-btn.btn-right .btn {
+  margin-left: 10px;
+}
+.form-group.form-md-line-input .input-group .help-block {
+  margin-top: 35px;
+}
+.form-group.form-md-line-input .input-group.input-group-sm .help-block {
+  margin-top: 30px;
+}
+.form-group.form-md-line-input .input-group.input-group-lg .help-block {
+  margin-top: 47px;
+}
+.form-group.form-md-line-input.has-success .form-control.edited:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-success .form-control.edited:not([readonly]) ~ .form-control-focus:after, .form-group.form-md-line-input.has-success .form-control.form-control-static ~ label:after,
+.form-group.form-md-line-input.has-success .form-control.form-control-static ~ .form-control-focus:after, .form-group.form-md-line-input.has-success .form-control:focus:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-success .form-control:focus:not([readonly]) ~ .form-control-focus:after, .form-group.form-md-line-input.has-success .form-control.focus:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-success .form-control.focus:not([readonly]) ~ .form-control-focus:after {
+  background: #3c763d;
+}
+.form-group.form-md-line-input.has-success .form-control.edited:not([readonly]) ~ label, .form-group.form-md-line-input.has-success .form-control.form-control-static ~ label, .form-group.form-md-line-input.has-success .form-control:focus:not([readonly]) ~ label, .form-group.form-md-line-input.has-success .form-control.focus:not([readonly]) ~ label {
+  color: #3c763d;
+}
+.form-group.form-md-line-input.has-success .form-control.edited:not([readonly]) ~ i, .form-group.form-md-line-input.has-success .form-control.form-control-static ~ i, .form-group.form-md-line-input.has-success .form-control:focus:not([readonly]) ~ i, .form-group.form-md-line-input.has-success .form-control.focus:not([readonly]) ~ i {
+  color: #3c763d;
+}
+.form-group.form-md-line-input.has-success .form-control.edited:not([readonly]) ~ .help-block, .form-group.form-md-line-input.has-success .form-control.form-control-static ~ .help-block, .form-group.form-md-line-input.has-success .form-control:focus:not([readonly]) ~ .help-block, .form-group.form-md-line-input.has-success .form-control.focus:not([readonly]) ~ .help-block {
+  color: #3c763d;
+}
+.form-group.form-md-line-input.has-success .input-group-addon {
+  color: #3c763d;
+}
+.form-horizontal .form-group.form-md-line-input.has-success > label {
+  color: #3c763d;
+}
+.form-group.form-md-line-input.has-warning .form-control.edited:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-warning .form-control.edited:not([readonly]) ~ .form-control-focus:after, .form-group.form-md-line-input.has-warning .form-control.form-control-static ~ label:after,
+.form-group.form-md-line-input.has-warning .form-control.form-control-static ~ .form-control-focus:after, .form-group.form-md-line-input.has-warning .form-control:focus:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-warning .form-control:focus:not([readonly]) ~ .form-control-focus:after, .form-group.form-md-line-input.has-warning .form-control.focus:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-warning .form-control.focus:not([readonly]) ~ .form-control-focus:after {
+  background: #8a6d3b;
+}
+.form-group.form-md-line-input.has-warning .form-control.edited:not([readonly]) ~ label, .form-group.form-md-line-input.has-warning .form-control.form-control-static ~ label, .form-group.form-md-line-input.has-warning .form-control:focus:not([readonly]) ~ label, .form-group.form-md-line-input.has-warning .form-control.focus:not([readonly]) ~ label {
+  color: #8a6d3b;
+}
+.form-group.form-md-line-input.has-warning .form-control.edited:not([readonly]) ~ i, .form-group.form-md-line-input.has-warning .form-control.form-control-static ~ i, .form-group.form-md-line-input.has-warning .form-control:focus:not([readonly]) ~ i, .form-group.form-md-line-input.has-warning .form-control.focus:not([readonly]) ~ i {
+  color: #8a6d3b;
+}
+.form-group.form-md-line-input.has-warning .form-control.edited:not([readonly]) ~ .help-block, .form-group.form-md-line-input.has-warning .form-control.form-control-static ~ .help-block, .form-group.form-md-line-input.has-warning .form-control:focus:not([readonly]) ~ .help-block, .form-group.form-md-line-input.has-warning .form-control.focus:not([readonly]) ~ .help-block {
+  color: #8a6d3b;
+}
+.form-group.form-md-line-input.has-warning .input-group-addon {
+  color: #8a6d3b;
+}
+.form-horizontal .form-group.form-md-line-input.has-warning > label {
+  color: #8a6d3b;
+}
+.form-group.form-md-line-input.has-error .form-control.edited:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-error .form-control.edited:not([readonly]) ~ .form-control-focus:after, .form-group.form-md-line-input.has-error .form-control.form-control-static ~ label:after,
+.form-group.form-md-line-input.has-error .form-control.form-control-static ~ .form-control-focus:after, .form-group.form-md-line-input.has-error .form-control:focus:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-error .form-control:focus:not([readonly]) ~ .form-control-focus:after, .form-group.form-md-line-input.has-error .form-control.focus:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-error .form-control.focus:not([readonly]) ~ .form-control-focus:after {
+  background: #a94442;
+}
+.form-group.form-md-line-input.has-error .form-control.edited:not([readonly]) ~ label, .form-group.form-md-line-input.has-error .form-control.form-control-static ~ label, .form-group.form-md-line-input.has-error .form-control:focus:not([readonly]) ~ label, .form-group.form-md-line-input.has-error .form-control.focus:not([readonly]) ~ label {
+  color: #a94442;
+}
+.form-group.form-md-line-input.has-error .form-control.edited:not([readonly]) ~ i, .form-group.form-md-line-input.has-error .form-control.form-control-static ~ i, .form-group.form-md-line-input.has-error .form-control:focus:not([readonly]) ~ i, .form-group.form-md-line-input.has-error .form-control.focus:not([readonly]) ~ i {
+  color: #a94442;
+}
+.form-group.form-md-line-input.has-error .form-control.edited:not([readonly]) ~ .help-block, .form-group.form-md-line-input.has-error .form-control.form-control-static ~ .help-block, .form-group.form-md-line-input.has-error .form-control:focus:not([readonly]) ~ .help-block, .form-group.form-md-line-input.has-error .form-control.focus:not([readonly]) ~ .help-block {
+  color: #a94442;
+}
+.form-group.form-md-line-input.has-error .input-group-addon {
+  color: #a94442;
+}
+.form-horizontal .form-group.form-md-line-input.has-error > label {
+  color: #a94442;
+}
+.form-group.form-md-line-input.has-info .form-control.edited:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-info .form-control.edited:not([readonly]) ~ .form-control-focus:after, .form-group.form-md-line-input.has-info .form-control.form-control-static ~ label:after,
+.form-group.form-md-line-input.has-info .form-control.form-control-static ~ .form-control-focus:after, .form-group.form-md-line-input.has-info .form-control:focus:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-info .form-control:focus:not([readonly]) ~ .form-control-focus:after, .form-group.form-md-line-input.has-info .form-control.focus:not([readonly]) ~ label:after,
+.form-group.form-md-line-input.has-info .form-control.focus:not([readonly]) ~ .form-control-focus:after {
+  background: #31708f;
+}
+.form-group.form-md-line-input.has-info .form-control.edited:not([readonly]) ~ label, .form-group.form-md-line-input.has-info .form-control.form-control-static ~ label, .form-group.form-md-line-input.has-info .form-control:focus:not([readonly]) ~ label, .form-group.form-md-line-input.has-info .form-control.focus:not([readonly]) ~ label {
+  color: #31708f;
+}
+.form-group.form-md-line-input.has-info .form-control.edited:not([readonly]) ~ i, .form-group.form-md-line-input.has-info .form-control.form-control-static ~ i, .form-group.form-md-line-input.has-info .form-control:focus:not([readonly]) ~ i, .form-group.form-md-line-input.has-info .form-control.focus:not([readonly]) ~ i {
+  color: #31708f;
+}
+.form-group.form-md-line-input.has-info .form-control.edited:not([readonly]) ~ .help-block, .form-group.form-md-line-input.has-info .form-control.form-control-static ~ .help-block, .form-group.form-md-line-input.has-info .form-control:focus:not([readonly]) ~ .help-block, .form-group.form-md-line-input.has-info .form-control.focus:not([readonly]) ~ .help-block {
+  color: #31708f;
+}
+.form-group.form-md-line-input.has-info .input-group-addon {
+  color: #31708f;
+}
+.form-horizontal .form-group.form-md-line-input.has-info > label {
+  color: #31708f;
+}
+
+.form-inline .form-md-line-input {
+  margin: 0;
+  padding-top: 0;
+  margin-right: 20px;
+}
+.form-inline .form-md-line-input > .input-icon {
+  padding: 0;
+}
+
+.form-horizontal .form-group.form-md-line-input .input-icon .form-control {
+  padding-left: 33px;
+}
+.form-horizontal .form-group.form-md-line-input .input-icon > i {
+  top: 0;
+}
+.form-horizontal .form-group.form-md-line-input .input-icon.right .form-control {
+  padding-left: 0;
+  padding-right: 33px;
+}
+.form-horizontal .form-group.form-md-line-input .input-icon > .form-control-focus {
+  left: 0 !important;
+  right: 0 !important;
+}
+.form-horizontal .form-group.form-md-line-input .input-group {
+  padding-top: 0;
+}
+.form-horizontal .form-group.form-md-line-input .input-group > .input-group-btn .btn {
+  margin-bottom: 0 !important;
+}
+.form-horizontal .form-group.form-md-line-input .input-group > .input-group-control {
+  padding-top: 0;
+}
+.form-horizontal .form-group.form-md-line-input .input-group > .input-group-control > .form-control-focus {
+  left: 0 !important;
+  right: 0 !important;
+}
+.form-horizontal .form-group.form-md-line-input .input-group > .form-control-focus {
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.md-checkbox {
+  position: relative;
+  /* handling click events */
+  /* when checkbox is checked */
+}
+.md-checkbox.md-checkbox-inline {
+  display: inline-block;
+}
+.form-inline .md-checkbox.md-checkbox-inline {
+  margin-right: 20px;
+  top: 3px;
+}
+.md-checkbox input[type=checkbox] {
+  visibility: hidden;
+  position: absolute;
+}
+.md-checkbox label {
+  cursor: pointer;
+  padding-left: 30px;
+}
+.md-checkbox label > span {
+  display: block;
+  position: absolute;
+  left: 0;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.md-checkbox label > span.inc {
+  background: #fff;
+  left: -20px;
+  top: -20px;
+  height: 60px;
+  width: 60px;
+  opacity: 0;
+  border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
+}
+.md-checkbox label > .box {
+  top: 0px;
+  border: 2px solid #666;
+  height: 20px;
+  width: 20px;
+  z-index: 5;
+  -webkit-transition-delay: 0.2s;
+  -moz-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+.md-checkbox label > .check {
+  top: -4px;
+  left: 6px;
+  width: 10px;
+  height: 20px;
+  border: 2px solid #45B6AF;
+  border-top: none;
+  border-left: none;
+  opacity: 0;
+  z-index: 5;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  transform: rotate(180deg);
+  -webkit-transition-delay: 0.3s;
+  -moz-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+.md-checkbox label > span.inc {
+  -webkit-animation: growCircle 0.3s ease;
+  -moz-animation: growCircle 0.3s ease;
+  animation: growCircle 0.3s ease;
+}
+.md-checkbox input[type=checkbox]:checked ~ label > .box {
+  opacity: 0;
+  -webkit-transform: scale(0) rotate(-180deg);
+  -moz-transform: scale(0) rotate(-180deg);
+  transform: scale(0) rotate(-180deg);
+}
+.md-checkbox input[type=checkbox]:checked ~ label > .check {
+  opacity: 1;
+  -webkit-transform: scale(1) rotate(45deg);
+  -moz-transform: scale(1) rotate(45deg);
+  transform: scale(1) rotate(45deg);
+}
+.md-checkbox input[type=checkbox]:disabled ~ label,
+.md-checkbox input[type=checkbox][disabled] ~ label {
+  cursor: not-allowed;
+  opacity: 0.7 ;
+  filter: alpha(opacity=70) ;
+}
+.md-checkbox input[type=checkbox]:disabled ~ label > .box,
+.md-checkbox input[type=checkbox][disabled] ~ label > .box {
+  cursor: not-allowed;
+  opacity: 0.7 ;
+  filter: alpha(opacity=70) ;
+}
+.md-checkbox input[type=checkbox]:disabled:checked ~ label > .check,
+.md-checkbox input[type=checkbox][disabled]:checked ~ label > .check {
+  cursor: not-allowed;
+  opacity: 0.7 ;
+  filter: alpha(opacity=70) ;
+}
+.md-checkbox.has-error label {
+  color: #F3565D;
+}
+.md-checkbox.has-error label > .box {
+  border-color: #F3565D;
+}
+.md-checkbox.has-error label > .check {
+  border-color: #F3565D;
+}
+.md-checkbox.has-info label {
+  color: #89C4F4;
+}
+.md-checkbox.has-info label > .box {
+  border-color: #89C4F4;
+}
+.md-checkbox.has-info label > .check {
+  border-color: #89C4F4;
+}
+.md-checkbox.has-success label {
+  color: #45B6AF;
+}
+.md-checkbox.has-success label > .box {
+  border-color: #45B6AF;
+}
+.md-checkbox.has-success label > .check {
+  border-color: #45B6AF;
+}
+.md-checkbox.has-warning label {
+  color: #dfba49;
+}
+.md-checkbox.has-warning label > .box {
+  border-color: #dfba49;
+}
+.md-checkbox.has-warning label > .check {
+  border-color: #dfba49;
+}
+
+.form-md-checkboxes > label {
+  font-size: 13px;
+  color: #888888;
+  opacity: 1 ;
+  filter: alpha(opacity=100) ;
+}
+.form-md-checkboxes.has-error > label {
+  color: #F3565D;
+}
+.form-md-checkboxes.has-info > label {
+  color: #89C4F4;
+}
+.form-md-checkboxes.has-success > label {
+  color: #45B6AF;
+}
+.form-md-checkboxes.has-warning > label {
+  color: #dfba49;
+}
+
+.md-checkbox-list {
+  margin: 10px 0;
+}
+.form-horizontal .md-checkbox-list {
+  margin-top: 0px;
+}
+.md-checkbox-list .md-checkbox {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.md-checkbox-inline {
+  margin: 10px 0;
+}
+.form-horizontal .md-checkbox-inline {
+  margin-top: 5px;
+}
+.md-checkbox-inline .md-checkbox {
+  display: inline-block;
+  margin-right: 20px;
+}
+.md-checkbox-inline .md-checkbox:last-child {
+  margin-right: 0;
+}
+
+/* bubble animation */
+@-webkit-keyframes growCircle {
+  0%, 100% {
+    -webkit-transform: scale(0);
+    opacity: 1;
+  }
+  70% {
+    background: #eee;
+    -webkit-transform: scale(1.25);
+  }
+}
+@-moz-keyframes growCircle {
+  0%, 100% {
+    -moz-transform: scale(0);
+    opacity: 1;
+  }
+  70% {
+    background: #eee;
+    -moz-transform: scale(1.25);
+  }
+}
+@keyframes growCircle {
+  0%, 100% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  70% {
+    background: #eee;
+    transform: scale(1.25);
+  }
+}
+.md-radio {
+  position: relative;
+  /* handling click events */
+  /* when radio is checked */
+}
+.md-radio input[type=radio] {
+  visibility: hidden;
+  position: absolute;
+}
+.md-radio label {
+  cursor: pointer;
+  padding-left: 30px;
+}
+.md-radio label > span {
+  display: block;
+  position: absolute;
+  left: 0;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.md-radio label > span.inc {
+  background: #fff;
+  left: -20px;
+  top: -20px;
+  height: 60px;
+  width: 60px;
+  opacity: 0;
+  border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
+}
+.md-radio label > .box {
+  top: 0px;
+  border: 2px solid #666;
+  height: 20px;
+  width: 20px;
+  border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
+  z-index: 5;
+}
+.md-radio label > .check {
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background: #45B6AF;
+  opacity: 0;
+  z-index: 6;
+  border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  transform: scale(0);
+}
+.md-radio label > span.inc {
+  -webkit-animation: growCircleRadio 0.3s ease;
+  -moz-animation: growCircleRadio 0.3s ease;
+  animation: growCircleRadio 0.3s ease;
+}
+.md-radio input[type=radio]:checked ~ label > .check {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  transform: scale(1);
+}
+.md-radio input[type=radio]:disabled ~ label,
+.md-radio input[type=radio][disabled] ~ label {
+  cursor: not-allowed;
+  opacity: 0.7 ;
+  filter: alpha(opacity=70) ;
+}
+.md-radio input[type=radio]:disabled ~ label > .box,
+.md-radio input[type=radio][disabled] ~ label > .box {
+  cursor: not-allowed;
+  opacity: 0.7 ;
+  filter: alpha(opacity=70) ;
+}
+.md-radio input[type=radio]:disabled:checked ~ label > .check,
+.md-radio input[type=radio][disabled]:checked ~ label > .check {
+  cursor: not-allowed;
+  opacity: 0.7 ;
+  filter: alpha(opacity=70) ;
+}
+.md-radio.has-error label {
+  color: #F3565D;
+}
+.md-radio.has-error label > .box {
+  border-color: #F3565D;
+}
+.md-radio.has-error label > .check {
+  background: #F3565D;
+}
+.md-radio.has-info label {
+  color: #89C4F4;
+}
+.md-radio.has-info label > .box {
+  border-color: #89C4F4;
+}
+.md-radio.has-info label > .check {
+  background: #89C4F4;
+}
+.md-radio.has-success label {
+  color: #45B6AF;
+}
+.md-radio.has-success label > .box {
+  border-color: #45B6AF;
+}
+.md-radio.has-success label > .check {
+  background: #45B6AF;
+}
+.md-radio.has-warning label {
+  color: #dfba49;
+}
+.md-radio.has-warning label > .box {
+  border-color: #dfba49;
+}
+.md-radio.has-warning label > .check {
+  background: #dfba49;
+}
+
+.form-md-radios > label {
+  font-size: 13px;
+  color: #888888;
+  opacity: 1 ;
+  filter: alpha(opacity=100) ;
+}
+.form-md-radios.has-error > label {
+  color: #F3565D;
+}
+.form-md-radios.has-info > label {
+  color: #89C4F4;
+}
+.form-md-radios.has-success > label {
+  color: #45B6AF;
+}
+.form-md-radios.has-warning > label {
+  color: #dfba49;
+}
+
+.md-radio-list {
+  margin: 10px 0;
+}
+.form-horizontal .md-radio-list {
+  margin-top: 0px;
+}
+.md-radio-list .md-radio {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.md-radio-inline {
+  margin: 10px 0;
+}
+.form-horizontal .md-radio-inline {
+  margin-top: 5px;
+}
+.md-radio-inline .md-radio {
+  display: inline-block;
+  margin-right: 20px;
+}
+.md-radio-inline .md-radio:last-child {
+  margin-right: 0;
+}
+
+/* bubble animation */
+@-webkit-keyframes growCircleRadio {
+  0%, 100% {
+    -webkit-transform: scale(0);
+    opacity: 1;
+  }
+  70% {
+    background: #eee;
+    -webkit-transform: scale(1.25);
+  }
+}
+@-moz-keyframes growCircleRadio {
+  0%, 100% {
+    -moz-transform: scale(0);
+    opacity: 1;
+  }
+  70% {
+    background: #eee;
+    -moz-transform: scale(1.25);
+  }
+}
+@keyframes growCircleRadio {
+  0%, 100% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  70% {
+    background: #eee;
+    transform: scale(1.25);
+  }
+}
+/***
+General typography
+***/
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 33px;
+}
+
+h2 {
+  font-size: 27px;
+}
+
+h3 {
+  font-size: 23px;
+}
+
+h4 {
+  font-size: 17px;
+}
+
+h5 {
+  font-size: 13px;
+}
+
+h6 {
+  font-size: 12px;
+}
+
+/* Headings helper text */
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small {
+  color: #444444;
+}
+
+/* Block headings */
+h1.block,
+h2.block,
+h3.block,
+h4.block,
+h5.block,
+h6.block {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Links */
+a {
+  text-shadow: none;
+  color: #5b9bd1;
+}
+a:hover {
+  color: #3175af;
+}
+a:focus, a:hover, a:active {
+  outline: 0;
+}
+
+/* Horizontal break */
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #eee;
+  border-bottom: 0;
+}
+
+/* Unstyled List */
+.list-unstyled li > .list-unstyled {
+  margin-left: 25px;
+}
+
+/* Code */
+code {
+  border: 1px solid #e1e1e1;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Disabled Navigation Link */
+.disabled-link .disable-target {
+  opacity: 0.5 !important;
+  filter: alpha(opacity=50) !important;
+}
+.disabled-link .disable-target:hover {
+  cursor: not-allowed !important;
+}
+.disabled-link:hover {
+  cursor: not-allowed !important;
+}
+
+/***
+Utilities
+***/
+/* Links */
+a:hover {
+  cursor: pointer;
+}
+
+/* Primary Link */
+.primary-link {
+  color: #65A0D0;
+  font-weight: 600;
+}
+.primary-link:hover {
+  color: #5194ca;
+}
+
+/* Rounded Element */
+.rounded-2 {
+  border-radius: 2px !important;
+}
+
+.rounded-3 {
+  border-radius: 3px !important;
+}
+
+.rounded-4 {
+  border-radius: 4px !important;
+}
+
+/* Circle Element */
+.circle {
+  border-radius: 25px !important;
+}
+
+.circle-right {
+  border-radius: 0 25px 25px 0 !important;
+}
+
+.circle-left {
+  border-radius: 25px 0 0 25px !important;
+}
+
+.circle-bottom {
+  border-radius: 0 0 25px 25px !important;
+}
+
+.circle-top {
+  border-radius: 25px 25px 0 0 !important;
+}
+
+/* General utilities */
+.display-none,
+.display-hide {
+  display: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.primary-font {
+  font-family: "Open Sans", sans-serif !important;
+}
+
+.bold {
+  font-weight: 700 !important;
+}
+
+.thin {
+  font-weight: 300 !important;
+}
+
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.fix-margin {
+  margin-left: 0px !important;
+}
+
+.border {
+  border: 1px solid red;
+}
+
+.font-hg {
+  font-size: 23px;
+}
+
+.font-lg {
+  font-size: 18px;
+}
+
+.font-md {
+  font-size: 14px;
+}
+
+.font-sm {
+  font-size: 13px;
+}
+
+.font-xs {
+  font-size: 11px;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.text-align-reverse {
+  text-align: right;
+}
+
+/* Margin and padding utilities */
+.no-space {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.margin-bottom-5 {
+  margin-bottom: 5px;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px !important;
+}
+
+.margin-top-10 {
+  margin-top: 10px !important;
+}
+
+.margin-top-15 {
+  margin-top: 15px !important;
+}
+
+.margin-bottom-15 {
+  margin-bottom: 15px !important;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px !important;
+}
+
+.margin-top-20 {
+  margin-top: 20px !important;
+}
+
+.margin-bottom-25 {
+  margin-bottom: 25px !important;
+}
+
+.margin-bottom-30 {
+  margin-bottom: 30px !important;
+}
+
+.margin-bottom-40 {
+  margin-bottom: 40px !important;
+}
+
+.margin-right-10 {
+  margin-right: 10px !important;
+}
+
+/* IE8 & IE9 mode utilities */
+.visible-ie8 {
+  display: none;
+}
+
+.ie8 .visible-ie8 {
+  display: inherit !important;
+}
+
+.visible-ie9 {
+  display: none;
+}
+
+.ie9 .visible-ie9 {
+  display: inherit !important;
+}
+
+.hidden-ie8 {
+  display: inherit;
+}
+
+.ie8 .hidden-ie8 {
+  display: none !important;
+}
+
+.hidden-ie9 {
+  display: inherit;
+}
+
+.ie9 .hidden-ie9 {
+  display: none !important;
+}
+
+/***
+Responsive Utils
+***/
+@media (max-width: 1024px) {
+  .hidden-1024 {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .hidden-480 {
+    display: none;
+  }
+}
+@media (max-width: 320px) {
+  .hidden-320 {
+    display: none;
+  }
+}
+ /* End reset */
+ 

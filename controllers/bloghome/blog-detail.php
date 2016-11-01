@@ -2,11 +2,18 @@
 if(isset($_GET['pid']) && validate_int($_GET['pid']) == true && $_GET['pid'] > 0){
      $pid   = intval($_GET['pid']);
      $mblog = new Model_Blog();
+     
      $data  = $mblog->getBlogDetail($pid);
      //Lấy ra danh sách các blog khác cùng category
+     $data2 = $mblog->getNextPostId($pid);
+     $data3 = $mblog->getPrePostId($pid);
+     $post_link = createLinkPost($pid);   
      
      $relapost = $mblog->getBlogRelatedPost($data['cat_id'], $data['blog_id']);
      $count_relapost = $mblog->num_rows($relapost);
+     $mcomment = new Model_Comment();
+     $listComment = $mcomment->getComments();
+     
         $dom            = new DOMDocument("1.0", "utf-8");
         $cate           = $dom->createElement("Blogdetail");
         $dom->appendChild($cate);

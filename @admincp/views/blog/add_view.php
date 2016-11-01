@@ -1,132 +1,179 @@
 <?php
-    require "../templates/backend/green/left.php";
+    require "../templates/backend/blue/left.php";
 ?>
- <div class="content-box"><!-- Start Content Box -->
-				
-				<div class="content-box-header">
-					
-					<h3>Thêm mới bài viết</h3>
-					<div class="clear"></div>
-					
-				</div> <!-- End .content-box-header -->
-                <?php
-                    if(!empty($error)):
-                        echo ' <div class="notification error png_bg">
-				<a href="#" class="close"><img src="templates/backend/green/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close"/></a>
-				        <div>
-					       <ul>';
-                        foreach($error as $err):
-                            echo "<li>{$err}</li>";
-                        endforeach;    
-                    echo '</ul></div></div>';
-                    endif;
-                ?>
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1 class="pull-left"> Thêm mới bài viết </h1>
+      <div class="pull-right">
+            <a href="<?php echo $_SERVER['HTTP_REFERER'];?>" class="btn btn-sm  btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span> Quay về</a>
+      </div>
+    </section>
+
+     <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <ol class="breadcrumb">
+                <li><a href="<?php echo BASE_ADMIN;?>"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Thêm mới bài viết</li>
+            </ol>
 			
-				<div class="content-box-content">
+			  <!-- Main content -->
+    
+    <section class="content">
+           <div class="row">
+         <form role="form" action="" method="post" enctype="multipart/form-data" id="add-blog">
+             <div class="col-md-12">
+                 <div class="form-group has-error">
+                      <?php
+                        if(!empty($error)):
+                            
+                            foreach($error as $err):
+                                echo '<label class="control-label" for="inputError">
+                                        <i class="fa fa-times-circle-o"></i> '.$err.'
+                                        </label> <br/>';
+                            endforeach;    
+                       
+                        endif;
+                        if(isset($msgsuccess)){
+                            echo '<p class="text-success">'.$msgsuccess.'</p>';
+                        }
+                     ?> 
+                </div>
+               
+             </div>
+              <div class="clearfix"></div>
+              <div class="box box-primary">
+                <div class="col-md-6">
+                      <div class="box-body">
+                       <div class="form-group">
+                          <label for="cat_id">Chọn chuyên mục</label>
+                              <select id="txtcatId" name="txtcatId"  class="form-control select2" style="width: 100%;">
+                                  
+                                  <?php
+                                        if($mcateblog->num_rows($cat_id) >0){
+                                            recursiveMenu($cat_id);
+                                            /*$html = '';
+                                            foreach($cat_id as $cate):
+                                                $html .= "<option value='{$cate["cat_id"]}'>{$cate["cat_name"]}</option>";
+                                            endforeach;
+                                            echo $html;
+                                            */
+                                        }
+                                   ?>
+                             </select>
+                            
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="txtTitle">Tiêu đề bài viết</label>
+                          <input type="text" class="form-control" id="txtTitle" name="txtTitle" placeholder="Nhập tiêu đề cho bài viết" value="<?php echo @$_POST['txtTitle']; ?>"/>
+                        </div>
+                        <div class="form-group">
+                          <label for="txtSlug">Tên không dấu bài viết</label>
+                          <input type="text" class="form-control" id="txtSlug" name="txtSlug" placeholder="Tên mặc định là tên bài viết không dấu" value="<?php echo @$_POST['txtSlug']; ?>"/>
+                        </div>
+                        <div class="form-group">
+                          <label for="txtImage"> Ảnh bài viết</label>
+                            <input class="form-control" type="text" name="txtImage" id="txtImage" readonly="readonly" value="<?php echo @$_POST['txtImage']; ?>"/>
+                            <input class="form-control btn btn-primary" type="button" value="Chọn Ảnh ..." onclick="BrowseServer();"/>
+                        </div>
+                        
+                      </div>
+        
+                  
+                  <!-- /.box -->
+        
+                </div>
+                <div class="col-md-6">
+                       <div class="box-body">
+                        <div class="form-group">
+                         	<label for="txtKeyword">Từ khóa SEO</label>
+    						<input class="form-control" type="text" id="txtKeyword" name="txtKeyword" placeholder="Từ khóa SEO" value="<?php echo @$_POST['txtKeyword']; ?>"/>  
+    				
+                        </div>
+                        <div class="form-group">
+                          	<label for="txtDescription">Mô tả ngắn SEO</label>  
+    						<textarea class="form-control" id="txtDescription" name="txtDescription" rows="3" placeholder="Nội dung SEO"><?php echo @$_POST['txtDescription']; ?></textarea>
+                        </div>
+                        
+                         <div class="form-group">
+                          	<label for="txtShortContent">Mô tả ngắn bài viết</label>  
+    						<textarea class="form-control" id="txtShortContent" name="txtShortContent" rows="5" placeholder="Mô tả ngắn"><?php echo @$_POST['txtShortContent']; ?></textarea>
+                        </div>
+                      </div>
+                </div>
+              </div>
+              <div class="col-md-12 form-group">
+                <div class="box-body">
+                  <div class="form-group">
+                      	<label for="txtShortContent">Nội dung bài viết</label>  
+        				<textarea class="form-control ckeditor"  id="txtContent" name="txtContent" rows="4" placeholder="Mô tả ngắn"><?php echo @$_POST['txtContent']; ?></textarea>
+                    </div>
+                    <!-- radio -->
+                  <div class="form-group">
+                    <label>
+                        Hiển thị 
+                        <input type="radio" name="status" value="1" class="minimal" checked="checked" />
+                    </label>
+                    <label>
+                        Không hiển thị
+                      <input type="radio" name="status" value="0"  class="minimal" />
+                    </label>
+                   
+                  </div>
+                    <?php
+                        if(author_admin() == true){ //Phan quyen
+                        ?>
+                         <div class="form-group">
+                            <label>
+                                Bài viết nổi bật
+                                <input type="checkbox" class="minimal" name="txtHightlight" value="1"/>
+                            </label>
+                        </div>
+                         <div class="form-group">
+                            <label>
+                                Lượt xem
+                                <input type="number" class="minimal" name="txtViewPost"/>
+                            </label>
+                        </div>
+                        
+                       <?php
+                       } //End phan quyen
+                       ?>
+                               
+                  
+              </div> <!-- End .body-->
+             </div>
+               <div class="clearfix"></div>
+               <div class="box-footer">
+                    <button type="reset" class="btn btn-primary">Reset</button>
+                    <button type="submit" class="btn btn-primary" name="btnSave">Lưu</button>
+                    <button type="submit" class="btn btn-primary" name="btnOK" >Lưu và đóng lại</button>
+               </div>
+              <!-- /.box -->
+       </form>
+          
+        </div>
+        <!--/.col (right) -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
 
-					<div class="tab-content default-tab" id="tab1">
-					
-						<form action="" method="post" enctype="multipart/form-data">
-							<div class="col-left">
-                                <fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->      	
-								<p>
-									<label>Chọn chuyên mục: 
-                                    </label>
-                                    	<select name="txtcatId" class="medium-input">
-                                                <option value="0">--Chọn chuyên mục --</option>
-                                                <?php
-                                                    if($mcateblog->num_rows($cat_id) >0){
-                                                        recursiveMenu($cat_id);
-                                                        /*$html = '';
-                                                        foreach($cat_id as $cate):
-                                                            $html .= "<option value='{$cate["cat_id"]}'>{$cate["cat_name"]}</option>";
-                                                        endforeach;
-                                                        echo $html;
-                                                        */
-                                                    }
-                                                ?>
-                                             </select>
-								
-								</p>
-                                <p>
-                                    <label>Tiêu đề bài viết: </label>
-                                     <input class="text-input medium-input" type="text" id="txtTitle" name="txtTitle" placeholder="Nhập tiêu đề cho bài viết"/>  
-
-                               	</p>
-                                
-                                 <p>
-                                    <label>Slug  </label>
-                                    <input class="text-input medium-input" type="text" id="txtSlug" name="txtSlug" placeholder="Nhập tiêu đề cho bài viết"/>  
-                                 
-                               	</p>
-                                <!--
-                                <p>
-                                    <label>Ảnh bài viết: <input class="text-input small-input" type="file" name="txtImage" id="txtImage"/></label>
-                                </p>
-                                -->
-                                 <p>
-                                    <label> Ảnh bài viết</label>
-                                    <input class="text-input" type="text" name="txtImage" id="txtImage" readonly="readonly"/>
-                                    <input class="button" type="button" value="Chọn Ảnh ..." onclick="BrowseServer();"/>
-                                </p>
-							</fieldset>
-                            </div>
-                            <div class="col-right">
-                                 <p>
-									<label>Meta Keyword</label>
-										<input class="text-input large-input" type="text" id="txtKeyword" name="txtKeyword" placeholder="Từ khóa SEO"/>  
-								</p>
-                                 <p>
-									<label>Meta Description</label>
-										<input class="text-input large-input" type="text" id="txtDescription" name="txtDescription" placeholder="Nội dung SEO"/>  
-								</p>
-       	                        <p>
-									<label>Mô tả ngắn bài viết</label>
-									<textarea class="text-input textarea" id="txtShortContent" name="txtShortContent" cols="79" rows="4"></textarea>
-								</p>
-                                
-                              
-                            </div>
-                            <div class="clear">
-                             <p>
-								<label>Nội dung bài viết</label>
-								<textarea class="text-input textarea ckeditor" id="txtContent" name="txtContent" cols="79" rows="5"></textarea>
-							   </p>
-                            <p>
-                                <label class="label-none">Hiển thị: </label>
-								<label class="label-none">Yes <input type="radio" name="status" value="1" checked="checked"/></label>
-                                <label class="label-none">No <input type="radio" name="status" value="0"/></label>
-								
-							</p>    
-                                 <?php
-                                if(author_admin() == true){ //Phan quyen
-                                ?>
-                                <p>
-                                    <label>Bài viết nổi bật: <input type="checkbox" name="txtHightlight" value="1"/></label>
-                                </p>
-                                <p>
-                                    <label>Lượt xem: <input class="text-input" type="number" name="txtViewPost"/></label>
-                                </p>
-                               <?php
-                                    }
-                               ?>
-                              <p class="clear">
-								<input class="button" type="submit" name="btnOK" value="Thêm mới" />
-							</p>
-                            </div>
-                        	
-								
-							
-								
-							<div class="clear"></div><!-- End .clear -->
-							
-						</form>
-						
-					</div> <!-- End #tab2 -->        
-					
-				</div> <!-- End .content-box-content -->
-				
-			</div> <!-- End .content-box -->     
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
 <?php
-    require "../templates/backend/green/bottom.php"
+    require "../templates/backend/blue/bottom.php"
 ?>

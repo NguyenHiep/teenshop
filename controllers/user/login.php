@@ -26,16 +26,20 @@
                $_SESSION['ses_start'] = time(); // Xác định thời gian đăng nhập.
                 // Kết thúc phiên làm việc sau 60 phút kể từ lúc đăng nhập.
                $_SESSION['ses_expire'] = $_SESSION['ses_start'] + (60 * 60);
-                redirect(BASE_URL); // Chuyển đến trang chủ     
+                $ret['response'] = 1;
+                $ret['redirecturl'] = BASE_URL;
+               // redirect(BASE_URL); // Chuyển đến trang chủ     
             }elseif($muser->num_rows() > 1){
                  $error[]  = "Lỗi hệ thống";
             }else{
                // $error[]  = "Tài khoản, mật khẩu không đúng";
-               redirect(BASE_URL);
+               //redirect(BASE_URL);
+                $ret['response'] = 0;
+                $ret['error'] = 'Tài khoản mật khẩu không đúng';
             }
             
         }
-        
+        echo json_encode($ret);
     }else{
         redirect(BASE_URL);
     }

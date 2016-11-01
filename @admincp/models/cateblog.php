@@ -94,14 +94,16 @@ class Model_CateBlog extends Database{
             return false;
         }
     }
-    public function listCateBlog($start="",$limit=""){
+   
+    public function listCateBlog($start="",$limit="",$column="cat_id"){
         $sql[] = "SELECT * FROM `cateblog`";
-        $sql[] = "ORDER BY `position` ASC, `cat_name` ASC";
-        if($start !="" && $limit!=""){
-             $sql[] = "LIMIT {$start},{$limit}";
-        }
+        //$sql[] = "ORDER BY `{$column}` DESC";
+        $sql[] = "ORDER BY `position` ASC,  `{$column}` ASC";
+        if(!is_null($start) && !is_null($limit))
+            $sql[] = "LIMIT {$start},{$limit}";
         
-       $sql = implode(' ',$sql);
+        $sql = implode(' ',$sql);
+        
         $this->query($sql);
         return $this->fetchAll();
     }

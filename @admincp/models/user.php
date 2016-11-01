@@ -118,7 +118,7 @@ class Model_User extends Database{
     
     
     public function checkLogin(){
-       $sql[] = "SELECT `user_id`,`group_id`,`username`,CONCAT_WS(' ',`firstname`,`lastname`) AS `fullname`";
+       $sql[] = "SELECT `user_id`,`group_id`,`username`,CONCAT_WS(' ',`firstname`,`lastname`) AS `fullname`, `avatart`";
        $sql[] = "FROM `user`";
        $sql[] = "WHERE `username` = '".$this->getUsername()."' AND `password` = '".$this->getPassword()."'";
        $sql = implode(' ',$sql);
@@ -160,15 +160,15 @@ class Model_User extends Database{
             return false;
         }
     }
-    public function listUser($start, $limit){
+    public function listUser($start=0, $limit=15, $column="user_id"){
       /*  $sql[] = "SELECT `user_id`,`name` AS `groupname`,CONCAT_WS(' ',`firstname`,`lastname`) AS`fullname`,`email`,`adddress`,`phone_number`";
         $sql[] = "FROM `user` AS `u` JOIN `group` AS `g` ON `u`.`group_id` = `g`.`group_id`";
         $sql[] = "ORDER BY `user_id` ASC";
         $sql[] = "LIMIT {$start},{$limit}";
         */
-        $sql[] = "SELECT `user_id`,`group_id`,CONCAT_WS(' ',`firstname`,`lastname`) AS `fullname`,`email`,`address`,`phone_number`";
+        $sql[] = "SELECT `user_id`,`group_id`,CONCAT_WS(' ',`firstname`,`lastname`) AS `fullname`,`email`,`address`,`phone_number`, `status`, `avatart`";
         $sql[] = "FROM `user`";
-        $sql[] = "ORDER BY `user_id` ASC";
+        $sql[] = "ORDER BY `{$column}` ASC";
         $sql[] = "LIMIT {$start},{$limit}";
         $sql = implode(' ',$sql);
         $this->query($sql);
@@ -237,6 +237,7 @@ class Model_User extends Database{
         $this->query($sql);
         return $this->fetchAll();
     }
+    
 }
 
 

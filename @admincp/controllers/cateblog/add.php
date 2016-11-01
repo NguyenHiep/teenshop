@@ -1,6 +1,6 @@
 <?php
 $mcateblog = new Model_CateBlog();
-$listCate = $mcateblog->listCateBlog();
+$listCate = $mcateblog->listCateBlog(null,null);
     if(isset($_POST['btnOK'])){
         $error = array();
         if(isset($_POST['txtParent'])){

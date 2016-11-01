@@ -22,7 +22,7 @@
               <div class="row">
               
                 <!-- BEGIN LEFT SIDEBAR -->            
-                <div class="col-md-9 col-sm-9 blog-item">
+                <div class="col-md-9 blog-item">
                     <div class="row">
                      <?php
                             if(trim($data->image) != "none"){
@@ -56,13 +56,13 @@
                              <ul class="blog-info">
                                 <li>
                                     <i class="fa fa-user-secret"></i>
-                                     <?php 
-                                            if(!empty($data->nickname)){
-                                                 echo $data->nickname;
-                                            }else{
-                                                echo $data->author;
-                                            }
-                                        ?>
+                                 <?php 
+                                        if(!empty($data->nickname)){
+                                             echo $data->nickname;
+                                        }else{
+                                            echo $data->author;
+                                        }
+                                    ?>
                                 </li>
                                 <li><i class="fa fa-calendar"></i> <?php echo date("d/m/Y",strtotime($data->poston)); ?></li>
                                 <li><i class="fa fa-list"></i> <?php echo $data->catename;?></li>
@@ -70,11 +70,21 @@
                               </ul>
                             <article class="content-blog">
                                 <?php echo $data->full; ?>
+                                <div class="pagination-post">
+                                    <?php
+                                        echo $post_link;
+                                    ?>
+                                </div>
+                                <div class="share-post-social">
+                                    <h2>Chia sẻ bài viết</h2>
+                                    <div id="share-post-social"></div>
+                                </div> 
                                 <?php
                                // echo sizeof($relapost);
                        
                                     if($count_relapost > 0){
                                 ?>
+                                   
                                   <hr class="blog-post-sep" />
                                   <h2>Bài viết liên quan</h2>
                                  <ol>
@@ -126,7 +136,7 @@
                                 </p>
                                 <div class="mom-socials-icons author-social-icons">
                                     <ul class="list-unstyled">
-                                        <li class="home"><a target="_blank" href="<?php if(!empty($data->facebook)) echo $data->facebook; else "https://www.facebook.com/"; ?>" rel="nofollow"><i class="fa fa-home"></i></i></a></li>    
+                                        <li class="home"><a target="_blank" href="<?php if(!empty($data->facebook)) echo $data->facebook; else "https://www.facebook.com/"; ?>" rel="nofollow"><i class="fa fa-home"></i></a></li>    
                                         <li class="facebook"><a target="_blank" href="<?php if(!empty($data->facebook)) echo $data->facebook; else "https://www.facebook.com/"; ?>" rel="nofollow"><i class="fa fa-facebook-official"></i></a></li>     
                                         <li class="googleplus"><a target="_blank" href="<?php if(!empty($data->facebook)) echo $data->google; else "https://www.facebook.com/"; ?>"  rel="nofollow"><i class="fa fa-google-plus"></i></a></li>
                                         <li class="twitter"><a target="_blank" href="<?php if(!empty($data->facebook)) echo $data->twitter; else "https://www.facebook.com/"; ?>" rel="nofollow"><i class="fa fa fa-twitter"></i></a></li>
@@ -143,8 +153,60 @@
                             <div class="facebook-comment">
                                <div class="fb-comments" data-href="<?php echo $actual_link;?>" data-width="100%" data-numposts="5"></div>                       
                             </div>
-                         </div>  
-                    </div> 
+                         </div>
+                      
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                           <div class="comments">
+                              <?php
+                               
+                                $default = "";
+                                $size = 80;
+                               // var_dump($listComment);
+                                foreach($listComment as $infor):
+                            ?>
+                               <div class="media">
+                                  <a href="javascript:;" class="pull-left">
+                                  <img src="http://www.gravatar.com/avatar/<?php echo md5(strtolower(trim($infor['email'])))."?d=".urlencode($default)."&s=".$size;?>" alt="avatar" class="media-object" />
+                                  </a>
+                                  <div class="media-body">
+                                    <h4 class="media-heading"><?php echo $infor['author']; ?> <span><?php echo date('M d, Y', strtotime($infor['created_at']));?> / <a href="javascript:;">Reply</a></span></h4>
+                                    <p><?php echo $infor['comment']; ?></p>
+                                  </div>
+                                </div>
+                           <?php
+                                endforeach;
+                           ?>   
+                            
+                            </div> <!-- End comment -->
+                  
+                        </div>
+                        <div class="col-md-12">
+                            <div class="post-comment padding-top-40">
+                                
+                                <form action="<?php ?>" method="POST">
+                                  <div class="form-group">
+                                    <label>Họ và tên <span class="color-red">*</span></label>
+                                    <input class="form-control" type="text" name="author" required="required"/>
+                                  </div>
+            
+                                  <div class="form-group">
+                                    <label>Email <span class="color-red">*</span></label>
+                                    <input class="form-control" type="email" name="email" required="required"/>
+                                  </div>
+            
+                                  <div class="form-group">
+                                    <label>Nội dung bình luận <span class="color-red">*</span></label>
+                                    <textarea minlength="30"  maxlength="1000"class="form-control" rows="8" name="comment" required="required"></textarea>
+                                  </div>
+                                  <p><button class="btn btn-primary pull-right" type="submit">Bình luận</button></p>
+                                </form>
+                          </div>
+                          </div>             
+                </div>
+                       
+                    
                 </div>
                
                 <!-- END LEFT SIDEBAR -->

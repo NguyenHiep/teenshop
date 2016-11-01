@@ -1,97 +1,126 @@
 <?php
-    require "../templates/backend/green/left.php";
+    require "../templates/backend/blue/left.php";
 ?>
- <div class="content-box"><!-- Start Content Box -->
-				
-				<div class="content-box-header">
-					
-					<h3>Thêm chuyên mục bài viết</h3>
-					<div class="clear"></div>
-					
-				</div> <!-- End .content-box-header -->
-                <?php
-                    if(!empty($error)):
-                        echo ' <div class="notification error png_bg">
-				<a href="#" class="close"><img src="templates/backend/green/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close"/></a>
-				        <div>
-					       <ul>';
-                        foreach($error as $err):
-                            echo "<li>{$err}</li>";
-                        endforeach;    
-                    echo '</ul></div></div>';
-                    endif;
-                ?>
-			
-				<div class="content-box-content">
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1 class="pull-left"> Thêm chuyên mục bài viết </h1>
+      <div class="pull-right">
+            <a href="<?php echo $_SERVER['HTTP_REFERER'];?>" class="btn btn-sm  btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span> Quay về</a>
+      </div>
+    </section>
 
-					<div class="tab-content default-tab" id="tab1">
-					
-						<form action="" method="post" enctype="multipart/form-data">
+     <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <ol class="breadcrumb">
+                <li><a href="<?php echo BASE_ADMIN;?>"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"> Thêm chuyên mục bài viết </li>
+            </ol>
+			
+		 	 <!-- Main content -->
+                <section class="content">
+                       <div class="row">
+                      <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
 							
-							<fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->      	
-								<p>
-									<label>Tên chuyên mục</label>
-										<input class="text-input small-input" type="text" id="txtCate" name="txtCate" placeholder="Vui lòng nhập tên chuyên mục" required="required"/>  
-								</p>
-                                 <p>
-									<label>Slug chuyên mục</label>
-										<input class="text-input medium-input" type="text" id="txtCateSlug" name="txtCateSlug" placeholder="Tên không dấu chuyên mục, mặc định sẽ lấy tên chuyên mục"/>  
-								</p>
-                                 <p>
-									<label>Parent</label>
-								    <select id="txtParent" name="txtParent">
-                                        <option value="0">Không</option>
-                                        <?php
-                                            if(count($listCate > 0)){
-                                                echo recursiveMenu($listCate);
-                                                //foreach($listCate as $data):
-                                               //     echo '<option value='.$data['cat_id'].'>'.$data['cat_name'].'</option>';
-                                              //  endforeach;
-                                            }
-                                        ?>
-                                    </select>
-                                 </p>
-                                
-                                <p>
-                                    <label class="label-none">Hiển thị: </label>
-									<label class="label-none">Yes <input type="radio" name="status" value="1" checked="checked"/></label>
-                                    <label class="label-none">No <input type="radio" name="status" value="0"/></label>
+                         <div class="col-md-12">
+                             <div class="form-group has-error">
+                                  <?php
+                                    if(!empty($error)):
+                                        
+                                        foreach($error as $err):
+                                            echo '<label class="control-label" for="inputError">
+                                                    <i class="fa fa-times-circle-o"></i> '.$err.'
+                                                    </label> <br/>';
+                                        endforeach;    
+                                   
+                                    endif;
+                                    if(isset($msgsuccess)){
+                                        echo '<p class="text-success">'.$msgsuccess.'</p>';
+                                    }
+                                 ?> 
+                            </div>
+                           
+                         </div>
+                          <div class="clearfix"></div>
+                          <div class="box box-primary">
+                            <div class="col-md-12">
+                                  <div class="box-body">
+                                    <div class="form-group">
+    									<label for="txtCate">Tên chuyên mục</label>
+    									<input  class="form-control" value=""  type="text" id="txtCate" name="txtCate" placeholder="Vui lòng nhập tên chuyên mục" required="required"/>  
+                                    </div>
+                                     <div class="form-group">
+    									<label for="txtCateSlug">Slug chuyên mục</label>
+    									<input value="" class="form-control" type="text" id="txtCateSlug" name="txtCateSlug" placeholder="Tên không dấu chuyên mục, mặc định sẽ lấy tên chuyên mục"/>  
+    								</div>
+                                    <div class="form-group">
+    									<label for="txtParent">Parent</label>
+    								    <select id="txtParent" name="txtParent" class="form-control select2" style="width: 100%;">
+                                            <option value="0">Không</option>
+                                            <?php
+                                                if(count($listCate > 0)){
+                                                    echo recursiveMenu($listCate,$parent = 0, $text="", $data['parentid']);
+                                                   
+                                                }
+                                            ?>
+                                        </select>
+                                     </div>
+                                 
+                                <div class="form-group">
+                                    <label class="label-none">Hiển thị:  </label>
+									<label class="label-none"> Yes <input class="minimal"  type="radio" name="status" value="1" checked="checked"/></label>
+                                    <label class="label-none"> No <input class="minimal" type="radio" name="status" value="0"  /></label>
 									
-								</p>
-                                <p>
-                                    <label>Sắp xếp: <input type="number" class="text-input small-input" id="position" name="position" style="width:  50px !important;"/></label>
+								</div>
+                                <div class="form-group">
+                                    <label for="position">Sắp xếp: <input value="" type="number" class="form-control" id="position" name="position" style="width:  100px !important;"/></label>
       
-                                </p>
+                                </div>
                                 
-                                <p>
-                                    <label>Ảnh category: <input class="text-input small-input" type="file" name="txtImage" id="txtImage"/></label>
-                                </p>
+                                <div class="form-group">
+                                        <label>Ảnh chuyên mục: </label>
+                                        <input class="form-control" type="file" name="txtImage" id="txtImage"/>
+                                </div>
                                
-                                <p>
-									<label>Meta keyword</label>
-									<textarea class="text-input textarea wysiwyg" id="txtMetakeyword" name="txtMetakeyword" cols="79" rows="3"></textarea>
-								</p>
-								<p>
-									<label>Meta description</label>
-									<textarea class="text-input textarea wysiwyg" id="txtMetadescription" name="txtMetadescription" cols="79" rows="3"></textarea>
-								</p>
-								
-								
-								<p>
-									<input class="button" type="submit" name="btnOK" value="Thêm mới" />
-								</p>
-								
-							</fieldset>
+                                <div class="form-group">
+									<label for="txtMetakeyword">Meta keyword</label>
+									<textarea class="form-control textarea wysiwyg" id="txtMetakeyword" name="txtMetakeyword" cols="79" rows="3" placeholder="Nhập từ khóa"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="txtMetadescription">Meta description</label>
+									<textarea class="form-control textarea wysiwyg" id="txtMetadescription" name="txtMetadescription" cols="79" rows="3" placeholder="Nhập miêu tả"></textarea>
+								</div>
 							
-							<div class="clear"></div><!-- End .clear -->
-							
-						</form>
-						
-					</div> <!-- End #tab2 -->        
-					
-				</div> <!-- End .content-box-content -->
-				
-			</div> <!-- End .content-box -->     
+                            </div> <!-- End box-body -->
+                         
+                            
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                           <div class="box-footer">
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                                <button type="submit" class="btn btn-primary" name="btnSave">Lưu</button>
+                                <button type="submit" class="btn btn-primary" name="btnOK" >Lưu và đóng lại</button>
+                            </div>
+                     </form>
+                     </div>
+                </section><!-- /.content -->
+		</div>
+        <!-- /.content-wrapper -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+ 
 <?php
-    require "../templates/backend/green/bottom.php"
+    require "../templates/backend/blue/bottom.php"
 ?>

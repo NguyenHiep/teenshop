@@ -1,20 +1,27 @@
-
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="vi" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="vi" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en">
+<html amp='' dir='ltr' lang='vn-vi' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+
 <!--<![endif]-->
 
 <!-- Head BEGIN -->
 <head>
   <meta charset="utf-8" />
-  <title><?php echo isset($title)? $title : "Trang chủ | Ôn tập thi liên thông đại học";?></title>
+  <title><?php echo isset($title)? $title : "Liên thông đại học - Lập trình website - Học magento";?></title>
   <base href="<?php echo BASE_URL;?>" />
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
+  <meta content='VN-SG' name='geo.region'/>
+  <meta content='Hồ chí minh' name='geo.placename'/>
+  <meta content='14.058324;108.277199' name='geo.position'/>
+  <meta content='14.058324, 108.277199' name='ICBM'/>
+  <?php
+    // Kiểm tra trình duyệt
+    if(isset($_SERVER['HTTP_USER_AGENT'])&& (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false))
+        header('X-UA-Compatible: IE=edge,chrome=1');
+  ?>
   <meta content="<?php echo isset($description)? $description : "Giadinhit.com | Ôn tập thi liên thông đại học, học lập trình;";?>" name="description" />
   <meta content="<?php echo isset($keyword)? $keyword : "Liên thông đại học, magento, php, word";?>" name="keywords" />
   <meta content="Gia đình IT" name="author" />
@@ -44,6 +51,8 @@
   <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet"/>
 
   <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/styles/shCoreEmacs.css" rel="stylesheet"/>
+  <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/social/jssocials.css" rel="stylesheet"/>
+  <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/social/jssocials-theme-classic.css" rel="stylesheet"/>
   <!-- Page level plugin styles END -->
 
   <!-- Theme styles START -->
@@ -58,6 +67,7 @@
 
 <!-- Body BEGIN -->
 <body class="corporate">
+    <div class="ajax-load-qa" style="display: none;"></div>
     <header>
     <!-- BEGIN TOP BAR -->
     <div class="pre-header">
@@ -66,7 +76,7 @@
                 <!-- BEGIN TOP BAR LEFT PART -->
                 <div class="col-md-6 col-sm-6 additional-shop-info">
                     <ul class="list-unstyled list-inline">
-                        <li><i class="fa fa-phone"></i><span> <a href="tel:+(84) 0167 6542 578">+(84) 0167 6542 578</a></span></li>
+                        <li><i class="fa fa-phone"></i><span> <a href="tel:+(84)01676542578">+(84) 0167 6542 578</a></span></li>
                         <li><i class="fa fa-envelope-o"></i><span><a href="mailto:giadinhit.com@gmail.com">giadinhit.com@gmail.com</a></span></li>
                     </ul>
                 </div>
@@ -84,7 +94,7 @@
                         <?php
                          }else{
                         ?>
-                            <li><a href="/register">Đăng ký</a></li>
+                            <li><a href="javascript:void(0)"  data-toggle="modal" data-target="#registerModal">Đăng ký</a></li>
                             <li><a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Đăng nhập</a></li>
                         <?php }
                         ?>
@@ -101,71 +111,15 @@
    <!-- BEGIN HEADER -->
     <div class="header">
       <div class="container">
-       <a class="site-logo" href="<?php echo BASE_URL;?>"><img src="<?php echo TEMPLATE_FRONTEND;?>images/logo-family.png" alt="Metronic Shop UI" width="128px" height="32px"/></a>
-
+        <h1 class="hide">Giadinhit.com, ôn thi liên thông đại học, chia sẻ kiến thức lập trình</h1>
+            <a class="site-logo" href="<?php echo BASE_URL;?>">
+                <img src="<?php echo TEMPLATE_FRONTEND;?>images/logo-giadinhit-huong-dan-on-thi-dai-hoc.png" title="Giadinhit.com, website hướng dẫn ôn thi liên thông đại học" alt="Lien thong dai hoc, mon co ban, mon co so, mon chuyen nganh" />
+            </a>
+       
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
-
-        
-
         <!-- BEGIN NAVIGATION -->
         <div class="header-navigation">
-       
-          <ul>
-           
-              <?php
-                $mcate = new Model_CateBlog();
-                $listCate = $mcate->listCategory();
-                echo MenuTop($listCate);
-             
-                ?>
-              
-                <?php
-                        //$mcate = new Model_CateBlog();
-                        //$listCate = $mcate->listCategory();
-                       // echo "<pre>";
-                       //     print_r($listCate);
-                       // echo "</pre>";
-                      //                          die();
-                        /*$htmlcate = '';
-                        foreach($listCate as $list):
-                        $htmlcate.= '<li ';
-                        if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid'] >0 && $_GET['catid'] == $list['cat_id']){
-                            $htmlcate.= " class='active'";
-                        }
-                        $htmlcate.= '><a href="'.BASE_URL.'on-tap/'.trim($list['slug']).'-'.$list['cat_id'].'.html'.'"> '.$list['cat_name'].'</a></li>';
-                        endforeach;
-                        echo $htmlcate;
-                        //on-thi-dai-hoc/mon-hoc/(.*)-([0-9]+).html
-                        */
-                      //echo recursiveMenuTop($listCate);
-                     // if(count($listCate > 0)){
-                      //   die(recursiveMenuTop($listCate));
-                     // }
-                     
-                    ?>
-            <!--
-            <li><a href="#" target="_blank" onclick="inProcess();">IT shop</a></li>
-            <li><a href="#" target="_blank" onclick="inProcess();">Typography</a></li>
-            <li><a href="<?php echo BASE_URL.'huong-dan.html'?>" target="_blank">Hướng dẫn</a></li>
-            <li><a href="<?php echo BASE_URL.'lien-he.html'?>" target="_blank">Liên hệ</a></li>
-            -->
-            <!-- BEGIN TOP SEARCH -->
-            <li class="menu-search">
-              <span class="sep"></span>
-              <i class="fa fa-search search-btn"></i>
-              <div class="search-box">
-                <form action="/search" method="get">
-                  <div class="input-group">
-                    <input type="text" name="q" placeholder="Từ khóa tìm kiếm" class="form-control" />
-                    <span class="input-group-btn">
-                      <button class="btn btn-primary" type="submit">Tìm kiếm</button>
-                    </span>
-                  </div>
-                </form>
-              </div> 
-            </li>
-            <!-- END TOP SEARCH -->
-          </ul>
+          <?php echo MenuTop();?>
         </div>
         <!-- END NAVIGATION -->
       </div>
@@ -176,5 +130,5 @@
     //Get googanylatic
      include_once("analyticstracking.php");
      //Connect socical facebook
-     require_once "login.php";
+    // require_once "login.php";
    ?>

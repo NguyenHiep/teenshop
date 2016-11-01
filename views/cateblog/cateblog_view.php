@@ -15,7 +15,7 @@
             <div class="content-page">
               <div class="row">
                 <!-- BEGIN LEFT SIDEBAR -->            
-                <div class="col-md-9 col-sm-9 blog-posts">
+                <div class="col-md-9 blog-posts">
                 <?php
                     if($numrow > 0){
                 ?>

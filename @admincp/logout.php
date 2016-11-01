@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../config.php";
+require "../libraries/config.php";
 session_destroy();
 header("location:".BASE_URL);
 exit();

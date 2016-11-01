@@ -135,4 +135,5 @@ class PaginationHome{
 		}
 		return $paginationHTML;
 	}
+    
 }

@@ -1,6 +1,18 @@
 <?php
-    require_once "config.php";
+    require_once "libraries/config.php";
     require_once "libraries/class.php";
+      $sql[] = "SELECT cat.*, COUNT(bl.cat_id) AS sumblog";
+      $sql[] = "FROM cateblog AS cat LEFT JOIN  blog AS bl";
+      $sql[] = "USING (cat_id)";
+      $sql[] = "WHERE cat.status = '1'";
+      $sql[] = "GROUP BY cat.cat_id";
+      $sql[] = "ORDER BY cat.position ASC, cat.cat_name ASC";
+      $sql = implode(' ',$sql);
+      $conn = new Database();
+      $conn->connect();
+      $result = $conn->query($sql);
+        
+    $datas = $conn->fetchAll();
     header("Content-type: text/xml");
     echo '<?xml version="1.0" encoding="UTF-8" ?>';
 ?>
@@ -27,20 +39,10 @@
     </url>
 
     <?php
-        $sql[] = "SELECT cat.*, COUNT(bl.cat_id) AS sumblog";
-        $sql[] = "FROM cateblog AS cat LEFT JOIN  blog AS bl";
-        $sql[] = "USING (cat_id)";
-        $sql[] = "WHERE cat.status = '1'";
-        $sql[] = "GROUP BY cat.cat_id";
-        $sql[] = "ORDER BY cat.position ASC, cat.cat_name ASC";
-        $sql = implode(' ',$sql);
-        $conn = @mysql_connect("localhost", "root","");
-        @mysql_select_db("shop");
-        $result = mysql_query($sql, $conn);
         $html = "";
-        if(mysql_num_rows($result) > 0){
-            while($data = mysql_fetch_assoc($result)){
-               if($data['slug'] == 'huong-dan' || $data['slug'] == 'lien-he')
+        if($conn->num_rows($result) > 0){
+            foreach($datas as $data){
+                 if($data['slug'] == 'huong-dan' || $data['slug'] == 'lien-he')
                         continue;
                     
                 $html .= "
@@ -50,6 +52,7 @@
                     <priority>0.8</priority>
                 </url>";
             }
+        
         }
         echo $html;
   ?>

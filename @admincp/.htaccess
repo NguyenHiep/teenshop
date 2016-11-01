@@ -4,10 +4,14 @@ RewriteEngine on
 #AuthName "My Protected Area"
 #AuthUserFile /home/gia9e3c2/public_html/@admincp/.htpasswd
 #Require valid-user
+RewriteRule ajax/blog index.php?controller=ajax&action=blog [L]
 #Login
 RewriteRule login.html login.php [L]
-RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$ index.php?controller=$1&action=$2 [L]
-RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/$ index.php?controller=$1&action=$2 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$ index.php?controller=$1&action=$2&%{QUERY_STRING} [NC,L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/$ index.php?controller=$1&action=$&%{QUERY_STRING} [NC,L]
+
+#Rewrite slider
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/sid/([0-9]+)$ index.php?controller=$1&action=$2&sid=$3 [L]
 #Table User
 RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/uid/([0-9]+)$ index.php?controller=$1&action=$2&uid=$3 [L]
 #Table Category
@@ -15,7 +19,7 @@ RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/catid/([0-9]+)$ index.php?controller=
 #Table Product
 RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/prid/([0-9]+)$ index.php?controller=$1&action=$2&prid=$3 [L]
 #Pagenation
-RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/start/([0-9]+)/p/([0-9]+)$ index.php?controller=$1&action=$2&start=$3&p=$4 [L]
-RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/start/([0-9]+)/p/([0-9]+)/$ index.php?controller=$1&action=$2&start=$3&p=$4 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/page/([0-9]+)$ index.php?controller=$1&action=$2&page=$3&%{QUERY_STRING} [NC,L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/page/([0-9]+)/$ index.php?controller=$1&action=$2&page=$3&%{QUERY_STRING} [NC,L]
 
 #slider

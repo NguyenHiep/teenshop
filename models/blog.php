@@ -163,4 +163,25 @@ class Model_Blog extends Database{
         }
         */
         //End ajax for blog
+        
+        public function getNextPostId($blog_id){
+            $sql[] = "SELECT bl.blog_id, bl.blog_name, bl.slug, bl.view_post, bl.short_content, cat.slug AS slugcate,cat.cat_name, CONCAT_WS(' ',u.firstname,u.lastname) AS author";
+            $sql[] = "FROM blog AS bl LEFT JOIN user AS u USING(user_id)  LEFT JOIN cateblog AS cat USING(cat_id)";
+            $sql[] = "WHERE bl.status = '1' AND bl.blog_id > {$blog_id}"; // Important
+            $sql[] = "ORDER BY bl.blog_id ASC"; // Important
+            $sql[] = "LIMIT 1";
+            $sql = implode(' ',$sql);
+            $this->query($sql);
+            return $this->fetch();
+        }
+        public function getPrePostId($blog_id){
+            $sql[] = "SELECT bl.blog_id, bl.blog_name, bl.slug, bl.view_post, bl.short_content, cat.slug AS slugcate,cat.cat_name, CONCAT_WS(' ',u.firstname,u.lastname) AS author";
+            $sql[] = "FROM blog AS bl LEFT JOIN user AS u USING(user_id)  LEFT JOIN cateblog AS cat USING(cat_id)";
+            $sql[] = "WHERE bl.status = '1' AND bl.blog_id < {$blog_id}"; // Important
+            $sql[] = "ORDER BY bl.blog_id DESC"; // Important
+            $sql[] = "LIMIT 1";
+            $sql = implode(' ',$sql);
+            $this->query($sql);
+            return $this->fetch();
+        }
 }

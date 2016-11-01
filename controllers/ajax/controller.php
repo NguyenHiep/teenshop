@@ -8,7 +8,8 @@
                 require "controllers/ajax/review.php";
                 break;
             case "blog":
-                require "controllers/ajax/list-blog.php";    
+                require "controllers/ajax/list-blog.php";
+                break;
         }
     }
 

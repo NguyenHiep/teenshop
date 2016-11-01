@@ -3,7 +3,7 @@ class Database {
     protected $_hostname = "localhost";
     protected $_userhost = "root";
     protected $_passhost = "";
-    protected $_dbname = "shop";
+    protected $_dbname = "giadinhit_mvc";
     protected $_conn;
     protected $_result;
     

@@ -2,7 +2,7 @@
 if(isset($_GET['catid']) && validate_int($_GET['catid']) && $_GET['catid'] > 0){
     $catid      = intval($_GET['catid']);
     $mcateblog  = new Model_CateBlog();
-    $listCate   = $mcateblog->listCateBlog();
+    $listCate   = $mcateblog->listCateBlog(null,null);
     $data       = $mcateblog->getCateBogById($catid);
     if(isset($_POST['btnOK'])){
         $error = array();
@@ -32,12 +32,13 @@ if(isset($_GET['catid']) && validate_int($_GET['catid']) && $_GET['catid'] > 0){
                 $uimage = new Upload($_FILES['txtImage']);
                     
                 $uimage->setPath('../uploads/category/');
-                
+               
                 if($uimage->do_upload() == true){
                     $imagecate = $uimage->getName();
                 }else{
                     $error[] = $uimage->error;
                 }  
+                
             }else{
                 $imagecate = "none";
             }
@@ -54,11 +55,13 @@ if(isset($_GET['catid']) && validate_int($_GET['catid']) && $_GET['catid'] > 0){
             $mcateblog->setMetakeyword($metakeyword);
             $mcateblog->setMetaDescription($metadiscription);
             $mcateblog->setImage($imagecate);
-            if($mcateblog->checkCateBlog($catid) == true){
-                $mcateblog->updateCateBlog($catid);
-                redirect(BASE_ADMIN.'/cateblog/list');
-            }else{
-                $error[] = "Tên chuyên mục đã tồn tại, bạn vui lòng chọn tên khác";
+            if(empty($error)){
+                if($mcateblog->checkCateBlog($catid) == true){
+                    $mcateblog->updateCateBlog($catid);
+                    redirect(BASE_ADMIN.'/cateblog/list');
+                }else{
+                    $error[] = "Tên chuyên mục đã tồn tại, bạn vui lòng chọn tên khác";
+                }
             }
        } //Edn empty
            

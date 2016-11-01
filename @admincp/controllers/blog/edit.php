@@ -4,7 +4,7 @@ if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid
     $mblog      = new Model_Blog();
     $data       = $mblog->getBlogById($blogid);
     $mcateblog  = new Model_CateBlog();
-    $cat_id = $mcateblog->listCateBlog();
+    $cat_id = $mcateblog->listCateBlog(null,null);
       if(isset($_POST['btnOK'])){
        $error           = array();
        $user_id         =  $_SESSION['ses_userid'];

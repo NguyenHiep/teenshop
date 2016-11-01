@@ -1,18 +1,11 @@
 <?php
+           
     $mslider = new Model_Slider();
     $dataSlider = $mslider->getSliderBlog();
+    $totalSlider = $mslider->num_rows($dataSlider);
+    
     $mblog = new Model_Blog();
-    /* if(isset($_GET['start']) && validate_int($_GET['start']) == true && $_GET['start'] >0){
-        $start = intval($_GET['start']);
-    }else{
-        $start = 0;
-    }
-    $limit          = 4;
-    $count          = $mblog->totalBlog();
-    $total_recore   = $count['count'];
-    $link           = BASE_URL;
-    $datas          = $mblog->listBlog($start, $limit);
-    */
+   
     $count          = $mblog->totalBlog();
     $totalItems     = $count['count'];
     $totalItemsPage = 9; // Số bài viết trên một trang
@@ -23,9 +16,10 @@
     $position       = ($currentPage - 1)* $totalItemsPage;
     $datas          = $mblog->listBlog($position, $totalItemsPage);
     //Begin update 02.05.2016
+    $number = $mblog->num_rows($datas);
     
-    if($mblog->num_rows($datas) > 0){
-        $dom            = new DOMDocument("1.0", "utf-8");
+    if($number > 0){
+    $dom            = new DOMDocument("1.0", "utf-8");
     $cate           = $dom->createElement("Category");
     $dom->appendChild($cate);
     foreach($datas as $data){
@@ -66,10 +60,10 @@
         $short_content      = $dom->createCDATASection($data['short_content']);
         $short->appendChild($short_content);
     }
-    $name =  md5(md5("listblog"));
-    $dom->save("cached/$name.xhtml");       
+        $name =  md5(md5("listblog"));
+        $dom->save("cached/$name.xhtml");       
     }
-    $title="Giadinhit.com | Danh sách tất cả các bài viết";
+    $title="Giadinhit.com, ôn thi liên thông đại học, chia sẻ kiến thức lập trình";
     $keyword = "Ôn thi liên thông, lập trình PHP, Lập trình magento";
     $description = "Giadinhit.com kênh chia sẻ kiến thức ôn thi liên thông đại học, kiến thức lập trình";
     require_once "views/defaultblog/defaultblog_view.php";

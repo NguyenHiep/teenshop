@@ -1,119 +1,4 @@
-/* General body settings */
-/*
-@import url("http://fast.fonts.net/t/1.css?apiType=css&projectid=ec8a9d80-ebfb-4f8e-a64c-74fbdd795aca");
-@font-face{
-    font-family:"Avenir T_R W01_n2";
-    src:url("Fonts/edefe737-dc78-4aa3-ad03-3c6f908330ed.eot?#iefix") format("eot")
-}
-@font-face{
-    font-family:"Avenir T_R W01";
-    src:url("Fonts/edefe737-dc78-4aa3-ad03-3c6f908330ed.eot?#iefix");
-    src:url("Fonts/edefe737-dc78-4aa3-ad03-3c6f908330ed.eot?#iefix") format("eot"),url("Fonts/0078f486-8e52-42c0-ad81-3c8d3d43f48e.woff2") format("woff2"),url("Fonts/908c4810-64db-4b46-bb8e-823eb41f68c0.woff") format("woff"),url("Fonts/4577388c-510f-4366-addb-8b663bcc762a.ttf") format("truetype"),url("Fonts/b0268c31-e450-4159-bfea-e0d20e2b5c0c.svg#b0268c31-e450-4159-bfea-e0d20e2b5c0c") format("svg");
-    font-weight: 200;
-    font-style: normal;
-}
-@font-face{
-    font-family:"Avenir T_R W01_o2";
-    src:url("Fonts/63a166cb-be60-435c-a056-75172e43efa5.eot?#iefix") format("eot")
-}
-@font-face{
-    font-family:"Avenir T_R W01";
-    src:url("Fonts/63a166cb-be60-435c-a056-75172e43efa5.eot?#iefix");
-    src:url("Fonts/63a166cb-be60-435c-a056-75172e43efa5.eot?#iefix") format("eot"),url("Fonts/a59168c1-917d-4de9-a244-0316c057c357.woff2") format("woff2"),url("Fonts/6dc0e7d8-9284-44e1-8f05-984a41daa3a4.woff") format("woff"),url("Fonts/2315df7a-8bc2-433d-bf0a-162fc0063de0.ttf") format("truetype"),url("Fonts/7b1e5b2a-b6a6-43da-9021-ada6d1d797f2.svg#7b1e5b2a-b6a6-43da-9021-ada6d1d797f2") format("svg");
-    font-weight: 200;
-    font-style: oblique;
-}
-@font-face{
-    font-family:"Avenir T_R W01_n3";
-    src:url("Fonts/710789a0-1557-48a1-8cec-03d52d663d74.eot?#iefix") format("eot")
-}
-@font-face{
-    font-family:"Avenir T_R W01";
-    src:url("Fonts/710789a0-1557-48a1-8cec-03d52d663d74.eot?#iefix");
-    src:url("Fonts/710789a0-1557-48a1-8cec-03d52d663d74.eot?#iefix") format("eot"),url("Fonts/065a6b14-b2cc-446e-9428-271c570df0d9.woff2") format("woff2"),url("Fonts/65d75eb0-2601-4da5-a9a4-9ee67a470a59.woff") format("woff"),url("Fonts/c70e90bc-3c94-41dc-bf14-caa727c76301.ttf") format("truetype"),url("Fonts/0979215b-3a1b-4356-9c76-e90fa4551f1d.svg#0979215b-3a1b-4356-9c76-e90fa4551f1d") format("svg");
-    font-weight: 300;
-    font-style: normal;
-}
-@font-face{
-    font-family:"Avenir T_R W01_o3";
-    src:url("Fonts/d8c50fcc-bc32-4f31-8c24-b170c64e2254.eot?#iefix") format("eot")
-}
-@font-face{
-    font-family:"Avenir T_R W01";
-    src:url("Fonts/d8c50fcc-bc32-4f31-8c24-b170c64e2254.eot?#iefix");
-    src:url("Fonts/d8c50fcc-bc32-4f31-8c24-b170c64e2254.eot?#iefix") format("eot"),url("Fonts/476612d9-282d-4f76-95cd-b4dd31e7ed21.woff2") format("woff2"),url("Fonts/f1ebae2b-5296-4244-8771-5f40e60a564a.woff") format("woff"),url("Fonts/04d1bf6c-070d-4b7e-9498-6051c9f0c349.ttf") format("truetype"),url("Fonts/d0a3e813-1257-4b66-812a-36101faa0fb3.svg#d0a3e813-1257-4b66-812a-36101faa0fb3") format("svg");
-    font-weight: 300;
-    font-style: oblique;
-}
-@font-face{
-    font-family:"Avenir T_R W01_n5";
-    src:url("Fonts/e0542193-b2e6-4273-bc45-39d4dfd3c15b.eot?#iefix") format("eot")
-}
-@font-face{
-    font-family:"Avenir T_R W01";
-    src:url("Fonts/e0542193-b2e6-4273-bc45-39d4dfd3c15b.eot?#iefix");
-    src:url("Fonts/e0542193-b2e6-4273-bc45-39d4dfd3c15b.eot?#iefix") format("eot"),url("Fonts/17b90ef5-b63f-457b-a981-503bb7afe3c0.woff2") format("woff2"),url("Fonts/c9aeeabd-dd65-491d-b4be-3e0db9ae47a0.woff") format("woff"),url("Fonts/25f994de-d13f-4a5d-a82b-bf925a1e054d.ttf") format("truetype"),url("Fonts/3604edbd-784e-4ca7-b978-18836469c62d.svg#3604edbd-784e-4ca7-b978-18836469c62d") format("svg");
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face{
-    font-family:"Avenir T_R W01_o5";
-    src:url("Fonts/cebcf56a-ea7e-4f5c-8110-a7ee367c1f91.eot?#iefix") format("eot")
-}
-@font-face{
-    font-family:"Avenir T_R W01";
-    src:url("Fonts/cebcf56a-ea7e-4f5c-8110-a7ee367c1f91.eot?#iefix");
-    src:url("Fonts/cebcf56a-ea7e-4f5c-8110-a7ee367c1f91.eot?#iefix") format("eot"),url("Fonts/deb5e718-7abb-4df3-9365-edfa95317090.woff2") format("woff2"),url("Fonts/04801919-17ee-4c6b-8b17-eb1965cb3ed6.woff") format("woff"),url("Fonts/cee053ec-4b41-4506-a1fe-796261690610.ttf") format("truetype"),url("Fonts/38a556e4-b6e5-48c6-aece-b1d470af124e.svg#38a556e4-b6e5-48c6-aece-b1d470af124e") format("svg");
-    font-weight: 500;
-    font-style: oblique;
-}
-@font-face{
-    font-family:"Avenir T_R W01_n8";
-    src:url("Fonts/6af9989e-235b-4c75-8c08-a83bdaef3f66.eot?#iefix") format("eot")
-}
-@font-face{
-    font-family:"Avenir T_R W01";
-    src:url("Fonts/6af9989e-235b-4c75-8c08-a83bdaef3f66.eot?#iefix");
-    src:url("Fonts/6af9989e-235b-4c75-8c08-a83bdaef3f66.eot?#iefix") format("eot"),url("Fonts/d513e15e-8f35-4129-ad05-481815e52625.woff2") format("woff2"),url("Fonts/61bd362e-7162-46bd-b67e-28f366c4afbe.woff") format("woff"),url("Fonts/ccd17c6b-e7ed-4b73-b0d2-76712a4ef46b.ttf") format("truetype"),url("Fonts/20577853-40a7-4ada-a3fb-dd6e9392f401.svg#20577853-40a7-4ada-a3fb-dd6e9392f401") format("svg");
-    font-weight: 800;
-    font-style: normal;
-}
-@font-face{
-    font-family:"Avenir T_R W01_o8";
-    src:url("Fonts/e6b412d9-d1ed-4b17-bb93-a6911df8640d.eot?#iefix") format("eot")
-}
-@font-face{
-    font-family:"Avenir T_R W01";
-    src:url("Fonts/e6b412d9-d1ed-4b17-bb93-a6911df8640d.eot?#iefix");
-    src:url("Fonts/e6b412d9-d1ed-4b17-bb93-a6911df8640d.eot?#iefix") format("eot"),url("Fonts/3c210c80-960f-4684-850b-25390b4d08af.woff2") format("woff2"),url("Fonts/cb5c71ad-e582-4d00-929c-67fbfaeb1c27.woff") format("woff"),url("Fonts/9ced8e96-4602-4507-8c20-4ff381949a9a.ttf") format("truetype"),url("Fonts/a7c1d112-7546-459d-a153-1467481298bd.svg#a7c1d112-7546-459d-a153-1467481298bd") format("svg");
-    font-weight: 800;
-    font-style: oblique;
-}
-@font-face {
-    font-family: 'GentiumBasic';
-    src: url('Fonts/GentiumBasic/GentiumBasic.eot?#iefix') format('embedded-opentype'),  url('Fonts/GentiumBasic/GentiumBasic.woff') format('woff'), url('Fonts/GentiumBasic/GentiumBasic.ttf')  format('truetype'), url('Fonts/GentiumBasic/GentiumBasic.svg#GentiumBasic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'GentiumBasic-Bold';
-    src: url('Fonts/GentiumBasic-Bold/GentiumBasic-Bold.eot?#iefix') format('embedded-opentype'),  url('Fonts/GentiumBasic-Bold/GentiumBasic-Bold.woff') format('woff'), url('Fonts/GentiumBasic-Bold/GentiumBasic-Bold.ttf')  format('truetype'), url('Fonts/GentiumBasic-Bold/GentiumBasic-Bold.svg#GentiumBasic-Bold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'GentiumBasic-BoldItalic';
-    src: url('Fonts/GentiumBasic-BoldItalic/GentiumBasic-BoldItalic.eot?#iefix') format('embedded-opentype'),  url('Fonts/GentiumBasic-BoldItalic/GentiumBasic-BoldItalic.woff') format('woff'), url('Fonts/GentiumBasic-BoldItalic/GentiumBasic-BoldItalic.ttf')  format('truetype'), url('Fonts/GentiumBasic-BoldItalic/GentiumBasic-BoldItalic.svg#GentiumBasic-BoldItalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'GentiumBasic-Italic';
-    src: url('Fonts/GentiumBasic-Italic/GentiumBasic-Italic.eot?#iefix') format('embedded-opentype'),  url('Fonts/GentiumBasic-Italic/GentiumBasic-Italic.woff') format('woff'), url('Fonts/GentiumBasic-Italic/GentiumBasic-Italic.ttf')  format('truetype'), url('Fonts/GentiumBasic-Italic/GentiumBasic-Italic.svg#GentiumBasic-Italic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-*/
+@charset "UTF-8";
 @font-face {
     font-family: 'Fujama';
     src: url('Fonts/14-3961-fujiyama.ttf');
@@ -121,7 +6,33 @@
 .post-item h4{
 	font-family:Fujama;
 }
+
 /* here you can put your own css to customize and override the theme */
+/* ====== BEGIN LOGIN ============= */
+#loginModal{}
+#loginModal .modal-content, #registerModal .modal-content{
+    max-width: 400px;
+    margin: auto;
+    border: 5px solid #000;
+    webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    border: 5px solid rgba(0, 0, 0, 0.3);
+}
+#loginModal .modal-content .modal-header .close, #registerModal .modal-content .modal-header .close{
+    text-indent: 0;
+    opacity: inherit;
+    border: 1px solid #F37021;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    height: 24px;
+    text-align: center;
+    width: 24px;
+    color: #F37021;
+    background: none;
+}
+/* ===== END LOGIN ============ */
 .product-item h3 {
     height: 52px;
 }
@@ -130,15 +41,15 @@ h3.name-min-height{
     overflow: hidden;
 }
 .ajax-load-qa {
-		background: url("http://i.imgur.com/Tn4nzow.gif") no-repeat center center rgba(255,255,255,0.5);
-		position: fixed;
-		z-index: 1000000;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		display: none;
-        opacity: 0.3;
+		background: url("http://www.vedayroi.vn/img/loading2.gif") no-repeat center center rgb(0, 0, 0);
+        position: fixed;
+        opacity: 0.6;
+        z-index: 99999;
+        left: 0;
+        background-size: 100px 100px;
+        top: 0;
+        width: 100%;
+        height: 100%;
 }
 /* ====================== Style for blog ====================== */
 body{
@@ -801,7 +712,10 @@ a.fancybox-button:hover:after{
   margin: 0 auto;
   padding: 2px 3px;
 }
-
+.do-space{
+    text-align: center;
+    padding: 35px 0;
+}
 
 /** posts slider widget **/
 .show_more{
@@ -853,6 +767,12 @@ a.fancybox-button:hover:after{
 .syntaxhighlighter{
     border: solid 1px #ccc !important;
     padding: 10px 0 !important;
+}
+.carousel-inner{
+    max-height: 320px;
+}
+.site-logo img{
+    width: 128px;
 }
 @media (min-width: 1025px) {
     .header-navigation li.menu-search i{

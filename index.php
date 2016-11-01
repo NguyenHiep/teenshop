@@ -19,7 +19,7 @@ if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
 */
 ob_start(); // Start the output buffer
 date_default_timezone_set('Asia/Ho_Chi_Minh');
-require_once "config.php";
+require_once "libraries/config.php";
 require_once "libraries/class.php";
 require_once "libraries/functions.php";
 require_once "libraries/pagination.php";

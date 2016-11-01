@@ -1,3 +1,77 @@
+<!-- Modal -->
+    <div id="loginModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">x</button>
+            <h3 class="modal-title text-center">Thành viên đăng nhập</h3>
+            <div class="form-group text-center" id="msg_login"></div>
+          </div>
+          
+          <div class="modal-body">
+           <form  action="/login" method="POST" id="loginForm" onsubmit="return loginAction();">
+              
+              
+              <div class="form-group">
+                <label for="txtEmail">Email đăng nhập</label>
+                <input type="email" name="txtEmail" class="form-control" id="txtEmail"  placeholder="Nhập email" required="required"/>
+              </div>
+              <div class="form-group">
+                <label for="txtPassword">Mật khẩu:</label>
+                <input type="password" name="txtPassword" class="form-control" id="txtPassword" placeholder="Nhập password" required="required" />
+              </div>
+              <div class="checkbox" >
+                <label><input type="checkbox" name="ckhRemember" style="position: inherit;margin-left: 0;"/> Ghi nhớ</label>
+              </div>
+              <button type="submit" class="btn btn-primary more" name="btnLogin" id="btnLogin">Đăng nhập</button>
+            </form>
+          </div>
+       
+        </div>
+    
+      </div>
+    </div>
+<!-- End login -->
+
+<!-- Modal -->
+    <div id="registerModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">x</button>
+            <h3 class="modal-title text-center">Đăng ký thành viên</h3>
+          </div>
+          <div class="modal-body">
+           <form action="/register" method="POST">
+              <div class="form-group">
+                <label for="email">Email đăng nhập</label>
+                <input type="email" name="txtEmail" class="form-control" id="email"  placeholder="Nhập email" required="required"/>
+              </div>
+              <div class="form-group">
+                <label for="pwd">Mật khẩu:</label>
+                <input type="password" name="txtPassword" class="form-control" id="pwd" placeholder="Nhập mật khẩu" required="required" />
+              </div>
+              <div class="form-group">
+                <label for="pwd">Nhập lại khẩu:</label>
+                <input type="password" name="txtRepassword" class="form-control" id="repwd" placeholder="Nhập lại mật khẩu" required="required" />
+              </div>
+              <div class="checkbox" >
+                <label>Mã bảo vệ</label>
+                 <input type="text" name="txtCapcha" class="form-control" id="capcha" placeholder="Nhập mã bảo vệ" required="required" />
+              </div>
+              <button type="submit" class="btn btn-primary more" name="btnRegister">Đăng ký</button>
+            </form>
+          </div>
+       
+        </div>
+    
+      </div>
+    </div>
+<!-- End register -->
+    
+ 
  <footer>
 <!-- BEGIN PRE-FOOTER -->
     <div class="pre-footer">
@@ -13,7 +87,9 @@
                 Bạn không được tự ý copy và phát hành lại nội dung của Giadinhit nếu chưa được sự đồng ý của tôi.
             </p>
             <p>
-            <a href="http://www.dmca.com/Protection/Status.aspx?ID=f0b378a8-619f-4249-b4a2-22abb5b5b621" title="DMCA.com Protection Status" class="dmca-badge"> <img src="//images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=f0b378a8-619f-4249-b4a2-22abb5b5b621" alt="DMCA.com Protection Status"></a>  <script src="https://webcdn.streamtest.net/streamtest.js" type="text/javascript"></script> 
+            <a target="_blank" rel="nofollow" href="http://www.dmca.com/Protection/Status.aspx?ID=f0b378a8-619f-4249-b4a2-22abb5b5b621" title="DMCA.com Protection Status" class="dmca-badge"> <img src="//images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=f0b378a8-619f-4249-b4a2-22abb5b5b621" alt="DMCA.com Protection Status"></a>  
+          
+            <script src='//images.dmca.com/Badges/DMCABadgeHelper.min.js' type='text/javascript'></script>
             </p>
             
           </div>
@@ -26,7 +102,11 @@
               <?php
                 //echo $_SERVER['REMOTE_ADDR'];
               ?>
-             Cập nhật sau           
+               <ul class="list-unstyled">
+    				<li><a href="<?php echo BASE_URL.'lien-he.html'; ?>">Liên hệ </a></li>
+    				<li><a href="<?php echo BASE_URL.'huong-dan.html'; ?>">Điều khoản </a></li>
+    				<li><a href="mailto:giadinhit.com@gmail.com">giadinhit.com@gmail.com</a> </li>
+                </ul>          
             </div>
           </div>
           <!-- END BOTTOM CONTACTS -->
@@ -97,11 +177,15 @@
         <!--[if lt IE 9]>
         <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/respond.min.js"></script>
         <![endif]-->
-        <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+         <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
         <script src="<?php echo TEMPLATE_FRONTEND;?>js/giadinhmain.js" type="text/javascript"></script>
-        
+       
         <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
         <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+         <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/social/jssocials.min.js" type="text/javascript"></script>
+        
+        
+        <!-- END RevolutionSlider -->
          <script src="<?php echo TEMPLATE_FRONTEND;?>js/giadinhit.js" type="text/javascript"></script>
          <script type="text/javascript">
             var base_url_syntax = '<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/';
@@ -141,36 +225,53 @@
             jQuery(document).ready(function() {
                 Layout.init();
                 Layout.initTwitter();
-                ContactUs.init();
+                var map = $("#map").val();
+                if(typeof map != "undefined"){
+                    ContactUs.init();
+                }
+                
                 $('#most-view-blog').slimScroll({
-                    height: '250px',
+                    height: '520px',
                     color: 'rgb(85, 85, 85)',
                     alwaysVisible: true
                 });
-                });
-           
-              jssor_1_slider_init();
-        </script>
-        <script>
-            $(document).ready(function(){
-            	$(document).on('click','.show_more',function(){
+                
+                $(document).on('click','.show_more',function(){
             		var ID = $(this).attr('id');
             		$('.show_more').hide();
             		$('.loding').show();
-            		$.ajax({
-            			type:'POST',
-            			url:'ajax/more',
-            			data:'id='+ID,
-            			success:function(html){
-            				$('#show_more_main'+ID).remove();
-            				$('.blog-list').append(html);
-            			}
-            		});
-            		
+                    //Get all list blog
+            	   loadMoreBlog(ID);
             	});
+                
+             });
+             
+            //Display message list 
+            console.log("%c%s","color: red; background: yellow; font-size: 24px;","Khu vực này cấm mở lên và debug!!");
+            console.log("%c%s","color: black; font-size: 18px;","Đây là một tính năng của trình duyệt dành cho các nhà phát triển. Nếu ai đó bảo bạn sao chép-dán nội dung nào đó vào đây để bật một tính năng của GiadinhIT hoặc 'hack' tài khoản của người khác, thì đó là hành vi lừa đảo và sẽ khiến họ có thể truy cập vào tài khoản Giadinhit của bạn..\n");
+            var url = "http://giadinhit.com/on-tap/typography/lorem-ipsum-khong-phai-chi-la-mot-doan-van-ban-ngau-nhien-48.html";
+            var text = "131314trích từ một đoạn của Lorem Ipsum, và đã ";
+
+           /* $("#share-post-social").jsSocials({
+                url: url,
+                text: text,
+                showLabel: false,
+                showCount: "inside",
+                shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp", "telegram"]
             });
+            */
+            $('img').each(function(){
+                var $img = $(this);
+                var $alt = $(this).attr('alt');
+                var $title = $(this).attr('title');
+                var filename = $img.attr('src');
+                if($title === undefined || $title == null || $title.length <= 0)
+                $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
+                if($alt === undefined || $alt == null || $alt.length <= 0)
+                $img.attr('alt', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
+            }); 
         </script>
-        
+     
         <!-- END PAGE LEVEL JAVASCRIPTS -->
     </footer>
 </body>

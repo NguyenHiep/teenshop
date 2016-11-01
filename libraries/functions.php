@@ -77,57 +77,107 @@ function recursiveMenu($data, $parent = 0, $text="", $select = 0){
         
     }
 }
-function MenuTop($data){
+function MenuTop(){
     $mcateblog = new Model_CateBlog();
+    $data = $mcateblog->listCategory();
     $html = '';
-    foreach($data as $level1){
-     
-        if($level1['parentid'] == 0){
-        //Neu so phan tu con cap 1 lon hon 0 thi thuc hien
-         $count = $mcateblog->countLevelSub($level1['cat_id']);
-            if($count['number'] > 0){
-                $html .= '<li class="dropdown">';
+    $html .= '<ul>';
+    if($data >0){
+        foreach($data as $level1){
+         
+            if($level1['parentid'] == 0){
+            //Neu so phan tu con cap 1 lon hon 0 thi thuc hien
+             $count = $mcateblog->countLevelSub($level1['cat_id']);
+                if($count['number'] > 0){
+                    $html .= '<li class="dropdown">';
+                    
+                    $html .= '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="/on-tap/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html">'.$level1['cat_name'].'</a>';  
+                        $html .='<ul class="dropdown-menu">';
+                            foreach($data as $level2){
+                                    if($level2['parentid'] == $level1['cat_id']){
+                                        $count2 = $mcateblog->countLevelSub($level2['cat_id']);
+                                            if($count2['number'] > 0){
+                                                 $html .= '<li class="dropdown-submenu">';
+                                                 $html .= '<a href="/on-tap/'.trim($level2['slug']).'-'.$level2['cat_id'].'.html">'.$level2['cat_name'].' <i class="fa fa-angle-right"></i></a>';
+                                                    $html .= '<ul class="dropdown-menu">';
+                                                        foreach($data as $level3){
+                											if($level3['parentid'] == $level2['cat_id']){
+                												$html .='<li><a href="/on-tap/'.trim($level3['slug']).'-'.$level3['cat_id'].'.html">'.$level3['cat_name'].'</a></li>';
+                											}
+                										}
+                                                    $html .= '</ul>'; //End ul cap 3
+                                                $html .= '</li>';
+                                            }else{
+                                                $html .= '<li><a href="/on-tap/'.trim($level2['slug']).'-'.$level2['cat_id'].'.html">'.$level2['cat_name'].'</a></li>';
+                                            }
+                                    } //End if($level2)
+                            } //End loop level 2
+                        $html .= '</ul>'; //End ul cap 2
+                    $html .= '</li>';
+                }else{
+                    switch($level1['slug']){
+                        case 'lien-he':
+                            $html .= '<li><a href="lien-he.html">'.$level1['cat_name'].'</a></li>';
+                        break;
+                        case 'huong-dan':
+                            $html .= '<li><a href="huong-dan.html">'.$level1['cat_name'].'</a></li>';
+                        break;
+                        default:   $html .= '<li><a href="/on-tap/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html">'.$level1['cat_name'].'</a></li>';
+              
+                    }
+              }
                 
-                $html .= '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="/on-tap/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html">'.$level1['cat_name'].'</a>';  
-                    $html .='<ul class="dropdown-menu">';
-                        foreach($data as $level2){
-                                if($level2['parentid'] == $level1['cat_id']){
-                                    $count2 = $mcateblog->countLevelSub($level2['cat_id']);
-                                        if($count2['number'] > 0){
-                                             $html .= '<li class="dropdown-submenu">';
-                                             $html .= '<a href="/on-tap/'.trim($level2['slug']).'-'.$level2['cat_id'].'.html">'.$level2['cat_name'].' <i class="fa fa-angle-right"></i></a>';
-                                                $html .= '<ul class="dropdown-menu">';
-                                                    foreach($data as $level3){
-            											if($level3['parentid'] == $level2['cat_id']){
-            												$html .='<li><a href="/on-tap/'.trim($level3['slug']).'-'.$level3['cat_id'].'.html">'.$level3['cat_name'].'</a></li>';
-            											}
-            										}
-                                                $html .= '</ul>'; //End ul cap 3
-                                            $html .= '</li>';
-                                        }else{
-                                            $html .= '<li><a href="/on-tap/'.trim($level2['slug']).'-'.$level2['cat_id'].'.html">'.$level2['cat_name'].'</a></li>';
-                                        }
-                                } //End if($level2)
-                        } //End loop level 2
-                    $html .= '</ul>'; //End ul cap 2
-                $html .= '</li>';
-            }else{
-                switch($level1['slug']){
-                    case 'lien-he':
-                        $html .= '<li><a href="lien-he.html">'.$level1['cat_name'].'</a></li>';
-                    break;
-                    case 'huong-dan':
-                        $html .= '<li><a href="huong-dan.html">'.$level1['cat_name'].'</a></li>';
-                    break;
-                    default:   $html .= '<li><a href="/on-tap/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html">'.$level1['cat_name'].'</a></li>';
-          
-                }
-                }
-            
-        }    
+            }    
+        } //End foreach;
     }
+    //Search
+    $html.= '<!-- BEGIN TOP SEARCH -->
+            <li class="menu-search">
+              <span class="sep"></span>
+              <i class="fa fa-search search-btn"></i>
+              <div class="search-box">
+                <form action="/search" method="get">
+                  <div class="input-group">
+                    <input type="text" name="q" placeholder="Từ khóa tìm kiếm" class="form-control" />
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                    </span>
+                  </div>
+                </form>
+              </div> 
+            </li>
+            <!-- END TOP SEARCH -->';
+    $html .= '</ul>';
     return $html;
 }
+function MenuTopNew(){
+     $mcateblog = new Model_CateBlog();
+    $data = $mcateblog->listCategory();
+    $html = '';
+    $html .= '<ul>';
+    if($data >0){
+        foreach($data as $level1){
+         
+            if($level1['parentid'] == 0){
+            //Neu so phan tu con cap 1 lon hon 0 thi thuc hien
+             $count = $mcateblog->countLevelSub($level1['cat_id']);
+                switch($level1['slug']){
+                    case 'lien-he':
+                        $html .= '<li><a href="lien-he.html" title="'.$level1['cat_name'].'">'.$level1['cat_name'].'</a></li>';
+                    break;
+                    case 'huong-dan':
+                        $html .= '<li><a href="huong-dan.html" title="'.$level1['cat_name'].'">'.$level1['cat_name'].'</a></li>';
+                    break;
+                    default:   $html .= '<li><a href="/on-tap/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html" title="'.$level1['cat_name'].'">'.$level1['cat_name'].'</a></li>';            
+                }
+                
+            }    
+        } //End foreach;
+    }
+    $html .= '</ul>';
+    return $html;
+}
+
 //De quy menu frontend
 /*
 function recursiveMenuTop($array, $parent){
@@ -345,20 +395,403 @@ function page_navigation($start, $limit,$total_recode,$link){
     }
     
 }
-    function wordLimiter($text,$limit=100,$dots=''){
-    			$explode=array();
-    		    $explode = explode(' ',$text);
-    		    $string  = '';
-    		    $forcount=$limit;
-    		    if($limit>=count($explode)){
-    		    	$forcount=count($explode);
-    		    }
-    		    if(count($explode) <= $limit){
-    		        $dots = '';
-    		    }
-    		    for($i=0;$i<$forcount;$i++){ 
-    		        $string .= $explode[$i]." ";
-    		    }
-    		        
-    		    return $string.$dots;
+function wordLimiter($text,$limit=100,$dots=''){
+		$explode=array();
+	    $explode = explode(' ',$text);
+	    $string  = '';
+	    $forcount=$limit;
+	    if($limit>=count($explode)){
+	    	$forcount=count($explode);
+	    }
+	    if(count($explode) <= $limit){
+	        $dots = '';
+	    }
+	    for($i=0;$i<$forcount;$i++){ 
+	        $string .= $explode[$i]." ";
+	    }
+	        
+	    return $string.$dots;
+}
+
+function getBlogMostView(){
+        $html ='';
+        $mblog = new Model_Blog();
+        $listMostView = $mblog->listMostView();
+        $stt = 0;
+        $html .='<h2 class="title-comment">
+                <span class="fa fa-eye"></span>Bài viết xem nhiều</h2>
+                <div id="most-view-blog">
+                ';
+        if($mblog->num_rows($listMostView) > 0)                
+            foreach($listMostView as $list):
+            $stt++;
+                 $html .='
+                    <article>
+                     <div class="recent-news margin-bottom-10">
+                        <div class="row margin-bottom-10">
+                          <!--<div class="col-md-2">
+                            <span class="display:block; background: #FFF; color: red !important;"><?php echo $stt; ?> </span>
+                          </div>
+                          -->
+                          <div class="col-md-12 recent-news-inner">
+                                <h3><a href="'.BASE_URL.'on-tap/'.trim($list['slugcate']).'/'.trim($list['slug']).'-'.$list['blog_id'].'.html">'.$list['blog_name'].'</a></h3>
+                                <div class="item-description">
+                                '.wordLimiter($list['short_content'], 15, '...').'
+                                <i class="fa fa-eye"></i>'.$list['view_post'].'views
+                            </div>
+                          </div>                        
+                        </div>
+                      </div>
+                     </article>
+                     <div class="clearfix"></div>
+                 ';   
+            endforeach;
+        else
+            $html .= 'Chưa có bài viết';
+                    
+         $html .= '</div>';
+        return $html;
+              
+}
+function getProfileHomePage(){
+    $html ='';
+    $html.='<div class="block block-profile">
+                        <div class="profile-sidebar">
+                            <div class="profile_cover">
+                                <h3 class="text-center">Passionate Blogger</h3>
+                                <div class="profile_avatar">
+                                    <img src="'.TEMPLATE_FRONTEND.'img/avatar-user.jpg" alt="avatar" title="avatart" class="img-circle img-responsive center-block" />
+                                </div>
+                            </div>
+                            <div class="block-content">
+                                <div class="profile-title">
+                                    <h3 class="text-center"><a href="#">Mika joines</a> </h3>
+                                </div>
+                                <div class="profile_description text-center">
+                                    Hi, i’m Virgi. Web Designer, Developer since 2009, based in Jakarta, Indonesia. I work at ID-Webmaster as a Web Developer and also Founder of ID-Webmaster.
+                                </div>
+                            </div>
+                        </div>   
+                
+                  </div>';
+    return $html;
+}
+function getPostTab(){
+    $html ='';
+    $html .= '<div class="block block-post-sidebar">
+                      <div class="post-tabs-title">
+                          <ul class="nav nav-tabs tabs posts-taps">
+                            <li class="tabs active"><a data-toggle="tab" href="#popular-post">Popular post</a></li>
+                            <li class="tabs"><a href="#latest-post">Latest post</a></li>
+                          </ul>
+                      </div>
+                      <div class="block-content tab-content">
+                        <div id="popular-post" class="tabs-wrap tab-pane fade in active">
+                            <ul class="list-unstyled">
+                                <li class="post-item">
+                                    <div class="post-thumbnail">
+                                        <a href="#" title="item">
+                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
+                                        </a>
+                                    </div>
+                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
+                                    <p class="post-date">21 DECEMBER 2015</p>
+                                    <div class="post-item-shortdescription">
+                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
+                                    </div>
+
+                                </li>
+                                <li class="post-item">
+                                    <div class="post-thumbnail">
+                                        <a href="#" title="item">
+                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
+                                        </a>
+                                    </div>
+                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
+                                    <p class="post-date">21 DECEMBER 2015</p>
+                                    <div class="post-item-shortdescription">
+                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
+                                    </div>
+
+                                </li>
+                                <li class="post-item">
+                                    <div class="post-thumbnail">
+                                        <a href="#" title="item">
+                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
+                                        </a>
+                                    </div>
+                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
+                                    <p class="post-date">21 DECEMBER 2015</p>
+                                    <div class="post-item-shortdescription">
+                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="latest-post" class="tabs-wrap tab-pane fade">
+                            <ul  class="list-unstyled">
+                                <li class="post-item">
+                                    <div class="post-thumbnail">
+                                        <a href="#" title="item">
+                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
+                                        </a>
+                                    </div>
+                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
+                                    <p class="post-date">21 DECEMBER 2015</p>
+                                    <div class="post-item-shortdescription">
+                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
+                                    </div>
+
+                                </li>
+                                <li class="post-item">
+                                    <div class="post-thumbnail">
+                                        <a href="#" title="item">
+                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
+                                        </a>
+                                    </div>
+                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
+                                    <p class="post-date">21 DECEMBER 2015</p>
+                                    <div class="post-item-shortdescription">
+                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
+                                    </div>
+
+                                </li>
+                                <li class="post-item">
+                                    <div class="post-thumbnail">
+                                        <a href="#" title="item">
+                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
+                                        </a>
+                                    </div>
+                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
+                                    <p class="post-date">21 DECEMBER 2015</p>
+                                    <div class="post-item-shortdescription">
+                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                      </div> 
+                  </div>';
+    return $html;
+}
+function getFllowsocial(){
+    $html = '';
+    $html .='<div class="block block-followme">
+                        <div class="followme-title">
+                            <h2 class="title-block">Follow me</h2>
+                        </div>
+                        <div class="block-content">
+                          <div class="follow-link">
+                              <ul class="list-unstyled">
+                                <li><a href="#" class="follow-facebook"><span><i class="fa fa-facebook"></i></span></a> 1000 Followers</li>
+                                <li><a href="#" class="follow-twitter"><span><i class="fa fa-twitter"></i></span></a>  1400 Followers</li>
+                                <li><a href="#" class="follow-google-plus"><span><i class="fa fa-google-plus"></i></span></a>  4356 Followers</li>
+                                <li><a href="#" class="follow-youtube"><span><i class="fa fa-youtube"></i></span></a>1234 Followers</li>
+                              </ul>
+                          </div>
+                        </div>
+                  </div>';
+    return $html;
+}
+function getTotalBlogByCate(){
+   $htmlcate = '';
+   $htmlcate .='<div class="block block-categories">
+                <div class="category-title">
+                    <h2 class="title-block">Categories</h2>
+                </div>
+                <div class="block-content">
+                  <div class="list-categories">';
+                          
+                   $htmlcate .='<ul class="list-unstyled">';
+                
+                            $mcate = new Model_CateBlog();
+                            $listCate = $mcate->listCategory();
+                           
+                            foreach($listCate as $list):
+                            $htmlcate.= '<li';
+                            if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid'] >0 && $_GET['catid'] == $list['cat_id']){
+                                $htmlcate.= " class='active'";
+                            }
+                            //index.php?controller=cateblog&action=list&catid='.$list['cat_id'].'&slug='.trim($list['slug'])'; 
+                            $htmlcate.= '><span><i class="fa fa-long-arrow-right"></i></span><a href="'.BASE_URL.'on-tap/'.trim($list['slug']).'-'.$list['cat_id'].'.html'.'"> '.$list['cat_name'].'</a><span class="pull-right">'.$list['sumblog'].'</span></li>';
+                           //$htmlcate.= '><a href="'.BASE_URL.'on-tap/'.trim($list['slug']).'-'.$list['cat_id'].'.html'.'"> '.$list['cat_name'].' ('.$list['sumblog'].')</a></li>';
+                            endforeach;
+                            $htmlcate;
+                            //on-thi-dai-hoc/mon-hoc/(.*)-([0-9]+).html
+                    $htmlcate .='</ul>';
+        $htmlcate .= ' </div>
+                </div>
+                      
+            </div>';
+   return $htmlcate;
+}
+
+function getPostSlider(){
+    $html = '';
+    $html .= ' <div class="block block-post-slider">
+                      <div class="block-content">';
+                $html .='<div id="myCarouselBlog" class="carousel slide" data-ride="carousel">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src="'.TEMPLATE_FRONTEND.'img/right-item02.jpg" class="img-responsive center-block" alt="Chania" title="Chania" />
+                                        <div class="carousel-caption">
+                                            <h3>Chania The atmosphere in Chania has a touch of Florence and</h3>
+                                        </div>
+                                    </div>   
+                                    <div class="item">
+                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item02.jpg" class="img-responsive center-block" alt="Chania" title="Chania" />
+                                            <div class="carousel-caption">
+                                                <h3>Chania The atmosphere in Chania has a touch of Florence and</h3>
+                                            </div>
+                                        </div>   
+                                    </div>
+    
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarouselBlog" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarouselBlog" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                           </div>';
+            $html .= '</div>
+                </div>'; //End block
+    return $html;
+}
+function getPostVideo(){
+    $html = '';
+    $html .=' <div class="block block-post-video">
+                      <div class="block-content">
+                        <div class="post-video">
+                            <!-- <img src="img/right-item03.jpg" alt="post video" title="post video" class="img-responsive" /> -->
+                            <iframe src="https://www.youtube.com/embed/cp1lRkqRSps?theme=light&autoplay=0&vq=hd720&wmode=opaque&rel=0&showinfo=0&modestbranding=1&version=3&ps=docs&nologo=0&color=white&iv_load_policy=3&cc_load_policy=1&widgetid=1" allowfullscreen="" ></iframe>
+                        </div>
+                      </div>
+                  </div>';
+    return $html;
+}
+function getFlickrPhoto(){
+    $html ='';
+    $html .=' <div class="block block-flickr">
+                        <div class="flickr-title">
+                            <h2 class="title-block">Flickr photo</h2>
+                        </div>
+                        <div class="block-content">
+                          <div class="list-flickr-photo">
+                            <ul class="list-inline">';
+                            
+                                $listdata = file_get_contents('https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=4029355a45f89590765e62223f94c7c1&user_id=139876265%40N08&format=json&nojsoncallback=1&auth_token=72157672292305234-5893414693d06b41&api_sig=9039f230b239a7e46a94af6f192a8b41');
+                                $data = json_decode($listdata);
+                                
+                          
+                            
+                              /*<li><a href="#"><img src="img/flick_01.jpg" alt="flick photo"  title="flick photo"></a></li>
+                              <li><a href="#"><img src="img/flick_02.jpg" alt="flick photo"  title="flick photo"></a></li>
+                              <li><a href="#"><img src="img/flick_03.jpg" alt="flick photo"  title="flick photo"></a></li>
+                              <li><a href="#"><img src="img/flick_04.jpg" alt="flick photo"  title="flick photo"></a></li>
+                              <li><a href="#"><img src="img/flick_05.jpg" alt="flick photo"  title="flick photo"></a></li>
+                              <li><a href="#"><img src="img/flick_06.jpg" alt="flick photo"  title="flick photo"></a></li>
+                              <li><a href="#"><img src="img/flick_07.jpg" alt="flick photo"  title="flick photo"></a></li>
+                              <li><a href="#"><img src="img/flick_08.jpg" alt="flick photo"  title="flick photo"></a></li>
+                            */
+                           
+                    $html .= '</ul>
+                          </div>
+                         <div class="clearfix"></div>
+                        </div>
+                  </div>';
+    return $html;
+}
+function getNewletter(){
+    $html = '';
+    $html .=' <div class="block block-newsletter">
+                      <div class="newsletter-title">
+                          <h2 class="text-center"> Subscribe now </h2>
+                      </div>
+                      <div class="block-content">
+                        <p>It is a long established fact that a reader will be distracted by the readable</p>
+                        <form action="#" method="POST">
+                          <div class="form-group">
+                            <input type="email" placeholder="youremail@mail.com" class="form-control" required="required">
+                          </div>
+                          <div class="form-action text-center">
+                                <button class="btn btn-success text-uppercase" type="submit">Subscribe now</button>
+                          </div>
+                        </form>
+                      </div>
+                  </div>';
+    return $html;
+}
+function getAllTag(){
+    $html ='';
+    /*
+        $mblog = new Model_Blog();
+        $listMostView = $mblog->listMostView();
+        $stt = 0;
+        $html .='<h2 class="title-comment">
+                    <span class="fa fa-list"></span>Tags</h2>
+                <div id="tag-post">
+                ';
+        if($mblog->num_rows($listMostView) > 0)                
+            foreach($listMostView as $list):
+            $stt++;
+                 $html .='
+                    <article>
+                     <div class="recent-news margin-bottom-10">
+                        <div class="row margin-bottom-10">
+                          <!--<div class="col-md-2">
+                            <span class="display:block; background: #FFF; color: red !important;"><?php echo $stt; ?> </span>
+                          </div>
+                          -->
+                          <div class="col-md-12 recent-news-inner">
+                                <h3><a href="'.BASE_URL.'on-tap/'.trim($list['slugcate']).'/'.trim($list['slug']).'-'.$list['blog_id'].'.html">'.$list['blog_name'].'</a></h3>
+                                <div class="item-description">
+                                '.wordLimiter($list['short_content'], 15, '...').'
+                                <i class="fa fa-eye"></i>'.$list['view_post'].'views
+                            </div>
+                          </div>                        
+                        </div>
+                      </div>
+                     </article>
+                     <div class="clearfix"></div>
+                 ';   
+            endforeach;
+        else
+            $html .= 'Chưa có bài viết';
+                    
+         $html .= '</div>';
+         */
+        return $html;
+}
+
+function getAdsSidbar(){
+    $html ='';
+    $html .='<h2 class="no-top-space title-comment"><span class="fa fa-th-list"></span>Quảng cáo</h2>   
+                <div class="do-space">
+					<a href="javascript:void(0)" target="_blank">
+                    <img src="'.TEMPLATE_FRONTEND.'images/300x250.jpg" alt="" />
+                    </a>
+				</div>';
+    return $html;
+}
+
+function createLinkPost($blog_id){
+    $nextHtml   = ''; $preHtml = '';
+    $mblog      = new Model_Blog();
+    $next       = $mblog->getNextPostId($blog_id);
+        
+    $pre        = $mblog->getPrePostId($blog_id);
+    if($next != false){
+        $nextHtml   = '<a href="'.BASE_URL.'on-tap/'.trim($next['slugcate']).'/'.trim($next['slug']).'-'.$next['blog_id'].'.html" class="btn btn-primary pull-right">Bài viết tiếp theo</a>';
     }
+    if($pre != false){
+        $preHtml    = '<a href="'.BASE_URL.'on-tap/'.trim($pre['slugcate']).'/'.trim($pre['slug']).'-'.$pre['blog_id'].'.html" class="btn btn-primary">Bài viết cũ hơn</a>';
+    }
+
+    return $preHtml.$nextHtml;
+}

@@ -18,7 +18,7 @@ RewriteRule logout index.php?controller=user&action=logout [L]
 RewriteRule register index.php?controller=user&action=register [L]
 RewriteRule ^user/profile/([0-9]+)/$ index.php?controller=user&action=profile&uid=$1 [L]
 #Search blog
-RewriteRule search search.php [L]
+RewriteRule search  index.php?controller=search&%{QUERY_STRING} [NC,L]
 RewriteRule ajax/product-detail index.php?controller=ajax&action=productdetail [L]
 RewriteRule ajax/product-detail index.php?controller=ajax&action=review [L]
 RewriteRule ajax/more index.php?controller=ajax&action=blog [L]
@@ -37,7 +37,7 @@ RewriteRule ^chuyen-muc/([0-9]+)/(.*).html$ index.php?controller=product&action=
 #blog
 RewriteRule ^on-tap/(.*)/(.*)-([0-9]+).html$ index.php?controller=blog&action=detail&cate=$1&pid=$3&slug=$2 [L]
 #cate blog
-RewriteRule ^on-tap/(.*)-([0-9]+).html$ index.php?controller=cateblog&action=list&catid=$2&slug=$1 [L]
+RewriteRule ^(.*)-([0-9]+).html$ index.php?controller=cateblog&action=list&catid=$2&slug=$1 [L]
 #pagination category
 RewriteRule ^on-tap/(.*)-([0-9]+)/page=([0-9]+)$ index.php?page=$3&controller=cateblog&action=list&catid=$2&slug=$1 [L]
 

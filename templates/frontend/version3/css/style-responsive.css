@@ -1,0 +1,105 @@
+/* BEGIN max width 1200px */
+@media (max-width: 1200px) {
+	
+}
+/* END max width 1200px */
+
+/* BEGIN min width 1025px */
+@media (min-width: 1025px) {
+	nav#cssmenu{
+		margin: 0 auto;
+		width: 960px;
+	}
+	#cssmenu > ul > li.has-sub > a:before{
+		top: 32px;
+    	right: 14px;
+	}
+	#cssmenu > ul > li.has-sub > a:after{
+		    top: 35px;
+   		 right: 11px;
+	}
+	.blog-item-special .post-content .post-content-info {
+    	padding: 40px 30px;
+	}
+}
+/* END min width 1025px */
+
+/* BEGIN min width 1025px max width 1205 */
+@media (min-width: 1025px) and (max-width: 1205px) {
+	
+}
+/* END min width 1025px max width 1205 */
+
+/* BEGIN max width 1024px */
+@media (max-width: 1024px) {
+	
+	
+}
+/* END max width 1024px */
+
+/* BEGIN max width 992px */	
+@media (max-width: 992px) {
+	#cssmenu > ul > li > a{
+		padding-top:17px;
+		padding-bottom: 17px;
+	}
+	.preheader #logo{
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+	/*
+	if you want to hide buttons on mobile view, uncomment this block
+	.pi-img-wrapper div {
+		display: none !important;
+	}*/
+	
+}
+/* END max width 992px */
+
+/* BEGIN max width 767px */
+@media (max-width: 767px) {
+	
+}
+/* END max width 767px */
+
+/* BEGIN max width 600px */
+@media (max-width: 600px) {
+
+}
+/* END max width 600px */
+
+/* BEGIN max width 480px */
+@media (max-width: 480px) {
+	
+}
+/* END max width 480px */
+
+/* BEGIN max width 450px */
+@media (max-width: 450px) {
+
+}
+/* END max width 450px */
+
+/* BEGIN max width 405px */
+@media (max-width: 405px) {
+	
+}
+/* END max width 405px */
+
+/* BEGIN max width 390px */
+@media (max-width: 390px) {
+	
+}
+/* END max width 390px */
+
+/* BEGIN max width 330px */
+@media (max-width: 330px) {
+	
+}
+/* END max width 330px */
+
+/* BEGIN max width 320px */
+@media (max-width: 320px) {
+
+}
+/* END max width 320px */

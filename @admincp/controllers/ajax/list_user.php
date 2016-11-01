@@ -15,44 +15,44 @@
     
 ?>
 	<thead>
-								<tr>
-								   <th><input class="check-all" type="checkbox" /></th>
-                                   <th>Chức vụ</th>
-								   <th>Họ và tên</th>
-								   <th>Email</th>
-								  <!-- <th>Địa chỉ</th> -->
-								   <th>Số điện thoại</th>
-								   <th>Tác vụ</th>
-								</tr>
-								
-							</thead>
-						 
-							<tfoot>
-								<tr>
-									<td colspan="6">
-										<div class="bulk-actions align-left">
-											<select name="dropdown">
-												<option value="option1">Choose an action...</option>
-												<option value="option2">Edit</option>
-												<option value="option3">Delete</option>
-											</select>
-											<a class="button" href="#">Apply to selected</a>
-										</div>
-										
-										<div class="pagination">
-                                        <?php
-                                            if($muser->num_rows()>0){
-                                                page_navigation($start,$limit,$total_recore,$link);
-                                            }
-                                        ?>
-                                    
-                                        </div> <!-- End .pagination -->
-										<div class="clear"></div>
-									</td>
-								</tr>
-							</tfoot>
-						 
-							<tbody>
+		<tr>
+		   <th><input class="check-all" type="checkbox" /></th>
+           <th>Chức vụ</th>
+		   <th>Họ và tên</th>
+		   <th>Email</th>
+		  <!-- <th>Địa chỉ</th> -->
+		   <th>Số điện thoại</th>
+		   <th>Tác vụ</th>
+		</tr>
+		
+	</thead>
+ 
+	<tfoot>
+		<tr>
+			<td colspan="6">
+				<div class="bulk-actions align-left">
+					<select name="dropdown">
+						<option value="option1">Choose an action...</option>
+						<option value="option2">Edit</option>
+						<option value="option3">Delete</option>
+					</select>
+					<a class="button" href="#">Apply to selected</a>
+				</div>
+				
+				<div class="pagination">
+                <?php
+                    if($muser->num_rows()>0){
+                        page_navigation($start,$limit,$total_recore,$link);
+                    }
+                ?>
+            
+                </div> <!-- End .pagination -->
+				<div class="clear"></div>
+			</td>
+		</tr>
+	</tfoot>
+ 
+	<tbody>
                             
 <?php
     if($muser->num_rows() > 0):
