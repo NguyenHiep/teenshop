@@ -1,5 +1,7 @@
+  <?php
+    require "templates/frontend/version3/blog-header.php";
+ ?>
  <?php
-    require "templates/frontend/version1/blog-header.php";
     $name = md5(md5("Blogdetail"));
     $xml = simplexml_load_file("cached/$name.xhtml");
     $data = $xml->news;
@@ -8,22 +10,17 @@
 
  <div class="main">
       <div class="container">
-        <ul class="breadcrumb">
-            <li><a href="<?php echo BASE_URL;?>">Home</a></li>
-            <li><a href="<?php echo BASE_URL.'on-tap/'.trim($data->slugcate).'-'.$data->cateid.'.html';?>"><?php echo $data->catename;?></a></li>
-            <li class="active"><?php echo $data->title; ?></li>
-        </ul>
-        <!-- BEGIN SIDEBAR & CONTENT -->
-        <div class="row margin-bottom-40">
-          <!-- BEGIN CONTENT -->
-          <div class="col-md-12 col-sm-12">
-           
-            <div class="content-page">
-              <div class="row">
-              
-                <!-- BEGIN LEFT SIDEBAR -->            
-                <div class="col-md-9 blog-item">
-                    <div class="row">
+          <div class="row">
+            <!-- BEGIN CONTENT -->
+              <div class="content col-md-8">
+                <div class="row">
+                    <ul class="breadcrumb">
+                        <li><a href="<?php echo BASE_URL;?>">Home</a></li>
+                        <li><a href="<?php echo BASE_URL.'danh-muc/'.trim($data->slugcate).'.html';?>"><?php echo $data->catename;?></a></li>
+                        <li class="active"><?php echo $data->title; ?></li>
+                    </ul>
+                 </div>
+                 <div class="row">
                      <?php
                             if(trim($data->image) != "none"){
                         ?>
@@ -91,7 +88,7 @@
                                     <?php
                                         foreach($relapost as $post):
                                     ?>
-                                        <li><a href="<?php echo BASE_URL.'on-tap/'.trim($post['slugcate']).'/'.trim($post['slug']).'-'.$post['blog_id'].'.html'; ?>"><?php echo $post['blog_name'];?></a></li>
+                                        <li><a href="<?php echo BASE_URL.'danh-muc/'.trim($post['slugcate']).'/'.trim($post['slug']).'-'.$post['blog_id'].'.html'; ?>"><?php echo $post['blog_name'];?></a></li>
                      
                                     <?php
                                         endforeach;
@@ -185,7 +182,7 @@
                         <div class="col-md-12">
                             <div class="post-comment padding-top-40">
                                 
-                                <form action="<?php ?>" method="POST">
+                                <form action="#" method="POST" name="frmComment">
                                   <div class="form-group">
                                     <label>Họ và tên <span class="color-red">*</span></label>
                                     <input class="form-control" type="text" name="author" required="required"/>
@@ -198,30 +195,26 @@
             
                                   <div class="form-group">
                                     <label>Nội dung bình luận <span class="color-red">*</span></label>
-                                    <textarea minlength="30"  maxlength="1000"class="form-control" rows="8" name="comment" required="required"></textarea>
+                                    <textarea minlength="30"  maxlength="1000" class="form-control" rows="8" name="comment" required="required"></textarea>
                                   </div>
                                   <p><button class="btn btn-primary pull-right" type="submit">Bình luận</button></p>
                                 </form>
                           </div>
                           </div>             
+                    </div>
                 </div>
-                       
-                    
-                </div>
-               
-                <!-- END LEFT SIDEBAR -->
-
+                <!-- END CONTENT -->
                 <?php
-                    require "templates/frontend/version1/blog-sidebar.php";
-                    ?>
-              </div>
-            </div>
+                     require "templates/frontend/version3/blog-sidebar.php";
+                ?>
+          
           </div>
-          <!-- END CONTENT -->
-        </div>
-        <!-- END SIDEBAR & CONTENT -->
       </div>
-    </div>
+      
+   </div> <!--END MAIN -->
 <?php
-    require "templates/frontend/version1/blog-footer.php";
+    require "templates/frontend/version3/blog-footer.php";
 ?>
+
+ 
+ 

@@ -22,68 +22,59 @@
 	<script src="<?php echo TEMPLATE_FRONTEND;?>plugins/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="<?php echo TEMPLATE_FRONTEND;?>plugins/bootstrap/js/bootstrap.min.js"></script>
-  <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/responsive-menu/js/menumaker.js"></script>
-  <script type="text/javascript" src="<?php echo TEMPLATE_FRONTEND;?>scripts/main.js"></script>
-  <script type="text/javascript">
+    <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/responsive-menu/js/menumaker.js"></script>
+    <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/gridloadingeffects/js/masonry.pkgd.min.js"></script>
+	<script src="<?php echo TEMPLATE_FRONTEND;?>plugins/gridloadingeffects/js/imagesloaded.js"></script>
+	<script src="<?php echo TEMPLATE_FRONTEND;?>plugins/gridloadingeffects/js/classie.js"></script>
+	<script src="<?php echo TEMPLATE_FRONTEND;?>plugins/gridloadingeffects/js/AnimOnScroll.js"></script>
+    <script type="text/javascript" src="<?php echo TEMPLATE_FRONTEND;?>scripts/main.js"></script>
+   <script type="text/javascript">			
+			
+			function loadTabContent(tabUrl){
+				$("#preloader").show();
+				jQuery.ajax({
+					url: tabUrl, 
+					cache: false,
+					success: function(message) {
+						jQuery(".tab-content").empty().append(message);
+						$("#preloader").hide();
+					}
+				});
+			}
+			
+			jQuery(document).ready(function(){				
+				
+				$("#preloader").hide();				
+				jQuery("[id^=tab]").click(function(){	
+					
+					// get tab id and tab url
+					tabId = $(this).attr("id");										
+					tabUrl = jQuery("#"+tabId).attr("href");
+					
+					jQuery("[id^=tab]").removeClass("current");
+					jQuery("#"+tabId).addClass("current");
+					
+					// load tab content
+					loadTabContent(tabUrl);
+					return false;
+				});
+			});
+			
+		</script>
+   <script type="text/javascript">
     $("#cssmenu").menumaker({
       title: "Menu",
       format: "multitoggle"
     });
-</script>
-<script>
-/*
-var slideIndex = 0;
-showSlides();
+  </script>
+	<script>
+    	new AnimOnScroll( document.getElementById( 'grid' ), {
+    		minDuration : 0.4,
+    		maxDuration : 0.7,
+    		viewportFactor : 0.2
+    	} );
+    </script>
 
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    for (i = 0; i < slides.length; i++) {
-       slides[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex> slides.length) {slideIndex = 1}
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";
-    dots[slideIndex-1].className += " active";
-    setTimeout(showSlides, 4000); // Change image every 2 seconds
-}
-*/
-</script>
-<!--
-<script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-    showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-    showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";
-    dots[slideIndex-1].className += " active";
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
-    }
-</script>
--->
 </body>
 
 </html>

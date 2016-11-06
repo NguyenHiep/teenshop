@@ -193,6 +193,15 @@ class Model_User extends Database{
         $this->query($sql);
     }
     
+    //Get info user page home
+    public function getUserPageHome(){
+        $sql[] = "SELECT * FROM `user`";
+        $sql[] = "WHERE `user_id` = '1'";
+        $sql = implode(' ',$sql);
+        $this->query($sql);
+        return $this->fetch();
+    }
+    
     
 }
 

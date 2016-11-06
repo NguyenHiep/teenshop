@@ -30,7 +30,7 @@ class Model_CateBlog extends Database{
         /* Get category by id */
         public function getCategoryById($cid){
             $sql[] = "SELECT * FROM cateblog";
-            $sql[] = "WHERE status = '1' AND `cat_id` = '{$cid}'";
+            $sql[] = "WHERE status = '1' AND `slug` = '{$cid}'";
             $sql = implode(' ',$sql);
             $this->query($sql);
             return $this->fetch(); 

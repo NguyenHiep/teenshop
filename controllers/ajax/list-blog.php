@@ -61,5 +61,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     <?php } //End ($allRows > $showLimit) ?>  
     <?php 
         } //End if ($rowCount > 0)
+    }else{
+        redirect(BASE_URL);
     }
 ?>

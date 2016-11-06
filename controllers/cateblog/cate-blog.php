@@ -1,13 +1,14 @@
 <?php
 
-if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid'] >0){
-    $catid = intval($_GET['catid']);
+if(isset($_GET['slug']) && validate_int($_GET['slug']) == false){
+
+    $catidslug = trim($_GET['slug']);
     $mcate = new Model_CateBlog();
-    $catedata = $mcate->getCategoryById($catid);
-    
+    $catedata = $mcate->getCategoryById($catidslug);
+    $catid = $catedata['cat_id'];
     $mblog = new Model_Blog();
     //on-tap/nhap-mon-lap-trinh-1/trang/3
-    $link = "/on-tap/{$catedata['slug']}-{$catid}";
+    $link = "danh-muc/{$catedata['slug']}";
     //Update
     $count          = $mblog->totalCateBlog($catid);
     $totalItems     = $count['count'];

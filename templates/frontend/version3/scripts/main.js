@@ -20,6 +20,11 @@ $(document).ready(function(){
 		$('html, body').animate({scrollTop : 0},800);
 		return false;
 	});
+    $(".pagination li a").click(function(){
+        $('body,html').animate({
+            scrollTop: 0
+        }, 1200);
+    });
 	
 });
 
@@ -31,3 +36,14 @@ function myFunction() {
         x.className = "topnav";
     }
 }
+$body = $("body");
+// Show loading overlay when ajax request starts
+$( document ).ajaxStart(function() {
+    //$('.loading-overlay').show();
+    $body.addClass("loading"); 
+});
+// Hide loading overlay when ajax request completes
+$( document ).ajaxStop(function() {
+    //$('.loading-overlay').hide();
+    $body.removeClass("loading");
+});

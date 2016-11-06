@@ -5,16 +5,33 @@
     $totalSlider = $mslider->num_rows($dataSlider);
     
     $mblog = new Model_Blog();
+   //Begin update pagination ajax
+   
    
     $count          = $mblog->totalBlog();
     $totalItems     = $count['count'];
-    $totalItemsPage = 9; // Số bài viết trên một trang
-    $pageRage       = 3; // Số trang hiển thị trên pagination
+    $totalItemsPage = 5; // Số bài viết trên một trang
     $currentPage    = (isset($_GET['page']))? $_GET['page'] : 1;
-    $paginator      = new Pagination($totalItems, $totalItemsPage, $pageRage, $currentPage);
-    $paginationHTML = $paginator->showPagination();
+   
+    //$totalItemsPage = 4; // Số bài viết trên một trang
+    //$pageRage       = 3; // Số trang hiển thị trên pagination
+  
+    //$paginator      = new Pagination($totalItems, $totalItemsPage, $pageRage, $currentPage);
+    //$paginationHTML = $paginator->showPagination();
+    
+   $pagConfig = array(
+        'baseURL'=>'index.php?controller=ajax&action=listpagehome', 
+        'totalRows'=>$totalItems, 
+        'perPage'=>$totalItemsPage, 
+        'contentDiv'=>'post-content-list'
+        );
+    $pagination =  new PaginationHomeBlog($pagConfig);
+    
+  
     $position       = ($currentPage - 1)* $totalItemsPage;
     $datas          = $mblog->listBlog($position, $totalItemsPage);
+    
+    
     //Begin update 02.05.2016
     $number = $mblog->num_rows($datas);
     

@@ -59,12 +59,12 @@ class Model_Blog extends Database{
             $this->query($sql);
             return $this->fetch();
         }
-        public function listMostView(){
-            $sql[] = "SELECT bl.blog_id, bl.blog_name, bl.slug, bl.view_post, bl.short_content, cat.slug AS slugcate,cat.cat_name, CONCAT_WS(' ',u.firstname,u.lastname) AS author";
+        public function listMostView($limit=5){
+            $sql[] = "SELECT bl.blog_id, bl.blog_name,bl.image, bl.slug, bl.view_post, bl.short_content,bl.post_on, cat.slug AS slugcate,cat.cat_name, CONCAT_WS(' ',u.firstname,u.lastname) AS author";
             $sql[] = "FROM blog AS bl LEFT JOIN user AS u USING(user_id)  LEFT JOIN cateblog AS cat USING(cat_id)";
             $sql[] = "WHERE bl.status = '1'";
             $sql[] = "ORDER BY bl.view_post DESC";
-            $sql[] = "LIMIT 5";
+            $sql[] = "LIMIT {$limit}";
             $sql = implode(' ',$sql);
             $this->query($sql);
             return $this->fetchAll();
@@ -98,12 +98,12 @@ class Model_Blog extends Database{
             $this->query($sql);
             return $this->fetch();
         }
-        public function getBlogLightHight(){
+        public function getBlogLightHight($limit=4){
             $sql[] = "SELECT bl.*, cat.slug AS slugcate,cat.cat_name, CONCAT_WS(' ',u.firstname,u.lastname) AS author";
             $sql[] = "FROM blog AS bl LEFT JOIN user AS u USING(user_id)  LEFT JOIN cateblog AS cat USING(cat_id)";
             $sql[] = "WHERE bl.status = '1' AND bl.hightlight = '1'";
             $sql[] = "ORDER BY bl.view_post DESC";
-            $sql[] = "LIMIT 4";
+            $sql[] = "LIMIT {$limit}";
             $sql = implode(' ',$sql);
             $this->query($sql);
             return $this->fetchAll();

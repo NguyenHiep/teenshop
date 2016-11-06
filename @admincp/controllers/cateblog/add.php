@@ -9,12 +9,12 @@ $listCate = $mcateblog->listCateBlog(null,null);
             $parent = 0;
         }
         if(!empty($_POST['txtCate'])){
-            $catename = fix_str($_POST['txtCate']);
+            $catename = fix_str(trim($_POST['txtCate']));
        }else{
             $error[] = "Vui lòng nhập tên chuyên mục";
        }
        if(!empty($_POST['txtCateSlug'])){
-            $slug = unicode_str_filter($_POST['txtCateSlug']);
+            $slug = unicode_str_filter(trim(fix_str($_POST['txtCateSlug'])));
        }else{
             $slug = "none";
        }

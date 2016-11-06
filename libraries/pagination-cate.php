@@ -27,13 +27,13 @@ class PaginationHome{
 			$prev 	= '<li class="disabled"><a rel="nofollow">← Trang trước</a></li>';
 			if($this->currentPage > 1){
 				$start 	= '<li><a href="?page=1">Start</a></li>';
-				$prev 	= '<li><a href="'.$link.'/page='.($this->currentPage-1).'">← Trang trước</a></li>';
+				$prev 	= '<li><a href="'.BASE_URL.$link.'.html?page='.($this->currentPage - 1).'">← Trang trước</a></li>';
 			}
 		
 			$next 	= '<li  class="disabled"><a rel="nofollow"> Trang kế → </a> </li>';
 			$end 	= '<li><a rel="nofollow"> End</li>';
 			if($this->currentPage < $this->totalPage){
-				$next 	= '<li><a href="'.$link.'/page='.($this->currentPage+1).'">Trang kế →</a></li>';
+				$next 	= '<li><a href="'.BASE_URL.$link.'.html?page='.($this->currentPage + 1).'">Trang kế →</a></li>';
 				$end 	= '<li><a href="?page'.$this->totalPage.'">End</a></li>';
 			}
 		

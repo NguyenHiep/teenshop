@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta content='Học lập trình web, học lập trình cơ bản' name='DC.title'/>
   <meta content='VN-SG' name='geo.region'/>
@@ -31,8 +31,11 @@
 
   <link href="<?php echo TEMPLATE_FRONTEND;?>css/components.css" rel="stylesheet" />
   <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/responsive-menu/css/menumaker.css" rel="stylesheet" />
+  <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/gridloadingeffects/css/default.css" rel="stylesheet" />
+  <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/gridloadingeffects/css/component.css" rel="stylesheet" />
   <link href="<?php echo TEMPLATE_FRONTEND;?>css/styles.css" rel="stylesheet" />
   <link href="<?php echo TEMPLATE_FRONTEND;?>css/style-responsive.css" rel="stylesheet" />
+  <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/gridloadingeffects/js/modernizr.custom.js"></script>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -42,6 +45,8 @@
 </head>
 
 <body>
+<div class="loading-overlay"></div>
+
 	<div id="wrapper">
     	<header>
           <div class="preheader">

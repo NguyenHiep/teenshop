@@ -10,7 +10,15 @@
             case "blog":
                 require "controllers/ajax/list-blog.php";
                 break;
+            case "listpagehome":
+                require "controllers/ajax/getdata-blog.php";
+                break;
+            case "contenttabs":
+                require "controllers/ajax/content-tabs.php";
+                break;
         }
+    }else{
+        redirect(BASE_URL);
     }
 
 ?>

@@ -12,12 +12,12 @@ if(isset($_GET['catid']) && validate_int($_GET['catid']) && $_GET['catid'] > 0){
             $parent = 0;
         }
         if(!empty($_POST['txtCate'])){
-            $catename = fix_str($_POST['txtCate']);
+            $catename = fix_str(trim($_POST['txtCate']));
        }else{
             $error[] = "Vui lòng nhập tên chuyên mục";
        }
        if(!empty($_POST['txtCateSlug'])){
-            $slug = unicode_str_filter($_POST['txtCateSlug']);
+            $slug = unicode_str_filter(trim($_POST['txtCateSlug']));
        }else{
             $slug = "none";
        }

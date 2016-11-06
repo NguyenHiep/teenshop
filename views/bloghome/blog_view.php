@@ -24,10 +24,6 @@
                     $name = md5(md5("listblog"));
                     $xml = simplexml_load_file("cached/$name.xhtml");
                     $data = $xml->news;
-                    echo "<pre>";
-                        var_dump($data);
-                    echo "</pre>";
-                    die();
                     foreach($data as $item):
                   ?>
                   <div class="row">

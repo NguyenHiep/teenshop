@@ -1,6 +1,7 @@
 /* CSSTidy 1.5.2: Sun, 30 Oct 2016 03:27:19 +0000 */
 body {
-font:14px/29px "Open Sans",sans-serif
+font:14px/29px "Open Sans",sans-serif;
+background: #fff;
 }
 
 .preheader {
@@ -509,7 +510,7 @@ color:#000
 border-color:#FFF
 }
 
-.block-post-sidebar .nav>li>a:hover {
+.block-post-sidebar .nav>li>a:hover, .block-post-sidebar .nav>li>a.current {
 text-decoration:none;
 /*background-color:#FFF*/
 background-color:#5bc98a;
@@ -543,7 +544,12 @@ margin-right:10px;
 position:relative;
 line-height:0
 }
-
+.tab-content .post-item .post-thumbnail img.img-tabs{
+    min-width: 90px;
+    min-height: 90px;
+    max-width: 95px;
+    max-height: 95px;
+}
 .tab-content .post-item h3 {
 font-size:16px;
 margin:0
@@ -777,10 +783,13 @@ color:#696666
 ul.topnav li.icon {
 display:none
 }
-
+#preloader img{
+    width: auto !important;
+}
 @media screen and (max-width:680px) {
-ul.topnav li:not(:first-child) {
-display:none
+    ul.topnav li:not(:first-child) {
+        display:none;
+    }
 }
 
 ul.topnav li.icon {
@@ -807,104 +816,73 @@ ul.topnav.responsive li a {
 display:block;
 text-align:left
 }
+/* Begin animation load ajax */
+.loader{
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  position: relative;
+  margin: 0 auto;
 }
 
-.mySlides {
-display:none
+
+/* LOADER 2 */
+
+#loader-2 span{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #5bc98a;
+  margin: 35px 5px;
 }
 
-.slideshow-container {
-position:relative;
-margin:auto
+#loader-2 span:nth-child(1){
+  animation: bounce 1s ease-in-out infinite;
 }
 
-.prev,.next {
-cursor:pointer;
-position:absolute;
-top:50%;
-width:auto;
-padding:16px;
-margin-top:-22px;
-color:#fff;
-font-weight:700;
-font-size:18px;
-transition:.6s ease;
-border-radius:0 3px 3px 0
+#loader-2 span:nth-child(2){
+  animation: bounce 1s ease-in-out 0.33s infinite;
 }
 
-.next {
-right:0;
-border-radius:3px 0 0 3px
+#loader-2 span:nth-child(3){
+  animation: bounce 1s ease-in-out 0.66s infinite;
 }
 
-.prev:hover,.next:hover {
-background-color:rgba(0,0,0,0.8)
+@keyframes bounce{
+  0%, 75%, 100%{
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  25%{
+    -webkit-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
 }
 
-.text {
-color:#f2f2f2;
-font-size:15px;
-padding:8px 12px;
-position:absolute;
-bottom:8px;
-width:100%;
-text-align:center
+.loading-overlay{
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) url('http://sampsonresume.com/labs/pIkfp.gif')  50% 50% no-repeat;
+}
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
 }
 
-.numbertext {
-color:#f2f2f2;
-font-size:12px;
-padding:8px 12px;
-position:absolute;
-top:0
-}
-
-.dot {
-cursor:pointer;
-height:13px;
-width:13px;
-margin:0 2px;
-background-color:#bbb;
-border-radius:50%;
-display:inline-block;
-transition:background-color .6s ease
-}
-
-.active,.dot:hover {
-background-color:#717171
-}
-
-.fade {
-animation-name:fade;
-animation-duration:1.5s
-}
-
-@-webkit-keyframes fade {
-from {
-opacity:.4
-}
-
-to {
-opacity:1
-}
-}
-
-@keyframes fade {
-from {
-opacity:.4
-}
-
-to {
-opacity:1
-}
-}
-
-@media only screen and (max-width: 300px) {
-.prev,.next,.text {
-font-size:11px
-}
-}
-
-.fade {
-opacity:1
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .loading-overlay {
+    display: block;
 }

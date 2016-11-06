@@ -91,24 +91,24 @@ function MenuTop(){
                 if($count['number'] > 0){
                     $html .= '<li class="dropdown">';
                     
-                    $html .= '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="/on-tap/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html">'.$level1['cat_name'].'</a>';  
+                    $html .= '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="/danh-muc/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html">'.$level1['cat_name'].'</a>';  
                         $html .='<ul class="dropdown-menu">';
                             foreach($data as $level2){
                                     if($level2['parentid'] == $level1['cat_id']){
                                         $count2 = $mcateblog->countLevelSub($level2['cat_id']);
                                             if($count2['number'] > 0){
                                                  $html .= '<li class="dropdown-submenu">';
-                                                 $html .= '<a href="/on-tap/'.trim($level2['slug']).'-'.$level2['cat_id'].'.html">'.$level2['cat_name'].' <i class="fa fa-angle-right"></i></a>';
+                                                 $html .= '<a href="/danh-muc/'.trim($level2['slug']).'-'.$level2['cat_id'].'.html">'.$level2['cat_name'].' <i class="fa fa-angle-right"></i></a>';
                                                     $html .= '<ul class="dropdown-menu">';
                                                         foreach($data as $level3){
                 											if($level3['parentid'] == $level2['cat_id']){
-                												$html .='<li><a href="/on-tap/'.trim($level3['slug']).'-'.$level3['cat_id'].'.html">'.$level3['cat_name'].'</a></li>';
+                												$html .='<li><a href="/danh-muc/'.trim($level3['slug']).'-'.$level3['cat_id'].'.html">'.$level3['cat_name'].'</a></li>';
                 											}
                 										}
                                                     $html .= '</ul>'; //End ul cap 3
                                                 $html .= '</li>';
                                             }else{
-                                                $html .= '<li><a href="/on-tap/'.trim($level2['slug']).'-'.$level2['cat_id'].'.html">'.$level2['cat_name'].'</a></li>';
+                                                $html .= '<li><a href="/danh-muc/'.trim($level2['slug']).'-'.$level2['cat_id'].'.html">'.$level2['cat_name'].'</a></li>';
                                             }
                                     } //End if($level2)
                             } //End loop level 2
@@ -122,7 +122,7 @@ function MenuTop(){
                         case 'huong-dan':
                             $html .= '<li><a href="huong-dan.html">'.$level1['cat_name'].'</a></li>';
                         break;
-                        default:   $html .= '<li><a href="/on-tap/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html">'.$level1['cat_name'].'</a></li>';
+                        default:   $html .= '<li><a href="/danh-muc/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html">'.$level1['cat_name'].'</a></li>';
               
                     }
               }
@@ -163,12 +163,12 @@ function MenuTopNew(){
              $count = $mcateblog->countLevelSub($level1['cat_id']);
                 switch($level1['slug']){
                     case 'lien-he':
-                        $html .= '<li><a href="lien-he.html" title="'.$level1['cat_name'].'">'.$level1['cat_name'].'</a></li>';
+                        $html .= '<li><a href="'.BASE_URL.'lien-he.html" title="'.$level1['cat_name'].'">'.$level1['cat_name'].'</a></li>';
                     break;
                     case 'huong-dan':
-                        $html .= '<li><a href="huong-dan.html" title="'.$level1['cat_name'].'">'.$level1['cat_name'].'</a></li>';
+                        $html .= '<li><a href="'.BASE_URL.'huong-dan.html" title="'.$level1['cat_name'].'">'.$level1['cat_name'].'</a></li>';
                     break;
-                    default:   $html .= '<li><a href="/on-tap/'.trim($level1['slug']).'-'.$level1['cat_id'].'.html" title="'.$level1['cat_name'].'">'.$level1['cat_name'].'</a></li>';            
+                    default:   $html .= '<li><a href="'.BASE_URL.'danh-muc/'.trim($level1['slug']).'.html" title="'.$level1['cat_name'].'">'.$level1['cat_name'].'</a></li>';            
                 }
                 
             }    
@@ -434,7 +434,7 @@ function getBlogMostView(){
                           </div>
                           -->
                           <div class="col-md-12 recent-news-inner">
-                                <h3><a href="'.BASE_URL.'on-tap/'.trim($list['slugcate']).'/'.trim($list['slug']).'-'.$list['blog_id'].'.html">'.$list['blog_name'].'</a></h3>
+                                <h3><a href="'.BASE_URL.'danh-muc/'.trim($list['slugcate']).'/'.trim($list['slug']).'-'.$list['blog_id'].'.html">'.$list['blog_name'].'</a></h3>
                                 <div class="item-description">
                                 '.wordLimiter($list['short_content'], 15, '...').'
                                 <i class="fa fa-eye"></i>'.$list['view_post'].'views
@@ -454,21 +454,23 @@ function getBlogMostView(){
               
 }
 function getProfileHomePage(){
+    $author = new Model_User();
+    $data = $author->getUserPageHome();
     $html ='';
     $html.='<div class="block block-profile">
                         <div class="profile-sidebar">
                             <div class="profile_cover">
-                                <h3 class="text-center">Passionate Blogger</h3>
+                                <h3 class="text-center">I am a developer</h3>
                                 <div class="profile_avatar">
-                                    <img src="'.TEMPLATE_FRONTEND.'img/avatar-user.jpg" alt="avatar" title="avatart" class="img-circle img-responsive center-block" />
+                                    <img src="'.URL_UPLOAD.trim($data['avatart']).'" alt="'.$data['nickname'].'" title="'.$data['nickname'].'" class="img-circle img-responsive center-block" />
                                 </div>
                             </div>
                             <div class="block-content">
                                 <div class="profile-title">
-                                    <h3 class="text-center"><a href="#">Mika joines</a> </h3>
+                                    <h3 class="text-center"><a href="#">'.$data['nickname'].'</a> </h3>
                                 </div>
                                 <div class="profile_description text-center">
-                                    Hi, i’m Virgi. Web Designer, Developer since 2009, based in Jakarta, Indonesia. I work at ID-Webmaster as a Web Developer and also Founder of ID-Webmaster.
+                                    '.$data['short_instruction'].'
                                 </div>
                             </div>
                         </div>   
@@ -477,101 +479,86 @@ function getProfileHomePage(){
     return $html;
 }
 function getPostTab(){
+    
+    /*
+    $html ='';
+        $mblog = new Model_Blog();
+        $listMostView = $mblog->listMostView();
+        $stt = 0;
+        $html .='<h2 class="title-comment">
+                <span class="fa fa-eye"></span>Bài viết xem nhiều</h2>
+                <div id="most-view-blog">
+                ';
+        if($mblog->num_rows($listMostView) > 0)                
+            foreach($listMostView as $list):
+            $stt++;
+                 $html .='
+                    <article>
+                     <div class="recent-news margin-bottom-10">
+                        <div class="row margin-bottom-10">
+                          <!--<div class="col-md-2">
+                            <span class="display:block; background: #FFF; color: red !important;"><?php echo $stt; ?> </span>
+                          </div>
+                          -->
+                          <div class="col-md-12 recent-news-inner">
+                                <h3><a href="'.BASE_URL.'danh-muc/'.trim($list['slugcate']).'/'.trim($list['slug']).'-'.$list['blog_id'].'.html">'.$list['blog_name'].'</a></h3>
+                                <div class="item-description">
+                                '.wordLimiter($list['short_content'], 15, '...').'
+                                <i class="fa fa-eye"></i>'.$list['view_post'].'views
+                            </div>
+                          </div>                        
+                        </div>
+                      </div>
+                     </article>
+                     <div class="clearfix"></div>
+                 ';   
+            endforeach;
+        else
+            $html .= 'Chưa có bài viết';
+                    
+         $html .= '</div>';
+    */
+    $mblog = new Model_Blog();
+    $listMostView = $mblog->listMostView(3);
+    
     $html ='';
     $html .= '<div class="block block-post-sidebar">
                       <div class="post-tabs-title">
                           <ul class="nav nav-tabs tabs posts-taps">
-                            <li class="tabs active"><a data-toggle="tab" href="#popular-post">Popular post</a></li>
-                            <li class="tabs"><a href="#latest-post">Latest post</a></li>
+                            <li class="tabs active"><a class="current" id="tab1" data-toggle="tab" href="'.BASE_URL.'index.php?controller=ajax&action=contenttabs&id=1">Xem nhiều nhất</a></li>
+                            <li class="tabs active"><a id="tab2" href="'.BASE_URL.'index.php?controller=ajax&action=contenttabs&id=2">Bài viết nổi bật</a></li>
                           </ul>
                       </div>
-                      <div class="block-content tab-content">
-                        <div id="popular-post" class="tabs-wrap tab-pane fade in active">
-                            <ul class="list-unstyled">
-                                <li class="post-item">
-                                    <div class="post-thumbnail">
-                                        <a href="#" title="item">
-                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
-                                        </a>
-                                    </div>
-                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
-                                    <p class="post-date">21 DECEMBER 2015</p>
-                                    <div class="post-item-shortdescription">
-                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
-                                    </div>
-
-                                </li>
-                                <li class="post-item">
-                                    <div class="post-thumbnail">
-                                        <a href="#" title="item">
-                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
-                                        </a>
-                                    </div>
-                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
-                                    <p class="post-date">21 DECEMBER 2015</p>
-                                    <div class="post-item-shortdescription">
-                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
-                                    </div>
-
-                                </li>
-                                <li class="post-item">
-                                    <div class="post-thumbnail">
-                                        <a href="#" title="item">
-                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
-                                        </a>
-                                    </div>
-                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
-                                    <p class="post-date">21 DECEMBER 2015</p>
-                                    <div class="post-item-shortdescription">
-                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
-                                    </div>
-
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="latest-post" class="tabs-wrap tab-pane fade">
-                            <ul  class="list-unstyled">
-                                <li class="post-item">
-                                    <div class="post-thumbnail">
-                                        <a href="#" title="item">
-                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
-                                        </a>
-                                    </div>
-                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
-                                    <p class="post-date">21 DECEMBER 2015</p>
-                                    <div class="post-item-shortdescription">
-                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
-                                    </div>
-
-                                </li>
-                                <li class="post-item">
-                                    <div class="post-thumbnail">
-                                        <a href="#" title="item">
-                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
-                                        </a>
-                                    </div>
-                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
-                                    <p class="post-date">21 DECEMBER 2015</p>
-                                    <div class="post-item-shortdescription">
-                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
-                                    </div>
-
-                                </li>
-                                <li class="post-item">
-                                    <div class="post-thumbnail">
-                                        <a href="#" title="item">
-                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item01.jpg" class="img-responsive" title="item" alt="item" />
-                                        </a>
-                                    </div>
-                                    <h3><a href="#">13,000+ People Have Bought Our Theme</a></h3>
-                                    <p class="post-date">21 DECEMBER 2015</p>
-                                    <div class="post-item-shortdescription">
-                                      Still, she’s got a lot of spirit. I don’t know, what do you think? What!? I don’t know what you’re talking about. I am a member of the Imperial Senate o
-                                    </div>
-
-                                </li>
-                            </ul>
-                        </div>
+                        <div id="preloader">
+            				<img src="'.TEMPLATE_FRONTEND.'img/loading.gif" align="absmiddle" alt="loader"> Loading...				
+            			</div>
+                    
+                      <div class="block-content tab-content">'; //Remove id="tabcontent""
+                          $html .='<div id="popular-post" class="tabs-wrap tab-pane fade in active">
+                                <ul class="list-unstyled">';
+                          if($mblog->num_rows($listMostView) > 0){      
+                            foreach($listMostView as $data):
+                                    
+                                    $html .= '<li class="post-item clearfix">
+                                        <div class="post-thumbnail">
+                                            <a href="'.BASE_URL.'danh-muc/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html" title="'.$data['blog_name'].'">
+                                                <img src="'.BASE_URL.trim($data['image']).'" class="img-responsive img-tabs" title="'.$data['blog_name'].'" alt="'.$data['slug'].'" />
+                                            </a>
+                                        </div>
+                                        <h3><a href="'.BASE_URL.'danh-muc/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html">'.$data['blog_name'].'</a></h3>
+                                        <p class="post-date">'.date('d F y',strtotime($data['post_on'])).'</p>
+                                        <div class="post-item-shortdescription">
+                                            '.$data['short_content'].'
+                                        </div>
+    
+                                    </li>';
+                            endforeach;
+                          }else{
+                            $html .= '<li class="post-item clearfix">Đang cập nhật!</li>';
+                          }          
+                                $html .='</ul>
+                            </div>
+                        
                       </div> 
                   </div>';
     return $html;
@@ -615,8 +602,8 @@ function getTotalBlogByCate(){
                                 $htmlcate.= " class='active'";
                             }
                             //index.php?controller=cateblog&action=list&catid='.$list['cat_id'].'&slug='.trim($list['slug'])'; 
-                            $htmlcate.= '><span><i class="fa fa-long-arrow-right"></i></span><a href="'.BASE_URL.'on-tap/'.trim($list['slug']).'-'.$list['cat_id'].'.html'.'"> '.$list['cat_name'].'</a><span class="pull-right">'.$list['sumblog'].'</span></li>';
-                           //$htmlcate.= '><a href="'.BASE_URL.'on-tap/'.trim($list['slug']).'-'.$list['cat_id'].'.html'.'"> '.$list['cat_name'].' ('.$list['sumblog'].')</a></li>';
+                            $htmlcate.= '><span><i class="fa fa-long-arrow-right"></i></span><a href="'.BASE_URL.'danh-muc/'.trim($list['slug']).'-'.$list['cat_id'].'.html'.'"> '.$list['cat_name'].'</a><span class="pull-right">'.$list['sumblog'].'</span></li>';
+                           //$htmlcate.= '><a href="'.BASE_URL.'danh-muc/'.trim($list['slug']).'-'.$list['cat_id'].'.html'.'"> '.$list['cat_name'].' ('.$list['sumblog'].')</a></li>';
                             endforeach;
                             $htmlcate;
                             //on-thi-dai-hoc/mon-hoc/(.*)-([0-9]+).html
@@ -749,7 +736,7 @@ function getAllTag(){
                           </div>
                           -->
                           <div class="col-md-12 recent-news-inner">
-                                <h3><a href="'.BASE_URL.'on-tap/'.trim($list['slugcate']).'/'.trim($list['slug']).'-'.$list['blog_id'].'.html">'.$list['blog_name'].'</a></h3>
+                                <h3><a href="'.BASE_URL.'danh-muc/'.trim($list['slugcate']).'/'.trim($list['slug']).'-'.$list['blog_id'].'.html">'.$list['blog_name'].'</a></h3>
                                 <div class="item-description">
                                 '.wordLimiter($list['short_content'], 15, '...').'
                                 <i class="fa fa-eye"></i>'.$list['view_post'].'views
@@ -787,10 +774,10 @@ function createLinkPost($blog_id){
         
     $pre        = $mblog->getPrePostId($blog_id);
     if($next != false){
-        $nextHtml   = '<a href="'.BASE_URL.'on-tap/'.trim($next['slugcate']).'/'.trim($next['slug']).'-'.$next['blog_id'].'.html" class="btn btn-primary pull-right">Bài viết tiếp theo</a>';
+        $nextHtml   = '<a href="'.BASE_URL.'danh-muc/'.trim($next['slugcate']).'/'.trim($next['slug']).'-'.$next['blog_id'].'.html" class="btn btn-primary pull-right">Bài viết tiếp theo</a>';
     }
     if($pre != false){
-        $preHtml    = '<a href="'.BASE_URL.'on-tap/'.trim($pre['slugcate']).'/'.trim($pre['slug']).'-'.$pre['blog_id'].'.html" class="btn btn-primary">Bài viết cũ hơn</a>';
+        $preHtml    = '<a href="'.BASE_URL.'danh-muc/'.trim($pre['slugcate']).'/'.trim($pre['slug']).'-'.$pre['blog_id'].'.html" class="btn btn-primary">Bài viết cũ hơn</a>';
     }
 
     return $preHtml.$nextHtml;
