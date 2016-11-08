@@ -1,9 +1,9 @@
 <?php
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+require "../libraries/functions.php";
 require "../libraries/config.php";
 require "../libraries/class.php";
-require "../libraries/functions.php";
 if(check_login() == true){
     redirect(BASE_URL);
 }
