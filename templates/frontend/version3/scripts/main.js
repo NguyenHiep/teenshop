@@ -24,10 +24,35 @@ $(document).ready(function(){
         $('body,html').animate({
             scrollTop: 0
         }, 1200);
+        return false;
     });
-	
+	//Begin code javascript for tabs blog sidebar 
+    $("#preloader").hide();				
+	jQuery("[id^=tab]").click(function(){	
+		// get tab id and tab url
+		tabId = $(this).attr("id");										
+		tabUrl = jQuery("#"+tabId).attr("href");
+		
+		jQuery("[id^=tab]").removeClass("current");
+		jQuery("#"+tabId).addClass("current");
+		
+		// load tab content
+		loadTabContent(tabUrl);
+		return false;
+	});
+	//End code javascript for tabs blog sidebar 
 });
-
+function loadTabContent(tabUrl){
+			$("#preloader").show();
+			jQuery.ajax({
+				url: tabUrl, 
+				cache: false,
+				success: function(message) {
+					jQuery(".tab-content").empty().append(message);
+					$("#preloader").hide();
+				}
+			});
+		}
 function myFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {

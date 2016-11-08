@@ -23,15 +23,17 @@ function getpopularpost(){
                 <ul class="list-unstyled">';
                       if($mblog->num_rows($listMostView) > 0){      
                         foreach($listMostView as $data):
-                                
+                                if($data['image'] == 'none'){
+                                    $data['image'] = 'uploads/default.jpg';
+                                }
                                 $html .= '<li class="post-item clearfix">
                                     <div class="post-thumbnail">
                                         <a href="'.BASE_URL.'danh-muc/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html" title="'.$data['blog_name'].'">
-                                            <img src="'.BASE_URL.trim($data['image']).'" class="img-responsive img-tabs" title="'.$data['blog_name'].'" alt="'.$data['slug'].'" />
+                                            <img src="'.BASE_URL.trim(ltrim($data['image'],'/')).'" class="img-responsive img-tabs" title="'.$data['blog_name'].'" alt="'.$data['slug'].'" />
                                         </a>
                                     </div>
                                     <h3><a href="'.BASE_URL.'danh-muc/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html">'.$data['blog_name'].'</a></h3>
-                                    <p class="post-date">'.date('d F y',strtotime($data['post_on'])).'</p>
+                                    <p class="post-date">'.date('d F Y',strtotime($data['post_on'])).'</p>
                                     <div class="post-item-shortdescription">
                                         '.$data['short_content'].'
                                     </div>
@@ -53,15 +55,17 @@ function getlatestpost(){
                 <ul class="list-unstyled">';
                       if($mblog->num_rows($listHightLight) > 0){      
                         foreach($listHightLight as $data):
-                                
+                                if($data['image'] == 'none'){
+                                    $data['image'] = 'uploads/default.jpg';
+                                }
                                 $html .= '<li class="post-item clearfix">
                                     <div class="post-thumbnail">
                                         <a href="'.BASE_URL.'danh-muc/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html" title="'.$data['blog_name'].'">
-                                            <img src="'.BASE_URL.trim($data['image']).'" class="img-responsive img-tabs" title="'.$data['blog_name'].'" alt="'.$data['slug'].'" />
+                                            <img src="'.BASE_URL.trim(ltrim($data['image'],'/')).'" class="img-responsive img-tabs" title="'.$data['blog_name'].'" alt="'.$data['slug'].'" />
                                         </a>
                                     </div>
                                     <h3><a href="'.BASE_URL.'danh-muc/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html">'.$data['blog_name'].'</a></h3>
-                                    <p class="post-date">'.date('d F y',strtotime($data['post_on'])).'</p>
+                                    <p class="post-date">'.date('d F Y',strtotime($data['post_on'])).'</p>
                                     <div class="post-item-shortdescription">
                                         '.$data['short_content'].'
                                     </div>

@@ -13,7 +13,11 @@ function redirect($url){
     header("location: $url");
     exit();
 }
-
+function siteURL(){
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $domainName = $_SERVER['HTTP_HOST'].'/';
+    return $protocol.$domainName;
+}
 //Hàm chống sql join
 function fix_str($str) {
     return addslashes(strip_tags(trim($str)));
@@ -530,7 +534,7 @@ function getPostTab(){
                           </ul>
                       </div>
                         <div id="preloader">
-            				<img src="'.TEMPLATE_FRONTEND.'img/loading.gif" align="absmiddle" alt="loader"> Loading...				
+            				<img src="'.TEMPLATE_FRONTEND.'img/loading.gif" alt="loader"> Loading...				
             			</div>
                     
                       <div class="block-content tab-content">'; //Remove id="tabcontent""
@@ -538,15 +542,17 @@ function getPostTab(){
                                 <ul class="list-unstyled">';
                           if($mblog->num_rows($listMostView) > 0){      
                             foreach($listMostView as $data):
-                                    
+                                    if($data['image'] == 'none'){
+                                        $data['image'] = 'uploads/default.jpg';
+                                    }
                                     $html .= '<li class="post-item clearfix">
                                         <div class="post-thumbnail">
                                             <a href="'.BASE_URL.'danh-muc/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html" title="'.$data['blog_name'].'">
-                                                <img src="'.BASE_URL.trim($data['image']).'" class="img-responsive img-tabs" title="'.$data['blog_name'].'" alt="'.$data['slug'].'" />
+                                                <img src="'.BASE_URL.trim(ltrim($data['image'],'/')).'" class="img-responsive img-tabs" title="'.$data['blog_name'].'" alt="'.$data['slug'].'" />
                                             </a>
                                         </div>
                                         <h3><a href="'.BASE_URL.'danh-muc/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html">'.$data['blog_name'].'</a></h3>
-                                        <p class="post-date">'.date('d F y',strtotime($data['post_on'])).'</p>
+                                        <p class="post-date">'.date('d F Y',strtotime($data['post_on'])).'</p>
                                         <div class="post-item-shortdescription">
                                             '.$data['short_content'].'
                                         </div>

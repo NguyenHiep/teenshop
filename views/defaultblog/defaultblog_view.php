@@ -24,7 +24,7 @@
                             <div class="post-content">
                                 <figure class="post-media">
                                     <a href="<?php echo BASE_URL.'danh-muc/'.trim($item->slugcate).'/'.trim($item->slug).'-'.$item['newsid'].'.html'; ?>" title="<?php echo $item->title; ?>">
-                                    <img src="<?php echo trim($item->image);?>" class="img-responsive" alt="<?php echo $item->slug;?>" title="<?php echo $item->title; ?>" /> 
+                                    <img src="<?php echo BASE_URL.trim(ltrim($item->image,'/'));?>" class="img-responsive" alt="<?php echo $item->slug;?>" title="<?php echo $item->title; ?>" /> 
                                     </a>
                                 </figure>
                                 <div class="post-content-info"> 
@@ -38,7 +38,7 @@
                                     <div class="post-permalink text-center">
                                         <ul class="breadcrumb">
                                         <li><?php echo $item->author; ?></li>
-                                        <li><?php echo date('d m Y', strtotime($item->poston));?></li>
+                                        <li><?php echo date('d F Y', strtotime($item->poston));?></li>
                                         <li><?php echo $item->comment; ?> Bình luận </li>
                                         </ul>
                                     </div>

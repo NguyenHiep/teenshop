@@ -1,12 +1,10 @@
-<?php
-           
+<?php   
     $mslider = new Model_Slider();
     $dataSlider = $mslider->getSliderBlog();
     $totalSlider = $mslider->num_rows($dataSlider);
     
     $mblog = new Model_Blog();
    //Begin update pagination ajax
-   
    
     $count          = $mblog->totalBlog();
     $totalItems     = $count['count'];
@@ -83,5 +81,7 @@
     $title="Giadinhit.com, ôn thi liên thông đại học, chia sẻ kiến thức lập trình";
     $keyword = "Ôn thi liên thông, lập trình PHP, Lập trình magento";
     $description = "Giadinhit.com kênh chia sẻ kiến thức ôn thi liên thông đại học, kiến thức lập trình";
+    $imagesocial = TEMPLATE_FRONTEND.'img/logo.png';
+    $urlsocial = siteURL().ltrim($_SERVER["REQUEST_URI"],'/');
     require_once "views/defaultblog/defaultblog_view.php";
 ?>

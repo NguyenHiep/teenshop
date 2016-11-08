@@ -1,5 +1,5 @@
 <?php
-    define('BASE_URL',"http://teenshop.local/");
+    define('BASE_URL',siteURL());
     define('BASE_ADMIN',BASE_URL."@admincp");
     define('TEMPLATE_AMIN',BASE_URL."templates/backend/green/");
     define('TEMPLATE_FRONTEND',BASE_URL."templates/frontend/version3/");
