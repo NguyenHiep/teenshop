@@ -23,7 +23,7 @@ function getpopularpost(){
                 <ul class="list-unstyled">';
                       if($mblog->num_rows($listMostView) > 0){      
                         foreach($listMostView as $data):
-                                if($data['image'] == 'none'){
+                                if(trim($data['image']) == 'none'){
                                     $data['image'] = 'uploads/default.jpg';
                                 }
                                 $html .= '<li class="post-item clearfix">
@@ -55,7 +55,7 @@ function getlatestpost(){
                 <ul class="list-unstyled">';
                       if($mblog->num_rows($listHightLight) > 0){      
                         foreach($listHightLight as $data):
-                                if($data['image'] == 'none'){
+                                if(trim($data['image']) == 'none'){
                                     $data['image'] = 'uploads/default.jpg';
                                 }
                                 $html .= '<li class="post-item clearfix">

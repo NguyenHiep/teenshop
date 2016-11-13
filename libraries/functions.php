@@ -534,7 +534,7 @@ function getPostTab(){
                           </ul>
                       </div>
                         <div id="preloader">
-            				<img src="'.TEMPLATE_FRONTEND.'img/loading.gif" alt="loader"> Loading...				
+            				<img src="'.TEMPLATE_FRONTEND.'img/loading.gif" alt="loader" title="loader"> Loading...				
             			</div>
                     
                       <div class="block-content tab-content">'; //Remove id="tabcontent""
@@ -542,7 +542,7 @@ function getPostTab(){
                                 <ul class="list-unstyled">';
                           if($mblog->num_rows($listMostView) > 0){      
                             foreach($listMostView as $data):
-                                    if($data['image'] == 'none'){
+                                    if(trim($data['image']) == 'none'){
                                         $data['image'] = 'uploads/default.jpg';
                                     }
                                     $html .= '<li class="post-item clearfix">
@@ -571,6 +571,7 @@ function getPostTab(){
 }
 function getFllowsocial(){
     $html = '';
+    /*
     $html .='<div class="block block-followme">
                         <div class="followme-title">
                             <h2 class="title-block">Follow me</h2>
@@ -586,13 +587,14 @@ function getFllowsocial(){
                           </div>
                         </div>
                   </div>';
+                  */
     return $html;
 }
 function getTotalBlogByCate(){
    $htmlcate = '';
    $htmlcate .='<div class="block block-categories">
                 <div class="category-title">
-                    <h2 class="title-block">Categories</h2>
+                    <h2 class="title-block">Danh mục</h2>
                 </div>
                 <div class="block-content">
                   <div class="list-categories">';
@@ -603,16 +605,16 @@ function getTotalBlogByCate(){
                             $listCate = $mcate->listCategory();
                            
                             foreach($listCate as $list):
+                            if($list['slug'] == 'lien-he')
+                                continue;
                             $htmlcate.= '<li';
-                            if(isset($_GET['catid']) && validate_int($_GET['catid']) == true && $_GET['catid'] >0 && $_GET['catid'] == $list['cat_id']){
+                            if(isset($_GET['slug']) && $_GET['slug'] == $list['slug']){
                                 $htmlcate.= " class='active'";
                             }
-                            //index.php?controller=cateblog&action=list&catid='.$list['cat_id'].'&slug='.trim($list['slug'])'; 
-                            $htmlcate.= '><span><i class="fa fa-long-arrow-right"></i></span><a href="'.BASE_URL.'danh-muc/'.trim($list['slug']).'-'.$list['cat_id'].'.html'.'"> '.$list['cat_name'].'</a><span class="pull-right">'.$list['sumblog'].'</span></li>';
-                           //$htmlcate.= '><a href="'.BASE_URL.'danh-muc/'.trim($list['slug']).'-'.$list['cat_id'].'.html'.'"> '.$list['cat_name'].' ('.$list['sumblog'].')</a></li>';
+                            // $html .= '<li><a href="'.BASE_URL.'danh-muc/'.trim($level1['slug']).'.html" title="'.$level1['cat_name'].'">'.$level1['cat_name'].'</a></li>';            
+                            $htmlcate.= '><a href="'.BASE_URL.'danh-muc/'.trim($list['slug']).'.html'.'"><span><i class="fa fa-long-arrow-right"></i></span><span class="pull-right">'.$list['sumblog'].'</span>'.$list['cat_name'].'</a></li>';
                             endforeach;
                             $htmlcate;
-                            //on-thi-dai-hoc/mon-hoc/(.*)-([0-9]+).html
                     $htmlcate .='</ul>';
         $htmlcate .= ' </div>
                 </div>
@@ -622,27 +624,40 @@ function getTotalBlogByCate(){
 }
 
 function getPostSlider(){
+    //Display post random
+    $mblog = new Model_Blog();
+    $listRandom = $mblog->listRandom(3);
+    
     $html = '';
+    /*
     $html .= ' <div class="block block-post-slider">
                       <div class="block-content">';
                 $html .='<div id="myCarouselBlog" class="carousel slide" data-ride="carousel">
-                                <!-- Wrapper for slides -->
-                                <div class="carousel-inner" role="listbox">
-                                    <div class="item active">
-                                        <img src="'.TEMPLATE_FRONTEND.'img/right-item02.jpg" class="img-responsive center-block" alt="Chania" title="Chania" />
-                                        <div class="carousel-caption">
-                                            <h3>Chania The atmosphere in Chania has a touch of Florence and</h3>
-                                        </div>
-                                    </div>   
-                                    <div class="item">
-                                            <img src="'.TEMPLATE_FRONTEND.'img/right-item02.jpg" class="img-responsive center-block" alt="Chania" title="Chania" />
-                                            <div class="carousel-caption">
-                                                <h3>Chania The atmosphere in Chania has a touch of Florence and</h3>
+                                <div class="carousel-inner" role="listbox">';
+                                $stt = 0; 
+                                foreach($listRandom as $data):
+                                ++$stt; $active = '';
+                                if($stt ==1) $active = 'active';
+                                    $html .='
+                                        <div class="item '.$active.'">';
+                                            if(trim($data['image']) != 'none'){
+                                                $html .= '<a href="'.BASE_URL.'danh-muc/'.$data['slugcate'].'/'.$data['slug'].'-'.$data['blog_id'].'.html" title="'.$data['blog_name'].'">
+                                                            <img src="'.BASE_URL.trim(ltrim($data['image'],'/')).'" class="img-responsive center-block" alt="'.$data['slug'].'" title="'.$data['blog_name'].'" />
+                                                         </a>';
+                                            }else{
+                                                $html .= '<a href="'.BASE_URL.'danh-muc/'.$data['slugcate'].'/'.$data['slug'].'-'.$data['blog_id'].'.html" title="'.$data['blog_name'].'">
+                                                            <img src="'.URL_UPLOAD.'default.jpg" class="img-responsive center-block" alt="'.$data['slug'].'" title="'.$data['blog_name'].'" />
+                                                         </a>';
+                                            }   
+                
+                                            $html .='<div class="carousel-caption">
+                                                <h3>'.$data['blog_name'].'</h3>
                                             </div>
-                                        </div>   
-                                    </div>
+                                        </div>';
+                                endforeach;    
     
-                                <!-- Left and right controls -->
+                                $html .= '
+                                </div>
                                 <a class="left carousel-control" href="#myCarouselBlog" role="button" data-slide="prev">
                                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
@@ -654,10 +669,12 @@ function getPostSlider(){
                            </div>';
             $html .= '</div>
                 </div>'; //End block
+                */
     return $html;
 }
 function getPostVideo(){
     $html = '';
+    /*
     $html .=' <div class="block block-post-video">
                       <div class="block-content">
                         <div class="post-video">
@@ -666,10 +683,12 @@ function getPostVideo(){
                         </div>
                       </div>
                   </div>';
+                  */
     return $html;
 }
 function getFlickrPhoto(){
     $html ='';
+    /*
     $html .=' <div class="block block-flickr">
                         <div class="flickr-title">
                             <h2 class="title-block">Flickr photo</h2>
@@ -680,8 +699,7 @@ function getFlickrPhoto(){
                             
                                 $listdata = file_get_contents('https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=4029355a45f89590765e62223f94c7c1&user_id=139876265%40N08&format=json&nojsoncallback=1&auth_token=72157672292305234-5893414693d06b41&api_sig=9039f230b239a7e46a94af6f192a8b41');
                                 $data = json_decode($listdata);
-                                
-                          
+                               
                             
                               /*<li><a href="#"><img src="img/flick_01.jpg" alt="flick photo"  title="flick photo"></a></li>
                               <li><a href="#"><img src="img/flick_02.jpg" alt="flick photo"  title="flick photo"></a></li>
@@ -691,18 +709,29 @@ function getFlickrPhoto(){
                               <li><a href="#"><img src="img/flick_06.jpg" alt="flick photo"  title="flick photo"></a></li>
                               <li><a href="#"><img src="img/flick_07.jpg" alt="flick photo"  title="flick photo"></a></li>
                               <li><a href="#"><img src="img/flick_08.jpg" alt="flick photo"  title="flick photo"></a></li>
-                            */
+                            
                            
                     $html .= '</ul>
                           </div>
                          <div class="clearfix"></div>
                         </div>
                   </div>';
+                  */
     return $html;
 }
 function getNewletter(){
+    
+    /*$data = [
+        'email'     => 'johndoe@example.com',
+        'status'    => 'subscribed',
+        'firstname' => 'john',
+        'lastname'  => 'doe'
+    ];
+
+    syncMailchimp($data);
+    */
     $html = '';
-    $html .=' <div class="block block-newsletter">
+    /*$html .=' <div class="block block-newsletter">
                       <div class="newsletter-title">
                           <h2 class="text-center"> Subscribe now </h2>
                       </div>
@@ -718,48 +747,79 @@ function getNewletter(){
                         </form>
                       </div>
                   </div>';
+                  */
     return $html;
 }
+
+
+
+
+function syncMailchimp($data) {
+    $apiKey = 'your api key';
+    $listId = 'your list id';
+
+    $memberId = md5(strtolower($data['email']));
+    $dataCenter = substr($apiKey,strpos($apiKey,'-')+1);
+    $url = 'https://' . $dataCenter . '.api.mailchimp.com/3.0/lists/' . $listId . '/members/' . $memberId;
+
+    $json = json_encode([
+        'email_address' => $data['email'],
+        'status'        => $data['status'], // "subscribed","unsubscribed","cleaned","pending"
+        'merge_fields'  => [
+            'FNAME'     => $data['firstname'],
+            'LNAME'     => $data['lastname']
+        ]
+    ]);
+
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_USERPWD, 'user:' . $apiKey);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $json);                                                                                                                 
+
+    $result = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    return $httpCode;
+}
 function getAllTag(){
-    $html ='';
-    /*
-        $mblog = new Model_Blog();
-        $listMostView = $mblog->listMostView();
-        $stt = 0;
-        $html .='<h2 class="title-comment">
-                    <span class="fa fa-list"></span>Tags</h2>
-                <div id="tag-post">
-                ';
-        if($mblog->num_rows($listMostView) > 0)                
-            foreach($listMostView as $list):
-            $stt++;
-                 $html .='
-                    <article>
-                     <div class="recent-news margin-bottom-10">
-                        <div class="row margin-bottom-10">
-                          <!--<div class="col-md-2">
-                            <span class="display:block; background: #FFF; color: red !important;"><?php echo $stt; ?> </span>
-                          </div>
-                          -->
-                          <div class="col-md-12 recent-news-inner">
-                                <h3><a href="'.BASE_URL.'danh-muc/'.trim($list['slugcate']).'/'.trim($list['slug']).'-'.$list['blog_id'].'.html">'.$list['blog_name'].'</a></h3>
-                                <div class="item-description">
-                                '.wordLimiter($list['short_content'], 15, '...').'
-                                <i class="fa fa-eye"></i>'.$list['view_post'].'views
-                            </div>
-                          </div>                        
-                        </div>
-                      </div>
-                     </article>
-                     <div class="clearfix"></div>
-                 ';   
-            endforeach;
-        else
-            $html .= 'Chưa có bài viết';
-                    
-         $html .= '</div>';
-         */
-        return $html;
+   $htmlcate = '';
+   /*
+   $htmlcate .='<div class="block block-categories">
+                <div class="category-title">
+                    <h2 class="title-block">Tag bài viết</h2>
+                </div>
+                <div class="block-content">
+                  <div class="list-categories">';
+                          
+                   $htmlcate .='<ul class="list-unstyled">';
+                
+                            $mcate = new Model_CateBlog();
+                            $listCate = $mcate->listCategory();
+                           
+                            foreach($listCate as $list):
+                            if($list['slug'] == 'lien-he')
+                                continue;
+                            $htmlcate.= '<li';
+                            if(isset($_GET['slug']) && $_GET['slug'] == $list['slug']){
+                                $htmlcate.= " class='active'";
+                            }
+                            // $html .= '<li><a href="'.BASE_URL.'danh-muc/'.trim($level1['slug']).'.html" title="'.$level1['cat_name'].'">'.$level1['cat_name'].'</a></li>';            
+                            $htmlcate.= '><a href="'.BASE_URL.'danh-muc/'.trim($list['slug']).'.html'.'"><span><i class="fa fa-long-arrow-right"></i></span><span class="pull-right">'.$list['sumblog'].'</span>'.$list['cat_name'].'</a></li>';
+                            endforeach;
+                            $htmlcate;
+                    $htmlcate .='</ul>';
+        $htmlcate .= ' </div>
+                </div>
+                      
+            </div>';
+            */
+   return $htmlcate;
 }
 
 function getAdsSidbar(){
@@ -780,10 +840,10 @@ function createLinkPost($blog_id){
         
     $pre        = $mblog->getPrePostId($blog_id);
     if($next != false){
-        $nextHtml   = '<a href="'.BASE_URL.'danh-muc/'.trim($next['slugcate']).'/'.trim($next['slug']).'-'.$next['blog_id'].'.html" class="btn btn-primary pull-right">Bài viết tiếp theo</a>';
+        $nextHtml   = '<a href="'.BASE_URL.'danh-muc/'.trim($next['slugcate']).'/'.trim($next['slug']).'-'.$next['blog_id'].'.html" class="pull-right" title="Bài viết tiếp theo">Bài viết tiếp theo</a>';
     }
     if($pre != false){
-        $preHtml    = '<a href="'.BASE_URL.'danh-muc/'.trim($pre['slugcate']).'/'.trim($pre['slug']).'-'.$pre['blog_id'].'.html" class="btn btn-primary">Bài viết cũ hơn</a>';
+        $preHtml    = '<a href="'.BASE_URL.'danh-muc/'.trim($pre['slugcate']).'/'.trim($pre['slug']).'-'.$pre['blog_id'].'.html" class="" title="Bài viết cũ hơn">Bài viết cũ hơn</a>';
     }
 
     return $preHtml.$nextHtml;

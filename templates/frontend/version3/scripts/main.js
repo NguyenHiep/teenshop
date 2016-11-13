@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    
 	//Begin Show tab
      $(".posts-taps a").click(function(e){
         e.preventDefault();
@@ -20,11 +21,11 @@ $(document).ready(function(){
 		$('html, body').animate({scrollTop : 0},800);
 		return false;
 	});
-    $(".pagination li a").click(function(){
+    $(".post-pagination .pagination li a").click(function(){
         $('body,html').animate({
             scrollTop: 0
         }, 1200);
-        return false;
+        //return false;
     });
 	//Begin code javascript for tabs blog sidebar 
     $("#preloader").hide();				
@@ -40,7 +41,23 @@ $(document).ready(function(){
 		loadTabContent(tabUrl);
 		return false;
 	});
-	//End code javascript for tabs blog sidebar 
+	//End code javascript for tabs blog sidebar
+    //Select all link share post for blog detail
+    $("#sharepost").on("click",function () {
+       $(this).select();
+    });
+    //Add alt for all website
+    $('img').each(function(){
+    var $img = $(this);
+    var $alt = $(this).attr('alt');
+    var $title = $(this).attr('title');
+    var filename = $img.attr('src');
+    if($title === undefined || $title == null || $title.length <= 0)
+    $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
+    if($alt === undefined || $alt == null || $alt.length <= 0)
+    $img.attr('alt', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
+    });
+    
 });
 function loadTabContent(tabUrl){
 			$("#preloader").show();
@@ -61,6 +78,11 @@ function myFunction() {
         x.className = "topnav";
     }
 }
+//Script for menu
+$("#cssmenu").menumaker({
+      title: "Menu",
+      format: "multitoggle"
+});
 $body = $("body");
 // Show loading overlay when ajax request starts
 $( document ).ajaxStart(function() {

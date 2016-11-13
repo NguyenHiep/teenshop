@@ -12,8 +12,8 @@ if(isset($_GET['slug']) && validate_int($_GET['slug']) == false){
     //Update
     $count          = $mblog->totalCateBlog($catid);
     $totalItems     = $count['count'];
-    $totalItemsPage = 4; // Số bài viết trên một trang
-    $pageRage       = 1; // Số trang hiển thị trên pagination
+    $totalItemsPage = 6; // Số bài viết trên một trang
+    $pageRage       = 3; // Số trang hiển thị trên pagination
     $currentPage    = (isset($_GET['page']))? $_GET['page'] : 1;
     $paginator      = new PaginationHome($totalItems, $totalItemsPage, $pageRage, $currentPage);
     $paginationHTML = $paginator->showPagination($link);
@@ -70,8 +70,10 @@ if(isset($_GET['slug']) && validate_int($_GET['slug']) == false){
     
     $title          = $catedata['cat_name'];
     $keyword        = $catedata['meta_keyword'];
-    $description    = $catedata['meta_description'];
-    
+    $description    = htmlentities($catedata['meta_description']);
+    $imagesocial    = URL_UPLOAD_CATEGORY.trim($catedata['image']);
+    if(trim($catedata['image']) == 'none') $imagesocial = TEMPLATE_FRONTEND.'img/logo.png';
+    $urlsocial = siteURL().ltrim($_SERVER["REQUEST_URI"],'/');
  require_once "views/cateblog/cateblog_view.php";
 }
     

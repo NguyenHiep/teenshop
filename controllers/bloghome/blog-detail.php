@@ -71,6 +71,9 @@ if(isset($_GET['pid']) && validate_int($_GET['pid']) == true && $_GET['pid'] > 0
     $title              = $data['blog_name'];
     $keyword            = $data['meta_keyword'];
     $description        = $data['meta_description'];
+    $imagesocial        = BASE_URL.trim(ltrim($data['image'],'/'));
+    if(trim($data['image']) == 'none') $imagesocial = TEMPLATE_FRONTEND.'img/logo.png';
+    $urlsocial = siteURL().ltrim($_SERVER["REQUEST_URI"],'/');
     require_once "views/bloghome/blogdetail_view.php";
  
 }

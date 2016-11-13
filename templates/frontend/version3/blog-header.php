@@ -25,8 +25,25 @@
     <meta name="twitter:description" content="<?php echo isset($description)? $description : "Liên thông đại học - Lập trình website - Học magento ";?>" />
     <meta name="twitter:image" content="<?php echo isset($imagesocial)? $imagesocial : TEMPLATE_FRONTEND.'img/logo.png'; ?>" />
     <meta name="twitter:creator" content="@laptrinhwebphp" /> <!-- @username twitter -->
-
-    
+    <meta property="fb:app_id" content="861201477273916" />
+    <meta property="fb:admins" content="100000294314145"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192"  href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/favicon-16x16.png" />
+    <link rel="manifest" href="<?php echo TEMPLATE_FRONTEND; ?>img/icon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="<?php echo TEMPLATE_FRONTEND; ?>img/icon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
     <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/fontawesome/css/font-awesome.min.css?v=2.10" rel="stylesheet" />
     <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/bootstrap/css/bootstrap.min.css?v=2.10" rel="stylesheet" />
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7cCookie%7cPT+Serif&amp;subset=all" rel="stylesheet" type="text/css" />
@@ -53,6 +70,15 @@
 </head>
 
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=861201477273916";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
 <div class="loading-overlay"></div>
 	<div id="wrapper">
     	<header>
@@ -74,10 +100,7 @@
                   <!-- END SOCIAL HEADER -->
                   <!-- BEGIN LOGO -->
                     <div class="col-md-6">
-                    <?php
-                   
-                    ?>
-                        <h1 id="logo"> <a href="<?php echo BASE_URL; ?>">Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình </a> </h1>
+                        <h1 id="logo" title="Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình"> <a href="<?php echo BASE_URL; ?>" title="Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình">Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình </a> </h1>
                     </div>
                   <!-- END LOGO -->
                   <!-- BEGIN SEARCH -->

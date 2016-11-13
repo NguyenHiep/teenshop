@@ -69,7 +69,7 @@
                     if($item['image'] != "none"):
                     
                   ?>
-                    <td><img src="<?php echo URL_UPLOAD.trim($item['image']); ?>" class="img-responsive" width="70" height="70"/></td>
+                    <td><img src="<?php echo URL_UPLOAD_CATEGORY.trim($item['image']); ?>" class="img-responsive" width="70" height="70"/></td>
                   <?php
                     else:
                   ?>

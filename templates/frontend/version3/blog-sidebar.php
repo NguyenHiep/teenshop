@@ -20,7 +20,11 @@
             echo getTotalBlogByCate();
         ?>
       <!-- END BLOCK CATEGORIES -->
-
+      <!-- BEGIN BLOCK TAGS -->
+        <?php
+            echo getAllTag();
+        ?>
+      <!-- END BLOCK TAGS -->
       <!-- BEGIN BLOG SLIDER -->
        <?php
             echo getPostSlider();

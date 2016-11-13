@@ -18,17 +18,21 @@
 
                         foreach($data as $item):
                         
+                           
+                            
                     ?>
                          <!-- BEGIN POST ITEM SPECIAL -->
                         <article class="post blog-item blog-item-special col-md-12">
                             <div class="post-content">
+                             <?php if(trim($item->image) != 'none'): ?>
                                 <figure class="post-media">
                                     <a href="<?php echo BASE_URL.'danh-muc/'.trim($item->slugcate).'/'.trim($item->slug).'-'.$item['newsid'].'.html'; ?>" title="<?php echo $item->title; ?>">
-                                    <img src="<?php echo BASE_URL.trim(ltrim($item->image,'/'));?>" class="img-responsive" alt="<?php echo $item->slug;?>" title="<?php echo $item->title; ?>" /> 
+                                        <img src="<?php echo BASE_URL.trim(ltrim($item->image,'/'));?>" class="img-responsive" alt="<?php echo $item->slug;?>" title="<?php echo $item->title; ?>" /> 
                                     </a>
                                 </figure>
+                                 <?php endif;?>
                                 <div class="post-content-info"> 
-                                    <h2 class="post-category"><?php echo $item->catename; ?></h2>
+                                    <span class="post-category"><?php echo $item->catename; ?></span>
                                     <h3 class="post-title"><?php echo $item->title; ?> </h3>
                                     <div class="blog-short-description">
                                        <?php

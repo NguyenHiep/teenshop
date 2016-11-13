@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(0);
+    require_once "libraries/functions.php";
     require_once "libraries/config.php";
     require_once "libraries/class.php";
       $sql[] = "SELECT cat.*, COUNT(bl.cat_id) AS sumblog";
@@ -47,7 +50,7 @@
                     
                 $html .= "
                 <url>
-                    <loc>".BASE_URL."on-tap/".trim($data['slug'])."-".$data['cat_id'].".html</loc>
+                    <loc>".BASE_URL."danh-muc/".trim($data['slug']).".html</loc>
                     <changefreq>daily</changefreq>
                     <priority>0.8</priority>
                 </url>";

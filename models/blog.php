@@ -50,12 +50,13 @@ class Model_Blog extends Database{
             }
             
             $sql = implode(' ',$sql);
-
+          
             $this->query($sql);
             return $this->fetchAll(); 
         }
          public function totalCateBlog($catid){
-            $sql = "SELECT COUNT(*) AS `count` FROM `blog` WHERE `cat_id` = '{$catid}'";
+            $sql = "SELECT COUNT(*) AS `count` FROM `blog`";
+            $sql .= " WHERE `cat_id` = '{$catid}' AND status = '1'";
             $this->query($sql);
             return $this->fetch();
         }
@@ -64,6 +65,16 @@ class Model_Blog extends Database{
             $sql[] = "FROM blog AS bl LEFT JOIN user AS u USING(user_id)  LEFT JOIN cateblog AS cat USING(cat_id)";
             $sql[] = "WHERE bl.status = '1'";
             $sql[] = "ORDER BY bl.view_post DESC";
+            $sql[] = "LIMIT {$limit}";
+            $sql = implode(' ',$sql);
+            $this->query($sql);
+            return $this->fetchAll();
+        }
+         public function listRandom($limit=5){
+            $sql[] = "SELECT bl.blog_id, bl.blog_name,bl.image, bl.slug, bl.view_post, bl.short_content,bl.post_on, cat.slug AS slugcate,cat.cat_name, CONCAT_WS(' ',u.firstname,u.lastname) AS author";
+            $sql[] = "FROM blog AS bl LEFT JOIN user AS u USING(user_id)  LEFT JOIN cateblog AS cat USING(cat_id)";
+            $sql[] = "WHERE bl.status = '1'";
+            $sql[] = "ORDER BY rand()";
             $sql[] = "LIMIT {$limit}";
             $sql = implode(' ',$sql);
             $this->query($sql);

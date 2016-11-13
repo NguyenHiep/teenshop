@@ -1,18 +1,18 @@
  <footer id="footer" class="">
-        <a href="#" id="backtotop"><i class="fa fa-long-arrow-up"></i></a>
+        <a href="#" id="backtotop" title="Trở lên đầu trang"><i class="fa fa-long-arrow-up"></i></a>
         <div class="menu-bottom center-block container">
                <ul class="topnav" id="myTopnav">
-                        <li><a href="#">Giới thiệu</a></li>
-                        <li><a href="#">Bản quyền</a></li>
-                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="#" title="Giới thiệu">Giới thiệu</a></li>
+                        <li><a href="<?php echo BASE_URL;?>huong-dan.html" title="Bản quyền">Bản quyền</a></li>
+                        <li><a href="<?php echo BASE_URL;?>lien-he.html" title="liên hệ">Liên hệ</a></li>
                         <li class="icon">
                             <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
                         </li>
               </ul>
             <hr class="line-bottom" />
         </div>
-        <div class="copyright text-center" style="line-height: 60px;">
-            &copy;2016 Giadinhit.com. All rights reserved
+        <div class="copyright text-center">
+            &copy; 2015 - <?php echo date('Y');?> Tất cả bản quyền bài viết đều thuộc về Giadinhit.com
         </div>
     </footer>
 </div>
@@ -22,12 +22,6 @@
 	<script src="<?php echo TEMPLATE_FRONTEND;?>plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/responsive-menu/js/menumaker.js"></script>
     <script type="text/javascript" src="<?php echo TEMPLATE_FRONTEND;?>scripts/main.js"></script>
-   <script type="text/javascript">
-    $("#cssmenu").menumaker({
-      title: "Menu",
-      format: "multitoggle"
-    });
-  </script>
 </body>
 
 </html>
