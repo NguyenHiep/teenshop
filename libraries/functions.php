@@ -755,6 +755,7 @@ function getNewletter(){
 
 
 function syncMailchimp($data) {
+    /*
     $apiKey = 'your api key';
     $listId = 'your list id';
 
@@ -786,6 +787,7 @@ function syncMailchimp($data) {
     curl_close($ch);
 
     return $httpCode;
+    */
 }
 function getAllTag(){
    $htmlcate = '';
