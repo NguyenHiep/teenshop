@@ -83,16 +83,16 @@ class PaginationHome{
 		$paginationHTML = '';
 		if($this->totalPage > 1){
 			$start 	= '<li><a rel="nofollow">Start </a></li>';
-			$prev 	= '<li class="disabled"><a rel="nofollow">← Trang trước</a></li>';
+			$prev 	= '<li class="disabled"><a rel="nofollow"><i class="fa fa-long-arrow-left"></i> Prev</a></li>';
 			if($this->currentPage > 1){
 				$start 	= '<li><a href="?page=1">Start</a></li>';
-				$prev 	= '<li><a href="'.$link.'&page='.($this->currentPage-1).'">← Trang trước</a></li>';
+				$prev 	= '<li><a href="'.$link.'&page='.($this->currentPage-1).'"><i class="fa fa-long-arrow-left"></i> Prev</a></li>';
 			}
 		
-			$next 	= '<li  class="disabled"><a rel="nofollow"> Trang kế → </a> </li>';
+			$next 	= '<li  class="disabled"><a rel="nofollow">Next <i class="fa fa-long-arrow-right"></i></a> </li>';
 			$end 	= '<li><a rel="nofollow"> End</li>';
 			if($this->currentPage < $this->totalPage){
-				$next 	= '<li><a href="'.$link.'&page='.($this->currentPage+1).'">Trang kế →</a></li>';
+				$next 	= '<li><a href="'.$link.'&page='.($this->currentPage+1).'">Next <i class="fa fa-long-arrow-right"></i></a></li>';
 				$end 	= '<li><a href="?page'.$this->totalPage.'">End</a></li>';
 			}
 		
@@ -131,7 +131,7 @@ class PaginationHome{
 			}
 		
 		//	$paginationHTML = '<ul class="pagination pagination-lg">' . $start . $prev . $listPages . $next . $end . '</ul>';
-        $paginationHTML = '<ul class="pagination pagination-lg margin-top-5">'  . $prev. $listPages . $next . '</ul>';
+        $paginationHTML = '<ul class="pull-right pagination margin-top-5">'  . $prev. $listPages . $next . '</ul>';
 		}
 		return $paginationHTML;
 	}

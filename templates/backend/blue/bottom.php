@@ -27,8 +27,8 @@
 <script src="<?php echo BASE_URL;?>/templates/backend/blue/dist/js/app.min.js"></script>
 <!-- iCheck -->
 <script src="<?php echo BASE_URL;?>/templates/backend/blue/plugins/iCheck/icheck.min.js"></script>
- <script type="text/javascript" src="<?php echo BASE_URL;?>/templates/backend/blue/plugins/ckeditor/ckeditor.js"></script>
- <script type="text/javascript" src="<?php echo BASE_URL;?>/templates/backend/blue/plugins/ckfinder/ckfinder.js"></script>
+ <script type="text/javascript" src="<?php echo BASE_URL;?>/templates/backend/blue/plugins/ckeditor/ckeditor.js?v=<?php echo date('dmYhis');?>"></script>
+ <script type="text/javascript" src="<?php echo BASE_URL;?>/templates/backend/blue/plugins/ckfinder/ckfinder.js?v=<?php echo date('dmYhis');?>"></script>
  <!-- Select2 -->
 <script src="<?php echo BASE_URL;?>/templates/backend/blue/plugins/select2/select2.full.min.js"></script>
 <!-- Validate form -->

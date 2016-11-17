@@ -5,26 +5,26 @@
       <div class="container">
           <div class="row">
             <!-- BEGIN CONTENT -->
-              <div class="content col-md-8">
+              <div class="content col-md-8 page-search">
                 <div class="row">
                  <ul class="breadcrumb">
                     <li><a href="<?php echo BASE_URL;?>">Home</a></li>
                     <li class="active">Kết quả tìm kiếm</li>
                 </ul>
                     <div class="col-md-12">
-                        <h1>Kết quả tìm kiếm của: <em><?php echo $_GET['q'];?></em></h1>
+                        <h1>Kết quả tìm kiếm của: <strong><?php echo htmlentities($_GET['q']);?></strong></h1>
                         <div class="content-page">
-                          <form action="/search" class="content-search-view2">
+                          <form action="<?php echo BASE_URL;?>search" class="content-search-view2">
                             <div class="input-group">
-                              <input type="text" class="form-control" name="q" placeholder="Nhập từ khóa bạn muốn tìm ..." />
+                              <input type="text" class="form-control input-search" name="q" placeholder="Nhập từ khóa bạn muốn tìm ..." />
                               <span class="input-group-btn">
-                                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                                <button type="submit" class="btn btn-success">Tìm kiếm</button>
                               </span>
                             </div>
                           </form>
                           
                           <!-- Result search -->
-                          <div class="row">
+                          <div class="row result-search">
                                 <div class="col-sm-12">
                                 <?php
                                     if($mblog->num_rows($resuls) > 0){
@@ -34,7 +34,8 @@
                                         <h4><a href="<?php echo BASE_URL.'danh-muc/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html'; ?>"><?php echo $data['blog_name'];?></a></h4>
                                         <p><?php echo wordLimiter($data['short_content'], 40, '...'); ?></p>
                                         <a class="search-link" href="<?php echo BASE_URL.'danh-muc/'.trim($data['slugcate']).'/'.trim($data['slug']).'-'.$data['blog_id'].'.html'; ?>">Xem chi tiết</a>
-                                    </div>                 
+                                    </div>
+                                    <hr class="line-bottom" />                 
                                 <?php
                                         endforeach; //Edn foreach
                                     }else{ //End if($mblog->num_rows($resuls) > 0)
@@ -65,7 +66,7 @@
                                 <div class="col-md-7 col-sm-7 items-info">
                                     Bài viết từ <?php echo $start; ?> đến <?php echo $limit; ?> trên tổng cộng <?php echo $totalItems;?>
                                 </div>
-                                  <div class="col-md-5 col-sm-5 pull-right">
+                                  <div class="text-center col-md-12 post-pagination">
                                        <?php 
                                                 echo $paginationHTML;
                                         ?>

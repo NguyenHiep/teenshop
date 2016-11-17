@@ -14,7 +14,11 @@ a:hover{
 padding-top:30px;
 margin-bottom:30px
 }
-
+.content a:hover{
+ transition: .5s;
+ position: relative;
+ color: #5bc98a;
+}
 .preheader #logo {
 clear:both;
 margin:0
@@ -378,7 +382,7 @@ padding:40px 45px
 text-align:center
 }
 
-.post .btn-success {
+.post .btn-success, .btn-success {
 border-color:#5bc98a;
 background-color:#5bc98a;
 padding:12px 35px;
@@ -389,7 +393,9 @@ position:relative;
 transition:.5s;
 opacity:.8
 }
-
+.btn-success{
+    border-radius: 0 !important;
+}
 .post .btn-success:after {
 content:'»';
 position:absolute;
@@ -926,4 +932,53 @@ body.loading .loading-overlay {
 .title-post-blog{
     font-size: 25px;
     font-weight: bold;
+}
+/* Style for page result search */
+.search-result-item h4 a{
+    font-weight: bold;
+}
+.input-search{
+    border: 0;
+    height: 45px;
+}
+.page-search h1{
+    font-size: 25px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.page-search .result-search{
+    padding-top: 30px;
+}
+.page-search .search-result-item{
+    margin-bottom: 15px;
+}
+.result-search hr{
+    margin-bottom: 15px;
+}
+.result-search a.search-link{
+   color: #5bc98a;
+}
+/* Style for  contact page */
+img.width-capcha{
+   width: 130px; 
+}
+img.captcha_play_image{
+    width: 30px;
+    height: 30px;
+}
+.page-contact input[type="text"], .page-contact input[type="email"],
+.page-contact textarea{
+    border:0;
+    box-shadow: none;
+}
+.page-contact input[type="text"], .page-contact input[type="email"]{
+    height: 45px;
+}
+.page-contact textarea:focus{
+    box-shadow: none;
+}
+.page-contact h1{
+    font-weight: bold;
+    margin:30px;
+    margin-bottom: 30px;
 }

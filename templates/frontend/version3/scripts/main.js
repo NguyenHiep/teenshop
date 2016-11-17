@@ -46,30 +46,56 @@ $(document).ready(function(){
     $("#sharepost").on("click",function () {
        $(this).select();
     });
+    
+  
+   //Call function
+   addAltImg();
+   addNofollow('teenshop.local'); //Set string default with domain name
+});
+
+function addAltImg(){
     //Add alt for all website
     $('img').each(function(){
-    var $img = $(this);
-    var $alt = $(this).attr('alt');
-    var $title = $(this).attr('title');
-    var filename = $img.attr('src');
-    if($title === undefined || $title == null || $title.length <= 0)
-    $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
-    if($alt === undefined || $alt == null || $alt.length <= 0)
-    $img.attr('alt', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
+        var $img = $(this);
+        var $alt = $(this).attr('alt');
+        var $title = $(this).attr('title');
+        var filename = $img.attr('src');
+        if($title === undefined || $title == null || $title.length <= 0)
+        $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
+        if($alt === undefined || $alt == null || $alt.length <= 0)
+        $img.attr('alt', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
+    }); 
+}
+function addNofollow(strgd = ''){
+     //Add target="_blank" and rel="nofollow"
+     $('a').each(function(){
+        //
+        var $a = $(this);
+        var $rel = $(this).attr('rel');
+        var $target = $(this).attr('target');
+        var href = $a.attr('href');
+       // if (!this.nextSibling){return;}
+        if(href.indexOf(strgd) == -1 ){
+            if($rel === undefined || $target === undefined){
+                $a.attr('rel','nofollow');
+                $a.attr('target','_blank');
+            }
+        }
+        
+          
     });
-    
-});
+}
 function loadTabContent(tabUrl){
-			$("#preloader").show();
-			jQuery.ajax({
-				url: tabUrl, 
-				cache: false,
-				success: function(message) {
-					jQuery(".tab-content").empty().append(message);
-					$("#preloader").hide();
-				}
-			});
+	$("#preloader").show();
+	jQuery.ajax({
+		url: tabUrl, 
+		cache: false,
+		success: function(message) {
+			jQuery(".tab-content").empty().append(message);
+			$("#preloader").hide();
 		}
+	});
+}
 function myFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -78,6 +104,8 @@ function myFunction() {
         x.className = "topnav";
     }
 }
+//Hight Light code
+SyntaxHighlighter.all();
 //Script for menu
 $("#cssmenu").menumaker({
       title: "Menu",

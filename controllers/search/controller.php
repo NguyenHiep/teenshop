@@ -3,7 +3,7 @@ if(isset($_GET['q']) && $_GET['q'] != ""){
         $q = $_GET['q'];
         $keyword    = htmlentities(fix_str($_GET['q']));
         $mblog      = new Model_Blog();
-        $link = "search?q={$_GET['q']}";
+        $link = BASE_URL."search?q={$_GET['q']}";
         //Update
         $count          = $mblog->totalResultSearch($keyword);
         $totalItems     = $count['count'];
@@ -14,7 +14,7 @@ if(isset($_GET['q']) && $_GET['q'] != ""){
         $paginationHTML = $paginator->showPaginationSearch($link);
         $position       = ($currentPage - 1)* $totalItemsPage;
         $resuls         = $mblog->getSearchResult($keyword, $position, $totalItemsPage);
-        
+     $title = "Kết quả tìm kiếm với từ khóa là ".$q;
      require_once "views/search/result_search_view.php";   
 }else{
     redirect(BASE_URL);

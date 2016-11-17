@@ -44,13 +44,14 @@
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-TileImage" content="<?php echo TEMPLATE_FRONTEND; ?>img/icon/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
-    <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/fontawesome/css/font-awesome.min.css?v=2.10" rel="stylesheet" />
-    <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/bootstrap/css/bootstrap.min.css?v=2.10" rel="stylesheet" />
+    <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/fontawesome/css/font-awesome.min.css?v=<?php echo date('dmYhis');?>" rel="stylesheet" />
+    <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/bootstrap/css/bootstrap.min.css?v=<?php echo date('dmYhis');?>" rel="stylesheet" />
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7cCookie%7cPT+Serif&amp;subset=all" rel="stylesheet" type="text/css" />
-    <link href="<?php echo TEMPLATE_FRONTEND;?>css/components.css?v=2.10" rel="stylesheet" />
-    <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/responsive-menu/css/menumaker.css?v=2.10" rel="stylesheet" />
-    <link href="<?php echo TEMPLATE_FRONTEND;?>css/styles.css?v=2.10" rel="stylesheet" />
-    <link href="<?php echo TEMPLATE_FRONTEND;?>css/style-responsive.css?v=2.10" rel="stylesheet" />
+    <link href="<?php echo TEMPLATE_FRONTEND;?>css/components.css?v=<?php echo date('dmYhis');?>" rel="stylesheet" />
+    <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/responsive-menu/css/menumaker.css?v=<?php echo date('dmYhis');?>" rel="stylesheet" />
+    <link href="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/styles/shCoreDefault.css?v=<?php echo date('dmYhis');?>" rel="stylesheet" />
+    <link href="<?php echo TEMPLATE_FRONTEND;?>css/styles.css?v=<?php echo date('dmYhis');?>" rel="stylesheet" />
+    <link href="<?php echo TEMPLATE_FRONTEND;?>css/style-responsive.css?v=<?php echo date('dmYhis');?>" rel="stylesheet" />
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>

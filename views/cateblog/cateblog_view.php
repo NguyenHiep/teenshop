@@ -13,11 +13,17 @@
                     </ul>
                     <div class="col-md-12 news-block-post">
                       <h2 class="title-popular-post"><?php echo $catedata['cat_name'];?></h2>
-                      <div class="description-category">
+                      
                       <?php
-                            echo $description
+                            if(trim($description) !== ""){
+                                $html  = '';
+                                $html .= '<div class="description-category">';
+                                $html .= $description;
+                                $html .= '</div>';
+                                echo $html;
+                            }
                       ?>
-                      </div>
+                      
                   </div>
                   <?php
                   $html = '';
