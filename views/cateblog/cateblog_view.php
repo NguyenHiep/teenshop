@@ -12,7 +12,7 @@
                         <li class="active"><?php echo $catedata['cat_name'];?></li>
                     </ul>
                     <div class="col-md-12 news-block-post">
-                      <h2 class="title-popular-post"><?php echo $catedata['cat_name'];?></h2>
+                      <h1 class="title-popular-post"><?php echo $catedata['cat_name'];?></h1>
                       
                       <?php
                             if(trim($description) !== ""){

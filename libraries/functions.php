@@ -461,7 +461,7 @@ function getProfileHomePage(){
     $author = new Model_User();
     $data = $author->getUserPageHome();
     $html ='';
-    $html.='<div class="block block-profile">
+    /*$html.='<div class="block block-profile">
                         <div class="profile-sidebar">
                             <div class="profile_cover">
                                 <h3 class="text-center">I am a developer</h3>
@@ -480,6 +480,7 @@ function getProfileHomePage(){
                         </div>   
                 
                   </div>';
+                  */
     return $html;
 }
 function getPostTab(){
@@ -529,8 +530,8 @@ function getPostTab(){
     $html .= '<div class="block block-post-sidebar">
                       <div class="post-tabs-title">
                           <ul class="nav nav-tabs tabs posts-taps">
-                            <li class="tabs active"><a class="current" id="tab1" data-toggle="tab" href="'.BASE_URL.'index.php?controller=ajax&action=contenttabs&id=1">Xem nhiều nhất</a></li>
-                            <li class="tabs active"><a id="tab2" href="'.BASE_URL.'index.php?controller=ajax&action=contenttabs&id=2">Bài viết nổi bật</a></li>
+                            <li class="tabs active"><a class="current" id="tab1" data-toggle="tab" href="'.BASE_URL.'tabmostviewpost">Xem nhiều nhất</a></li>
+                            <li class="tabs active"><a id="tab2" href="'.BASE_URL.'tabhightlightpost">Bài viết nổi bật</a></li>
                           </ul>
                       </div>
                         <div id="preloader">
@@ -849,4 +850,7 @@ function createLinkPost($blog_id){
     }
 
     return $preHtml.$nextHtml;
+}
+function createArchiveBlog(){
+    
 }

@@ -1,5 +1,5 @@
  <?php
-    require "templates/frontend/version1/blog-header.php";
+    require "templates/frontend/version3/blog-header.php";
  ?>
  <div class="main">
       <div class="container">
@@ -26,5 +26,5 @@
 </div>
 
 <?php
-     require "templates/frontend/version1/blog-footer.php";
+     require "templates/frontend/version3/blog-footer.php";
 ?>

@@ -67,7 +67,7 @@ class PaginationHome{
 				if($i == $this->currentPage) {
 					$listPages .= '<li class="active"><a rel="nofollow">'.$i.'</a>';
 				}else{
-					$listPages .= '<li><a href="'.$link.'.html?page='.$i.'">'.$i.'</a>';
+					$listPages .= '<li><a href="'.BASE_URL.$link.'.html?page='.$i.'">'.$i.'</a>';
 				}
 			}
 		

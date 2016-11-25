@@ -68,6 +68,7 @@
       ga('send', 'pageview');
 
 </script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -101,7 +102,19 @@
                   <!-- END SOCIAL HEADER -->
                   <!-- BEGIN LOGO -->
                     <div class="col-md-6">
-                        <h1 id="logo" title="Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình"> <a href="<?php echo BASE_URL; ?>" title="Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình">Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình </a> </h1>
+                        <?php
+                            $current_url = BASE_URL.ltrim($_SERVER["REQUEST_URI"],'/');
+                            if(BASE_URL ==$current_url):
+                        ?>
+                            <h1 id="logo" title="Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình"> <a href="<?php echo BASE_URL; ?>" title="Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình">Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình </a> </h1>
+                        <?php
+                            else:
+                        ?>
+                          <h2 id="logo" title="Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình"> <a href="<?php echo BASE_URL; ?>" title="Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình">Giadinhit.com kênh hướng dẫn ôn thi liên thông đại học, lập trình </a> </h2>
+                        
+                        <?php
+                            endif;
+                        ?>
                     </div>
                   <!-- END LOGO -->
                   <!-- BEGIN SEARCH -->

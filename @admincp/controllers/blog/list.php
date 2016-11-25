@@ -43,6 +43,10 @@
                                 break;
                         case "hightlight": $column = "hightlight";
                                 break;
+                        case "cate": $column = "cat_id";
+                            break;
+                        default: $column = "blog_id";
+                                break;
                     }
             }else{
                 $column = "blog_id";

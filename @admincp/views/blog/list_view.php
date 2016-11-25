@@ -49,10 +49,12 @@
                 <thead>
                 <tr class="info">
                   <th><a href="?sort=id">ID </a></th>
+                  <th><a href="?sort=cate">Chuyên mục</a></th>
                   <th><a href="?sort=title">Tiêu đề </a></th>
+                  <th class="text-center">Share post</th>
                   <th><a href="?sort=poston">Ngày cập nhật </a></th>
                   <th class="text-center"><a href="?sort=hightlight">Nổi bật </a></th>
-                  <th class="text-center">Xem nhanh</th>
+                  
                   <th class="text-center">Thao tác</th>
                 </tr>
                 </thead>
@@ -63,10 +65,12 @@
           ?>    
                 <tr>
                   <td><?php echo $item['blog_id'];?></td>
-                  <td><?php echo $item['blog_name'];?></td>
+                  <td><?php echo $item['cat_name']; ?></td>  
+                  <td><a href="<?php echo BASE_URL.'danh-muc/'.trim($item['slugcat']).'/'.trim($item['slug']).'-'.$item['blog_id'].'.html'; ?>" target="_blank"><?php echo $item['blog_name'];?></a></td>
+                  <td><a href="#">Share  <i class="fa fa-share" aria-hidden="true"></i></a></td>
                   <td><?php echo $item['post_on']; ?></td>
                   <td class="icheck text-center"> <input data-id="<?php echo $item['blog_id']; ?>" class="minimal ckhHightLight" type="checkbox" name="ckhHightLight" <?php if($item['hightlight'] == 1) echo "checked='checked'"; ?>/> </td>
-                  <td>Hình ảnh zoom</td>  
+                  
                   <td>
                     <a href="<?php echo BASE_ADMIN;?>/blog/edit/catid/<?php echo  $item['blog_id']; ?>" class="btn btn-primary btn-sm btn_edit col-md-3">
                     <span class="glyphicon glyphicon-pencil"></span> Sửa</a>

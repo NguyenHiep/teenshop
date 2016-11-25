@@ -982,3 +982,24 @@ img.captcha_play_image{
     margin:30px;
     margin-bottom: 30px;
 }
+/* Begin style for muc luc blog detail */
+#toc{
+    /* background: rgba(91, 155, 201, 0.15); */
+    background: #ecf0f2;
+    width: 320px;
+}
+#toctitle h2{
+    text-align: center;
+}
+/* Begin style page terms-and-conditions */
+.terms-and-conditions{
+    background: #FFF;
+}
+.terms-and-conditions h1{
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 400;
+}
+.terms-and-conditions .lead{
+    font-size: 120%;
+}

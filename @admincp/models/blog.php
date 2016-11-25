@@ -145,12 +145,13 @@ class Model_Blog extends Database{
         }
     }
     public function listBlog($start="",$limit="",$column = "blog_id", $userid = ""){
-        $sql[] = "SELECT * FROM `blog`";
+        $sql[] = "SELECT bl.*, cat.slug AS slugcat, cat.cat_name";
+        $sql[] = "FROM `blog` AS bl LEFT JOIN `cateblog` AS cat USING(cat_id)";
         if($userid != ""){
-            $sql[] = "WHERE user_id = '{$userid}'";
+            $sql[] = "WHERE bl.user_id = '{$userid}'";
         }
          
-        $sql[] = "ORDER BY `{$column}` DESC";
+        $sql[] = "ORDER BY bl.`{$column}` DESC";
         $sql[] = "LIMIT {$start},{$limit}";
         $sql = implode(' ',$sql);
         $this->query($sql);

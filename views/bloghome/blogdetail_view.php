@@ -47,7 +47,24 @@
                                 <li><i class="fa fa-list"></i> <a href="<?php echo BASE_URL.'danh-muc/'.trim($data->slugcate).'.html';?>"><?php echo $data->catename;?> </a></li>
                                 <li><i class="fa fa-eye"></i> <?php echo $data->viewpost; ?> views</li>
                               </ul>
-                        
+                             <!--
+                            <div id="toc" class="toc">
+                                    <div id="toctitle">
+                                        <h2 class="text-uppercase">Mục lục</h2>
+                                        <span class="toctoggle">&nbsp;[<a role="button" tabindex="0" id="togglelink">ẩn</a>]&nbsp;</span>
+                                    </div>
+                                    <ul>
+                                    <li class="toclevel-1 tocsection-1"><a href="<?php echo $urlsocial;?>#T.C3.A1c_d.E1.BB.A5ng_c.E1.BB.A7a_CSS"><span class="tocnumber">1</span> <span class="toctext">Tác dụng của CSS</span></a></li>
+                                    <li class="toclevel-1 tocsection-2"><a href="#S.E1.BB.AD_d.E1.BB.A5ng_CSS"><span class="tocnumber">2</span> <span class="toctext">Sử dụng CSS</span></a></li>
+                                    <li class="toclevel-1 tocsection-3"><a href="#M.E1.BB.A9c_.C4.91.E1.BB.99_.C6.B0u_ti.C3.AAn_c.E1.BB.A7a_CSS"><span class="tocnumber">3</span> <span class="toctext">Mức độ ưu tiên của CSS</span></a></li>
+                                    <li class="toclevel-1 tocsection-4"><a href="#C.C3.BA_ph.C3.A1p"><span class="tocnumber">4</span> <span class="toctext">Cú pháp</span></a></li>
+                                    <li class="toclevel-1 tocsection-5"><a href="#CSS_Selector"><span class="tocnumber">5</span> <span class="toctext">CSS Selector</span></a></li>
+                                    <li class="toclevel-1 tocsection-6"><a href="#Tham_kh.E1.BA.A3o"><span class="tocnumber">6</span> <span class="toctext">Tham khảo</span></a></li>
+                                    <li class="toclevel-1 tocsection-7"><a href="#Nghi.C3.AAn_c.E1.BB.A9u_th.C3.AAm"><span class="tocnumber">7</span> <span class="toctext">Nghiên cứu thêm</span></a></li>
+                                    <li class="toclevel-1 tocsection-8"><a href="#Li.C3.AAn_k.E1.BA.BFt_ngo.C3.A0i"><span class="tocnumber">8</span> <span class="toctext">Liên kết ngoài</span></a></li>
+                                    </ul>
+                              </div>
+                             -->
                             <article class="content-blog">
                                 <div class="content-blog">
                                     <?php echo $data->full; ?>
@@ -81,6 +98,7 @@
                                 ?>
                                
                             </article>
+                             
                     </div>             
                   </div>
                     <hr class="line-bottom" />

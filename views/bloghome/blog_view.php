@@ -55,6 +55,7 @@
                         <li><i class="fa fa-list"></i> <?php echo $item->catename;?></li>
                         <li><i class="fa fa-eye"></i> <?php echo $item->viewpost; ?> views</li>
                       </ul>
+                     
                       <section class="item">
                             <p><?php echo wordLimiter($item->full, 75, '...'); ?></p>
                       <a href="<?php echo BASE_URL.'on-tap/'.trim($item->slugcate).'/'.trim($item->slug).'-'.$item['newsid'].'.html'; ?>" class="btn btn-primary pull-right  more">Xem chi tiết <i class="icon-angle-right"></i></a>

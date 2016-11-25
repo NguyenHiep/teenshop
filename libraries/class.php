@@ -8,25 +8,24 @@ class Database {
     protected $_result;
     
     public function connect(){
-        $this->_conn = mysql_connect($this->_hostname, $this->_userhost,$this->_passhost);
-        mysql_select_db($this->_dbname,$this->_conn);
-        mysql_query("SET NAMES 'UTF-8'");
-        mysql_set_charset('SET CHARACTER SET utf8', $this->_conn);
+        $this->_conn = mysqli_connect($this->_hostname, $this->_userhost,$this->_passhost, $this->_dbname);
+        mysqli_query($this->_conn, "SET NAMES 'UTF-8'");
+        mysqli_set_charset($this->_conn, 'SET CHARACTER SET utf8');
     }
     
     public function disconnect(){
         if($this->_conn){
-            mysql_close($this->_conn);
+            mysqli_close($this->_conn);
         }
     }
     
     public function query($sql){
-        $this->_result = mysql_query($sql);
+        $this->_result = mysqli_query($this->_conn, $sql);
     }
     
     public function num_rows(){
         if($this->_result){
-            $row = mysql_num_rows($this->_result);
+            $row = mysqli_num_rows($this->_result);
         }else{
             $row = 0;
         }
@@ -35,7 +34,7 @@ class Database {
     
     public function fetch(){
         if($this->_result){
-            $row = mysql_fetch_assoc($this->_result);
+            $row = mysqli_fetch_assoc($this->_result);
         }else{
             $row = 0;
         }
