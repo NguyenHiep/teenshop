@@ -30,3 +30,6 @@ table td{
     border-left: 2px solid #e6e7e8;
     color: #444;
 }
+.margin-bottom-30{
+    margin-bottom: 30px !important;
+}

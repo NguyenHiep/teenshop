@@ -66,7 +66,11 @@ function addAltImg(){
         $img.attr('alt', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
     }); 
 }
-function addNofollow(strgd = ''){
+function addNofollow(strgd){
+    //Fix  bug in safary
+    if(strgd === undefined){
+        strgd = '';
+    }
      //Add target="_blank" and rel="nofollow"
      $('a').each(function(){
         //
@@ -86,6 +90,10 @@ function addNofollow(strgd = ''){
     });
 }
 function loadTabContent(tabUrl){
+     //Fix  bug in safary
+    if(tabUrl === undefined){
+        tabUrl = '/tabmostviewpost';
+    }
 	$("#preloader").show();
 	jQuery.ajax({
 		url: tabUrl, 

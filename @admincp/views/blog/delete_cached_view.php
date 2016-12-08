@@ -2,16 +2,17 @@
     require "../templates/backend/blue/left.php";
  
 ?>
-
+    
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1 class="pull-left"> Quản lý cached </h1>
-      <div class="pull-right">
+      <!--<div class="pull-right">
             <a href="<?php echo BASE_ADMIN.'/blog/deletecached'?>" class="btn btn-sm  btn-warning">
             <span class="glyphicon glyphicon-trash"></span> Xóa cached post</a>
       </div>
+      -->
     </section>
 
      <!-- Main content -->
@@ -25,6 +26,12 @@
             </ol>
             <!-- /.box-header -->
             <div class="box-body">
+             <form action="" method="post" role="form">
+                <div class="row">
+                    <div class="col-md-12">
+                         <button type="submit"  class="pull-right btn btn-sm  btn-warning margin-bottom-30">Xóa cached</button>
+                    </div>
+                </div>
                 <div class="row">
                       <div class="col-xs-12 text-center hidden">
                           <button type="button" class="btn btn-default btn-lrg ajax" title="Ajax Request">
@@ -32,9 +39,8 @@
                           </button>
                            <div class="ajax-content text-center"></div>
                         </div>
+                        
                           <div class="col-md-6">
-                            <form action="" method="post" role="form">
-                            
                                 <div class="box box-primary">
                                     <div class="box-header">
                                       <h3 class="box-title">Danh sách cached bài viết</h3>
@@ -50,7 +56,7 @@
                                                 if(!empty($filedelBlogDetail)){
                                                     foreach($filedelBlogDetail as $file)
                                                    $option .= '<div class="checkbox cached-checkbox"><label>
-                                                    <input type="checkbox" value="'.$file.'" name="filedel_blogdetail[]" />
+                                                    <input class="cached-checkbox" type="checkbox" value="'.$file.'" name="filedel_blogdetail[]" />
                                                     '.$file.'
                                             </label> <a href="#test" class="pull-right" onclick="validate_del()"><i class="fa fa-trash-o"></i></a></div>'; 
                                                 }
@@ -73,11 +79,8 @@
                                     </div>
                                    
                               </div>
-                              
-                            </form>
                         </div>
                         <div class="col-md-6">
-                            <form action="" method="post" role="form">
                                
                                 <div class="box box-primary">
                                     <div class="box-header">
@@ -117,10 +120,11 @@
                                     </div>
                                     <!-- /.box-body -->
                               </div>
-                            </form>
+                           
                         </div>
+                
                 </div>
-           
+            </form>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->

@@ -30,6 +30,9 @@
         echo $message = "Xóa cached thành công";
     }
     */
+    if(isset($_POST['submit'])){
+        
+    }
     $title = "Xóa cached website";
     require_once "views/blog/delete_cached_view.php";
 ?>
