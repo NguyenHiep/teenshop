@@ -854,3 +854,25 @@ function createLinkPost($blog_id){
 function createArchiveBlog(){
     
 }
+ function get_yahoo_data_cached($query, $zip) { 
+    // Rewrite by Julius Beckmann 
+    // Remove dangerous chars 
+        $query_safe = str_replace(array('.','/'), '_', $query); 
+        $zip_safe = str_replace(array('.','/'), '_', $zip); 
+        $cache_filename = "cache/$query_safe-$zip_safe.xml"; 
+        $time_expire = time() + 24*60*60; // Expire Time (1 Day) 
+        // Check file change time 
+        if(filectime($filename) <= $time_expire) {
+            // File is too old, refresh cache 
+            $xml = get_yahoo_data($query, $zip); 
+            // Remove cache file on error to avoid writing wrong xml 
+            if($xml) file_put_contents($cache_filename, $xml); 
+            else unlink($cache_filename); 
+        }else{
+            // Fetch cache 
+            $xml = file_get_contents($cache_filename); 
+        } 
+    return $xml; 
+ }
+ 
+ 

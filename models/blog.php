@@ -19,6 +19,7 @@ class Model_Blog extends Database{
             $this->query($sql);
             return $this->fetchAll(); 
         }
+        
         public function getBlogDetail($pid){
             $sql[] = "SELECT bl.*, cat.slug AS slugcate,cat.cat_name,";
             $sql[] = "CONCAT_WS(' ',u.firstname,u.lastname) AS author,";
@@ -32,7 +33,10 @@ class Model_Blog extends Database{
             return $this->fetch();
         }
         public function totalBlog(){
-            $sql = "SELECT COUNT(*) AS `count` FROM `blog`";
+            $sql[] = "SELECT COUNT(*) AS `count`";
+            $sql[] = "FROM `blog`";
+            $sql[] = "WHERE status = '1'";
+            $sql = implode(' ',$sql);
             $this->query($sql);
             return $this->fetch();
         }
@@ -191,6 +195,31 @@ class Model_Blog extends Database{
             $sql[] = "WHERE bl.status = '1' AND bl.blog_id < {$blog_id}"; // Important
             $sql[] = "ORDER BY bl.blog_id DESC"; // Important
             $sql[] = "LIMIT 1";
+            $sql = implode(' ',$sql);
+            $this->query($sql);
+            return $this->fetch();
+        }
+        //Begin write for api
+         public function listBlogAPI($start, $limit){
+            $sql[] = "SELECT  bl.blog_id, bl.blog_name,bl.user_id,bl.cat_id,";
+            $sql[] = "cat.slug AS slugcate,cat.cat_name,";
+            $sql[] = "CONCAT_WS(' ',u.firstname,u.lastname) AS author,  u.nickname";
+            $sql[] = "FROM blog AS bl LEFT JOIN user AS u USING(user_id)  LEFT JOIN cateblog AS cat USING(cat_id)";
+            $sql[] = "WHERE bl.status = '1'";
+            $sql[] = "ORDER BY bl.post_on DESC";
+            $sql[] = "LIMIT {$start},{$limit}";
+            $sql = implode(' ',$sql);
+            $this->query($sql);
+            return $this->fetchAll(); 
+        }
+        public function getBlogDetailAPI($pid){
+            $sql[] = "SELECT bl.*, cat.slug AS slugcate,cat.cat_name,";
+            $sql[] = "CONCAT_WS(' ',u.firstname,u.lastname) AS author,";
+            $sql[] = "u.avatart, u.nickname, u.short_instruction, u.share_facebook,";
+            $sql[] = "u.share_google, u.share_twitter";
+            $sql[] = "FROM blog AS bl LEFT JOIN user AS u USING(user_id)  LEFT JOIN cateblog AS cat USING(cat_id)";
+            $sql[] = "WHERE bl.status = '1' AND bl.blog_id = '{$pid}'";
+            $sql[] = "ORDER BY bl.post_on DESC";
             $sql = implode(' ',$sql);
             $this->query($sql);
             return $this->fetch();

@@ -7,6 +7,9 @@
             case "guide":
                 require_once "controllers/guide/guide.php";
                 break;
+            case "introducte":
+                require_once "controllers/guide/introducte.php";
+                break;
             default:  require_once "controllers/guide/contact.php";               
         }
     }else{

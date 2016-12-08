@@ -11,11 +11,10 @@
                   </div>
                   <div id="post-content-list">
                    <?php
-                    if($number > 0){
+                  //  if($number > 0){
                         $name = md5(md5("listblog"));
-                        $xml = simplexml_load_file("cached/$name.xhtml");
+                        $xml = simplexml_load_file("cached/homepage_$name.xhtml");
                         $data = $xml->news;
-
                         foreach($data as $item):
                         
                            
@@ -59,12 +58,12 @@
                   ?>
                   <div class=" text-center col-md-12 post-pagination">
                       <?php
-                        echo $pagination->createLinks();
+                        //echo $pagination->createLinks();
                       ?>
                      
                   </div>
                   <?php      
-                    } //End if($number > 0)
+                  //  } //End if($number > 0)
                   ?> 
                 </div> <!-- END DIV#POST-CONTENT -->
                

@@ -19,6 +19,9 @@ margin-bottom:30px
  position: relative;
  color: #5bc98a;
 }
+.post-morelink a:hover{
+    color: #FFF;
+}
 .preheader #logo {
 clear:both;
 margin:0
@@ -393,6 +396,9 @@ position:relative;
 transition:.5s;
 opacity:.8
 }
+.content-blog{
+    word-break: break-word;
+}
 .btn-success{
     border-radius: 0 !important;
 }
@@ -585,7 +591,8 @@ margin:0
 
 .tab-content .post-item .post-item-shortdescription {
 font-size:12px;
-line-height:21px
+line-height:21px;
+word-break: break-word;
 }
 
 .block h2.title-block {

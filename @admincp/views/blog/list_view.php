@@ -11,6 +11,8 @@
       <div class="pull-right">
             <a href="<?php echo BASE_ADMIN.'/blog/add'?>" class="btn btn-sm  btn-primary">
             <span class="glyphicon glyphicon-plus-sign"></span> Thêm mới</a>
+             <a href="<?php echo BASE_ADMIN.'/blog/deletecached'?>" class="btn btn-sm  btn-warning">
+            <span class="glyphicon glyphicon-trash"></span> Xóa cached post</a>
       </div>
     </section>
 
@@ -88,7 +90,7 @@
             endforeach;
           }else{
             echo "<tr>";
-            echo "<td colspan='6' class='text-center'>Dữ liệu rỗng</td>";
+            echo "<td colspan='7' class='text-center'>Dữ liệu rỗng</td>";
             echo "</tr>";
           }
           ?>      

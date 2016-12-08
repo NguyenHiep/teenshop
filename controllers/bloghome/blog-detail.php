@@ -4,6 +4,10 @@ if(isset($_GET['pid']) && validate_int($_GET['pid']) == true && $_GET['pid'] > 0
      $mblog = new Model_Blog();
      
      $data  = $mblog->getBlogDetail($pid);
+     //Neu data == NULL thi redirect va page home
+     if($data === NULL){
+        redirect('/404.html');
+     }
      //Lấy ra danh sách các blog khác cùng category
      $data2 = $mblog->getNextPostId($pid);
      $data3 = $mblog->getPrePostId($pid);
@@ -66,8 +70,8 @@ if(isset($_GET['pid']) && validate_int($_GET['pid']) == true && $_GET['pid'] > 0
         
         //End updatae 01.05.2016
         
-    $name =  md5(md5("Blogdetail"));
-    $dom->save("cached/$name.xhtml");
+    $name =  md5(md5("Blogdetail{$pid}"));
+    $dom->save("cached/BlogDetail_{$pid}$name.xhtml");
     $title              = $data['blog_name'];
     $keyword            = $data['meta_keyword'];
     $description        = $data['meta_description'];
@@ -76,4 +80,6 @@ if(isset($_GET['pid']) && validate_int($_GET['pid']) == true && $_GET['pid'] > 0
     $urlsocial = siteURL().ltrim($_SERVER["REQUEST_URI"],'/');
     require_once "views/bloghome/blogdetail_view.php";
  
+}else{
+     redirect(BASE_URL);
 }

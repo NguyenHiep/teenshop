@@ -15,7 +15,10 @@
                 break;
             case "search":
                 require_once "controllers/blog/search.php";
-                break;  
+                break;
+             case "deletecached":
+                require_once "controllers/blog/delete-cached.php";
+                break;   
             default:
                 require_once "controllers/blog/list.php";   
         }

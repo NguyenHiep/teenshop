@@ -5,6 +5,10 @@ if(isset($_GET['slug']) && validate_int($_GET['slug']) == false){
     $catidslug = trim($_GET['slug']);
     $mcate = new Model_CateBlog();
     $catedata = $mcate->getCategoryById($catidslug);
+    if($catedata === NULL){
+        redirect(BASE_URL);
+    }
+
     $catid = $catedata['cat_id'];
     $mblog = new Model_Blog();
     //on-tap/nhap-mon-lap-trinh-1/trang/3
@@ -69,11 +73,14 @@ if(isset($_GET['slug']) && validate_int($_GET['slug']) == false){
     }
     
     $title          = $catedata['cat_name'];
-    $keyword        = $catedata['meta_keyword'];
-    $description    = htmlentities($catedata['meta_description']);
+    $keyword        = fix_content($catedata['meta_keyword']);
+    $description    = fix_content($catedata['meta_description']);
+  
     $imagesocial    = URL_UPLOAD_CATEGORY.trim($catedata['image']);
     if(trim($catedata['image']) == 'none') $imagesocial = TEMPLATE_FRONTEND.'img/logo.png';
     $urlsocial = siteURL().ltrim($_SERVER["REQUEST_URI"],'/');
  require_once "views/cateblog/cateblog_view.php";
+}else{
+     redirect(BASE_URL);
 }
     

@@ -2,8 +2,8 @@
     require "templates/frontend/version3/blog-header.php";
  ?>
  <?php
-    $name = md5(md5("Blogdetail"));
-    $xml = simplexml_load_file("cached/$name.xhtml");
+    $name = md5(md5("Blogdetail{$pid}"));
+    $xml = simplexml_load_file("cached/BlogDetail_{$pid}$name.xhtml");
     $data = $xml->news;
     
  ?>

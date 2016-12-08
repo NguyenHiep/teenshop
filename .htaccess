@@ -1,14 +1,15 @@
 # Disable Directory Browsing
 Options All -Indexes
-ErrorDocument 404 http://teenshop.local/404.html
-ErrorDocument 500  http://teenshop.local/500.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
 RewriteEngine on
 #RewriteRule ^templates/frontend/version1/css/(.*\.css) /combine.php?type=css&files=$1
 #RewriteRule ^templates/frontend/version1/js/(.*\.js) /combine.php?type=javascript&files=$1
 
 #Capcha
 RewriteRule capchaimage libraries/securimage/securimage_show.php [L]
-
+#Ajax pagination for page home
+RewriteRule ^pagination-home index.php?controller=ajax&action=listpagehome
 #Login
 RewriteRule home index.php [L]
 RewriteRule tabmostviewpost index.php?controller=ajax&action=contenttabs&id=1 [L]
@@ -46,6 +47,10 @@ RewriteRule lien-he.html index.php?controller=guide&action=contact [L]
 #404 page
 RewriteRule 404.html index.php?controller=404 [L]
 RewriteRule 500.html index.php?controller=500 [L]
+# Rewrite for API
+RewriteRule ^api/v1/(.*).json$ index.php?controller=api&action=$1&%{QUERY_STRING} [L]
+# Rewrite for detail list api
+RewriteRule ^api/v1/(.*)/([0-9]+).json$ index.php?controller=api&action=$1&id=$2 [L]
 
 #Gzip
 #AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/javascript     text/css application/x-javascript

@@ -18,7 +18,7 @@ if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
 }
 */
 ob_start(); // Start the output buffer
-date_default_timezone_set('Asia/Ho_Chi_Minh');
+//date_default_timezone_set('Asia/Ho_Chi_Minh');
 //Required file postion default
 require_once "libraries/functions.php";
 require_once "libraries/config.php";
@@ -69,9 +69,13 @@ if(isset($_GET['controller'])){
             case 'cateblog':
                 require "controllers/cateblog/controller.php";
                 break;
+            case 'api':
+                require "controllers/api/controller.php";
+                break;
             case '404':
                 require "controllers/404/controller.php";
                 break;
+            
             case '500':
                 require "controllers/500/controller.php";
                 break;

@@ -6,4 +6,4 @@
     tuệ về điện ảnh. Giadinhit.com luôn cố gắng đảm bảo rằng tất 
     cả nội dung trên trang web hoặc liên quan đến thương hiệu Giadinhit.com đều hợp pháp";
     require_once "views/guide/guide_view.php";
-?>ai
+?>
