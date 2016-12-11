@@ -2,7 +2,9 @@
 session_start();
 error_reporting(E_ALL & ~E_NOTICE);
 error_reporting(0);
-
+if(!isset($_SESSION['ses_group'])){
+    die('No access!');
+}
 /*
  * ### CKFinder : Configuration File - Basic Instructions
  *
@@ -144,7 +146,7 @@ $danhsachthanhvien = array(
     'admin' => array('id' => 3, 'chuc_vu'=>'admin', 'thu_muc'=>'admin'),
 );
 
-
+echo $_SESSION['ses_group'];
 if($_SESSION['ses_group'] == 1){
     $config['AccessControl'][] = Array(
 		'role' => '*',
@@ -159,17 +161,18 @@ if($_SESSION['ses_group'] == 1){
 		'fileView' => true,
 		'fileUpload' => true,
 		'fileRename' => true,
-		'fileDelete' => true);
+		'fileDelete' => true
+        );
 }else{
     if($_SESSION['ses_group'] == 2){
         $config['AccessControl'][] = Array(
 		'role' => '*',
-		'resourceType' => '*',
-		'folder' => '/',
+		'resourceType' => 'Images',
+		'folder' => '/test',
 
-		'folderView' => true,
-		'folderCreate' => true,
-		'folderRename' => true,
+		'folderView' => false,
+		'folderCreate' => false,
+		'folderRename' => false,
 		'folderDelete' => false,
 
 		'fileView' => true,

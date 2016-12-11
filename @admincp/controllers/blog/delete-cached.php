@@ -1,4 +1,5 @@
 <?php
+    //Get list file cached
     $dir = '../cached'; //Folder chua code
     $files1 = scandir($dir); // Hien thi list file bao gom thu muc goc
     $filedelBlogDetail = array();
@@ -14,24 +15,28 @@
        }else{
             $filedelPage[] = $dir.'/'.$file;
        }
-       
-       // unlink($filedel);
+
     }
    
-   // print_r($files2);
-    /*
-    $name = md5(md5("listblog"));
-    //$path = "../cached/$name.xhtml";
-    $path = "../cached/nguyenhiep.xhtml";
-    if(file_exists($path)){
-        //unlink($path);
-        //echo $path;
-        unlink($path);
-        echo $message = "Xóa cached thành công";
-    }
-    */
+    //Begin delete file cached
+    $message = '';
     if(isset($_POST['submit'])){
-        
+        if(isset($_POST['filedel_blogdetail'])){
+             $link_blogdetail = $_POST['filedel_blogdetail'];
+             foreach($link_blogdetail as $item){
+                $message .= '<p>Cached file '.$item.' đã xóa thành công! </p>';
+                unlink($item);
+            }
+        }
+       
+         if(isset($_POST['filedel_page'])){
+            $link_page = $_POST['filedel_page'];
+            foreach($link_page as $itempage){
+                 $message .= '<p>Cached file '.$itempage.' đã xóa thành công! </p>';
+                unlink($itempage);
+            }
+        }
+         header('Location: '.$_SERVER['REQUEST_URI']);
     }
     $title = "Xóa cached website";
     require_once "views/blog/delete_cached_view.php";

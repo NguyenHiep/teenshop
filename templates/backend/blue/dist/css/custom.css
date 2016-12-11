@@ -33,3 +33,7 @@ table td{
 .margin-bottom-30{
     margin-bottom: 30px !important;
 }
+.message-success{
+    color: #51ab53;
+    font-weight: 600;
+}

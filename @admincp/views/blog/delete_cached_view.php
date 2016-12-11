@@ -26,10 +26,18 @@
             </ol>
             <!-- /.box-header -->
             <div class="box-body">
-             <form action="" method="post" role="form">
-                <div class="row">
+             <form action="" method="post" role="form" id="form-delcached">
+                <div class="row margin-bottom-30">
                     <div class="col-md-12">
-                         <button type="submit"  class="pull-right btn btn-sm  btn-warning margin-bottom-30">Xóa cached</button>
+                         <button name="submit" type="submit"  class="pull-right btn btn-sm  btn-warning ">Xóa cached</button>
+                        
+                         <div class="text-center message-success">
+                            <?php
+                                if(isset($message)){
+                                    echo $message;
+                                }
+                            ?>
+                         </div>
                     </div>
                 </div>
                 <div class="row">
@@ -49,14 +57,14 @@
                                         <div class="form-group">
                                             <div class="checkbox cached-checkbox"><label>
                                                 <input type="checkbox" value="" name="checkall" id="check-all-cached" />
-                                                Chọn tất cả 
+                                                Xóa tất cả cached post detail 
                                             </label> </div>  
                                             <?php
                                                 $option = '';
                                                 if(!empty($filedelBlogDetail)){
                                                     foreach($filedelBlogDetail as $file)
                                                    $option .= '<div class="checkbox cached-checkbox"><label>
-                                                    <input class="cached-checkbox" type="checkbox" value="'.$file.'" name="filedel_blogdetail[]" />
+                                                    <input class="cached-checkbox-detail" type="checkbox" value="'.$file.'" name="filedel_blogdetail[]" />
                                                     '.$file.'
                                             </label> <a href="#test" class="pull-right" onclick="validate_del()"><i class="fa fa-trash-o"></i></a></div>'; 
                                                 }
@@ -90,8 +98,8 @@
                                         <div class="form-group">
                                             <div class="checkbox cached-checkbox">
                                                     <label>
-                                                        <input type="checkbox" value="" name="checkall" id="check-all-cached" />
-                                                        Chọn tất cả 
+                                                        <input type="checkbox" value="" name="checkall" id="check-all-cached-page" />
+                                                        Xóa tất cả cached page 
                                                     </label> 
                                             </div> 
                                               <?php
@@ -99,9 +107,9 @@
                                                 if(!empty($filedelPage)){
                                                     foreach($filedelPage as $file)
                                                    $option .= '<div class="checkbox cached-checkbox"><label>
-                                                    <input type="checkbox" value="'.$file.'" name="filedel_page[]"/>
+                                                    <input class="cached-checkbox-page" type="checkbox" value="'.$file.'" name="filedel_page[]"/>
                                                     '.$file.'
-                                            </label> <a href="#" class="pull-right"><i class="fa fa-trash-o"></i></a></div>'; 
+                                            </label> <a href="#" class="pull-right" onclick="validate_del()"><i class="fa fa-trash-o"></i></a></div>'; 
                                                 }
                                                 echo $option;
                                             ?>

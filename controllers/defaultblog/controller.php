@@ -1,48 +1,43 @@
-<?php   
+<?php
+/*
+* Dislay list post home page
+* @author: NguyenHiep
+* @version 1.0.4
+* @copyright giadinhit.com
+*/   
+    //Display slider
     $mslider = new Model_Slider();
     $dataSlider = $mslider->getSliderBlog();
     $totalSlider = $mslider->num_rows($dataSlider);
     
+    //Display blog page home
+    $mblog = new Model_Blog();
+    //Begin update pagination ajax
+    $count          = $mblog->totalBlog();
+    $totalItems     = $count['count'];
+    $totalItemsPage = 5; // Số bài viết trên một trang
+    $currentPage    = (isset($_GET['page']))? $_GET['page'] : 1;
+    $pagConfig = array(
+        'baseURL'=>'pagination-home', 
+        'totalRows'=>$totalItems, 
+        'perPage'=>$totalItemsPage, 
+        'contentDiv'=>'post-content-list'
+        );
+    $pagination =  new PaginationHomeBlog($pagConfig);
+    $position       = ($currentPage - 1)* $totalItemsPage;
+        
     $name = md5(md5("listblog"));
    // $xml = simplexml_load_file("cached/$name.xhtml");
     $path = "cached/homepage_$name.xhtml";
     if(!file_exists($path)){
-       $mblog = new Model_Blog();
-       //Begin update pagination ajax
-       
-        $count          = $mblog->totalBlog();
-        $totalItems     = $count['count'];
-        $totalItemsPage = 5; // Số bài viết trên một trang
-        $currentPage    = (isset($_GET['page']))? $_GET['page'] : 1;
-       
-        //$totalItemsPage = 4; // Số bài viết trên một trang
-        //$pageRage       = 3; // Số trang hiển thị trên pagination
-      
-        //$paginator      = new Pagination($totalItems, $totalItemsPage, $pageRage, $currentPage);
-        //$paginationHTML = $paginator->showPagination();
-        
-       $pagConfig = array(
-            'baseURL'=>'pagination-home', 
-            'totalRows'=>$totalItems, 
-            'perPage'=>$totalItemsPage, 
-            'contentDiv'=>'post-content-list'
-            );
-        $pagination =  new PaginationHomeBlog($pagConfig);
-        
-      
-        $position       = ($currentPage - 1)* $totalItemsPage;
         $datas          = $mblog->listBlog($position, $totalItemsPage);
-        
-        
         //Begin update 02.05.2016
         $number = $mblog->num_rows($datas);
-        
         if($number > 0){
         $dom            = new DOMDocument("1.0", "utf-8");
         $cate           = $dom->createElement("Category");
         $dom->appendChild($cate);
         foreach($datas as $data){
-            
             $news       = $dom->createElement("news");
             $cate->appendChild($news);
             $newsid     = $dom->createAttribute("newsid");
@@ -85,7 +80,6 @@
         
     }
 
-    
     $title="Giadinhit.com, ôn thi liên thông đại học, chia sẻ kiến thức lập trình";
     $keyword = "Ôn thi liên thông, lập trình PHP, Lập trình magento";
     $description = "Giadinhit.com kênh chia sẻ kiến thức ôn thi liên thông đại học, kiến thức lập trình";

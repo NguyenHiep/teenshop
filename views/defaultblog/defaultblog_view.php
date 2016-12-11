@@ -11,14 +11,12 @@
                   </div>
                   <div id="post-content-list">
                    <?php
-                  //  if($number > 0){
-                        $name = md5(md5("listblog"));
+                    $name = md5(md5("listblog"));
+                    if(file_exists("cached/homepage_$name.xhtml")){
+                        //if($number > 0){
                         $xml = simplexml_load_file("cached/homepage_$name.xhtml");
                         $data = $xml->news;
-                        foreach($data as $item):
-                        
-                           
-                            
+                        foreach($data as $item):    
                     ?>
                          <!-- BEGIN POST ITEM SPECIAL -->
                         <article class="post blog-item blog-item-special col-md-12">
@@ -58,12 +56,16 @@
                   ?>
                   <div class=" text-center col-md-12 post-pagination">
                       <?php
-                        //echo $pagination->createLinks();
+                        echo $pagination->createLinks();
                       ?>
                      
                   </div>
                   <?php      
-                  //  } //End if($number > 0)
+                    //  } //End if($number > 0)
+                  } //End  if(file_exists("cached/homepage_$name.xhtml")){
+                    else{
+                        echo "<div class='col-md-12'>Bài viết đang được cập nhật!</div>";
+                    }
                   ?> 
                 </div> <!-- END DIV#POST-CONTENT -->
                

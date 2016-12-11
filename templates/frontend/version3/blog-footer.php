@@ -22,6 +22,7 @@
 	<script src="<?php echo TEMPLATE_FRONTEND;?>plugins/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/shCore.js"></script>
 	<script type="text/javascript" src="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+	<script type="text/javascript" src="<?php echo TEMPLATE_FRONTEND;?>plugins/syntaxhighlighter/scripts/shBrushCpp.js"></script>
     <script src="<?php echo TEMPLATE_FRONTEND;?>plugins/responsive-menu/js/menumaker.js"></script>
     <script type="text/javascript" src="<?php echo TEMPLATE_FRONTEND;?>scripts/main.js?v=<?php echo date('dmYhis');?>"></script>
 </body>
